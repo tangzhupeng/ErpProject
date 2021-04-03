@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "erp_permission", schema = "erp3", catalog = "")
+@Table(name = "erp_permission", schema = "", catalog = "erp3")
 public class ErpPermissionEntity {
     private int perId;
     private String perName;

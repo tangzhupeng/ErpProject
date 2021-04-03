@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "erp_role_per", schema = "erp3", catalog = "")
+@Table(name = "erp_role_per", schema = "", catalog = "erp3")
 public class ErpRolePerEntity {
     private int roleId;
     private int perId;
