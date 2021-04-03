@@ -5,7 +5,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "erp_emp_role", schema = "erp3", catalog = "")
-@IdClass(ErpEmpRoleEntityPK.class)
 public class ErpEmpRoleEntity {
     private int empId;
     private int roleId;
