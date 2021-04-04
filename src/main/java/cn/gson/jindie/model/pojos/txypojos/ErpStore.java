@@ -29,5 +29,12 @@ public class ErpStore {
         this.storeState = storeState;
     }
 
-
+    @Override
+    public String toString() {
+        return "ErpStore{" +
+                "storeId=" + storeId +
+                ", storeName='" + storeName + '\'' +
+                ", storeState=" + storeState +
+                '}';
+    }
 }
