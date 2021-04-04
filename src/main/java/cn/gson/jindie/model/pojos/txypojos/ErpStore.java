@@ -6,17 +6,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "erp_store", schema = "", catalog = "erp3")
 public class ErpStore {
-    private int storeId;
+    private Integer storeId;
     private String storeName;
     private Integer storeState;
 
     @Id
     @Column(name = "store_id")
-    public int getStoreId() {
+    public Integer getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(int storeId) {
+    public void setStoreId(Integer storeId) {
         this.storeId = storeId;
     }
 

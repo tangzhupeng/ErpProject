@@ -1,5 +1,7 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
+import cn.gson.jindie.model.pojos.perpojos.ErpEmpEntity;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
@@ -7,7 +9,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "erp_customer", schema = "", catalog = "erp3")
 public class ErpCustomer {
-    private int customerId;
+    private Integer customerId;
     private String customerName;
     private String customerPeople;
     private String customerPhone;
@@ -17,13 +19,25 @@ public class ErpCustomer {
     private Date customerTime;
     private int customerState;
 
+    private ErpEmpEntity emps;
+
+    @ManyToOne
+    @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
+    public ErpEmpEntity getEmps() {
+        return emps;
+    }
+
+    public void setEmps(ErpEmpEntity emps) {
+        this.emps = emps;
+    }
+
     @Id
     @Column(name = "customer_id")
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 

@@ -12,6 +12,7 @@ public class ErpBuyingOrder {
 
     @Id
     @Column(name = "bo_number")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String getBoNumber() {
         return boNumber;
     }

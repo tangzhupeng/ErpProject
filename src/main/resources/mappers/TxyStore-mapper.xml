@@ -1,0 +1,30 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxyStoreMapper">
+    <resultMap id="store" type="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+        <id column="store_id" property="storeId"></id>
+        <result column="store_name" property="storeName"></result>
+        <result column="store_state" property="storeState"></result>
+    </resultMap>
+
+    <!--查询所有仓库-->
+    <select id="allStore" resultMap="store">
+        select * from erp_store
+    </select>
+
+    <!--新增仓库-->
+    <insert id="addStore">
+        insert into erp_store(store_name) values(#{storeName})
+    </insert>
+
+    <!--编辑仓库-->
+    <update id="updateStore">
+        update erp_store set store_name=#{storeName}
+        where store_id=#{storeId}
+    </update>
+
+    <!--删除仓库-->
+    <update id="deleteStore">
+        update erp_store set store_state=0
+        where store_id=#{storeId}
+    </update>
+</mapper>

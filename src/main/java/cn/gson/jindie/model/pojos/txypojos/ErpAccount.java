@@ -7,19 +7,20 @@ import java.util.Objects;
 @Entity
 @Table(name = "erp_account", schema = "", catalog = "erp3")
 public class ErpAccount {
-    private int accountId;
+    private Integer accountId;
     private String accountName;
     private String accountBalance;
     private String accountMoney;
     private Date accountTime;
+    private Integer accountState;
 
     @Id
     @Column(name = "account_id")
-    public int getAccountId() {
+    public Integer getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(int accountId) {
+    public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
 
@@ -62,6 +63,17 @@ public class ErpAccount {
     public void setAccountTime(Date accountTime) {
         this.accountTime = accountTime;
     }
+
+    @Basic
+    @Column(name = "account_state")
+    public Integer getAccountState() {
+        return accountState;
+    }
+
+    public void setAccountState(Integer accountState) {
+        this.accountState = accountState;
+    }
+
 
     @Override
     public boolean equals(Object o) {

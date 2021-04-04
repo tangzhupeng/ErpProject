@@ -16,6 +16,7 @@ public class ErpPOrderDetail {
 
     @Id
     @Column(name = "pod_number")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String getPodNumber() {
         return podNumber;
     }
