@@ -12,11 +12,36 @@
         <result property="accountReceivable" column="account_receivable" />
         <result property="paymentReceived" column="payment_received" />
         <result property="deliveryStatus" column="delivery_status" />
+        <result property="createTime" column="create_time" />
+        <result property="approvalStatus" column="approval_status" />
+        <result property="orderStatus" column="order_status"/>
+        <result property="deliveryOrderNumber" column="delivery_order_number" />
+        <result property="currentExaminer" column="current_examiner" />
+
         <association property="erpCustomer" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
             <id property="empId" column="emp_id"/>
             <result property="customerName" column="customer_name" />
+            <result property="customerPeople" column="customer_people" />
+            <result property="customerPhone" column="customer_phone" />
+            <result property="customerLocation" column="customer_location" />
+            <result property="customerMoney" column="customer_money" />
+            <result property="customerTime" column="customer_time" />
+            <result property="customerState" column="customer_state" />
         </association>
 
+        <association property="erpEmp" javaType="cn.gson.jindie.model.pojos.PerPojos.ErpEmp" >
+            <id property="empId" column="emp_id" />
+            <result property="empName" column="emp_name"/>
+            <result property="password" column="password"/>
+            <result property="phone" column="phone"/>
+            <result property="statu" column="statu" />
+        </association>
+
+        <association property="erpStore" javaType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+            <id property="storeId"  column="store_id" />
+            <result property="storeName" column="store_name"/>
+            <result property="storeState" column="storeState" />
+        </association>
     </resultMap>
 
 
