@@ -12,6 +12,7 @@
         <result property="accountReceivable" column="account_receivable" />
         <result property="paymentReceived" column="payment_received" />
         <result property="deliveryStatus" column="delivery_status" />
+        <result property="creatorPerson" column="creator_person" />
         <result property="createTime" column="create_time" />
         <result property="approvalStatus" column="approval_status" />
         <result property="orderStatus" column="order_status"/>
