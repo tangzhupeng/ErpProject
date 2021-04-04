@@ -1,6 +1,10 @@
 package cn.gson.jindie.model.pojos.salespojos;
 
 
+import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
+import cn.gson.jindie.model.pojos.txypojos.ErpStore;
+
 public class ErpDeliveryOrder {
 
   private Integer deliveryOrderId;
@@ -13,9 +17,9 @@ public class ErpDeliveryOrder {
   private Integer approvalStatus;
   private String orderNumber;
   private String salesReturnsNumber;
-  private Integer customerId;
-  private Integer empId;
-  private Integer storeId;
+  private ErpCustomer erpCustomer;
+  private ErpEmp erpEmp;
+  private ErpStore erpStore;
   private double unverifiedAmount;
   private double cancelledAmount;
   private String currentExaminer;
@@ -111,32 +115,29 @@ public class ErpDeliveryOrder {
   }
 
 
-  public Integer getCustomerId() {
-    return customerId;
+  public ErpCustomer getErpCustomer() {
+    return erpCustomer;
   }
 
-  public void setCustomerId(Integer customerId) {
-    this.customerId = customerId;
+  public void setErpCustomer(ErpCustomer erpCustomer) {
+    this.erpCustomer = erpCustomer;
   }
 
-
-  public Integer getEmpId() {
-    return empId;
+  public ErpEmp getErpEmp() {
+    return erpEmp;
   }
 
-  public void setEmpId(Integer empId) {
-    this.empId = empId;
+  public void setErpEmp(ErpEmp erpEmp) {
+    this.erpEmp = erpEmp;
   }
 
-
-  public Integer getStoreId() {
-    return storeId;
+  public ErpStore getErpStore() {
+    return erpStore;
   }
 
-  public void setStoreId(Integer storeId) {
-    this.storeId = storeId;
+  public void setErpStore(ErpStore erpStore) {
+    this.erpStore = erpStore;
   }
-
 
   public double getUnverifiedAmount() {
     return unverifiedAmount;
