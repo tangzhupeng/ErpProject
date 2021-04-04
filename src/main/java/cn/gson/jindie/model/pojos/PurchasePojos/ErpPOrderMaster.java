@@ -21,6 +21,7 @@ public class ErpPOrderMaster {
 
     @Id
     @Column(name = "po_number")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String getPoNumber() {
         return poNumber;
     }
