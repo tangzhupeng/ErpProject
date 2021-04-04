@@ -1,0 +1,48 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxyCustomerMapper">
+    <resultMap id="customer" type="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
+        <id column="customer_id" property="customerId"></id>
+        <result column="customer_name" property="customerName"></result>
+        <result column="customer_people" property="customerPeople"></result>
+        <result column="customer_phone" property="customerPhone"></result>
+        <result column="customer_location" property="customerLocation"></result>
+        <result column="customer_money" property="customerMoney"></result>
+        <result column="customer_time" property="customerTime"></result>
+        <result column="customer_state" property="customerState"></result>
+        <association property="emps" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmpEntity">
+            <id column="emp_id" property="empId"></id>
+            <result column="emp_name" property="empName"></result>
+        </association>
+    </resultMap>
+
+    <!--查询所有客户-->
+    <select id="allCustomer" resultMap="customer">
+        select * from erp_customer c
+        left join erp_emp e
+        on c.emp_id=e.emp_id
+    </select>
+
+    <!--新增客户-->
+    <insert id="addCustomer">
+        insert into erp_customer(customer_name,customer_people,customer_phone,customer_location,emp_id,customer_time)
+        values(#{customerName},#{customerPeople},#{customerPhone},#{customerLocation},#{emps},#{customerTime})
+    </insert>
+
+    <!--查询职员-->
+    <select id="selectUser" resultMap="customer">
+        select emp_name from erp_emp
+    </select>
+
+    <!--修改客户-->
+    <update id="updateCustomer">
+        update erp_customer set customer_name=#{customerName},customer_people=#{customerPeople},
+        customer_phone=#{customerPhone},customer_location=#{customerLocation},emp_id=#{emps}
+        where customer_id=#{customerId}
+    </update>
+
+    <!--删除客户（逻辑删除）-->
+    <update id="deleteCustomer">
+        update erp_customer set customer_state=0
+        where customer_id=#{customerId}
+    </update>
+</mapper>
