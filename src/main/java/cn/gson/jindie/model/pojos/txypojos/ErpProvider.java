@@ -1,29 +1,29 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "erp_provider", schema = "", catalog = "erp3")
 public class ErpProvider {
-    private int providerId;
+    private Integer providerId;
     private String providerName;
     private Integer gysId;
     private String providerPeople;
     private String providerPhone;
     private String providerLocation;
     private String providerMoney;
-    private Timestamp providerTime;
+    private Date providerTime;
     private String providerState;
 
     @Id
     @Column(name = "provider_id")
-    public int getProviderId() {
+    public Integer getProviderId() {
         return providerId;
     }
 
-    public void setProviderId(int providerId) {
+    public void setProviderId(Integer providerId) {
         this.providerId = providerId;
     }
 
@@ -87,13 +87,14 @@ public class ErpProvider {
         this.providerMoney = providerMoney;
     }
 
+
     @Basic
     @Column(name = "provider_time")
-    public Timestamp getProviderTime() {
+    public Date getProviderTime() {
         return providerTime;
     }
 
-    public void setProviderTime(Timestamp providerTime) {
+    public void setProviderTime(Date providerTime) {
         this.providerTime = providerTime;
     }
 

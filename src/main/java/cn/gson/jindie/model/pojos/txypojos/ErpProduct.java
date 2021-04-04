@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "erp_product", schema = "", catalog = "erp3")
 public class ErpProduct {
-    private int productId;
+    private Integer productId;
     private String productName;
     private String productPicture;
     private Integer protypeId;
@@ -16,14 +16,16 @@ public class ErpProduct {
     private Integer storeId;
     private Integer productNumber;
     private Integer productState;
+    private Double productPf;
+    private Double productVip;
 
     @Id
     @Column(name = "product_id")
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -137,5 +139,25 @@ public class ErpProduct {
     @Override
     public int hashCode() {
         return Objects.hash(productId, productName, productPicture, protypeId, productMoney, productPrice, productDw, storeId, productNumber, productState);
+    }
+
+    @Basic
+    @Column(name = "product_pf")
+    public Double getProductPf() {
+        return productPf;
+    }
+
+    public void setProductPf(Double productPf) {
+        this.productPf = productPf;
+    }
+
+    @Basic
+    @Column(name = "product_vip")
+    public Double getProductVip() {
+        return productVip;
+    }
+
+    public void setProductVip(Double productVip) {
+        this.productVip = productVip;
     }
 }

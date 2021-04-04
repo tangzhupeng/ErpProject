@@ -6,16 +6,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "erp_product_type", schema = "", catalog = "erp3")
 public class ErpProductType {
-    private int protypeId;
+    private Integer protypeId;
     private String protypeName;
 
     @Id
     @Column(name = "protype_id")
-    public int getProtypeId() {
+    public Integer getProtypeId() {
         return protypeId;
     }
 
-    public void setProtypeId(int protypeId) {
+    public void setProtypeId(Integer protypeId) {
         this.protypeId = protypeId;
     }
 
