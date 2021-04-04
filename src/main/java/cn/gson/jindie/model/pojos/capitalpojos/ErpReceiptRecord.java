@@ -51,16 +51,16 @@ public class ErpReceiptRecord {
         this.accountId = accountId;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    public ErpOrder getOrder() {
-        return order;
-    }
-
-    public void setOrder(ErpOrder order) {
-        this.order = order;
-    }
+//
+//    @ManyToOne
+//    @JoinColumn(name = "order_id")
+//    public ErpOrder getOrder() {
+//        return order;
+//    }
+//
+//    public void setOrder(ErpOrder order) {
+//        this.order = order;
+//    }
 
     @Basic
     @Column(name = "re_way")
