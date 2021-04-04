@@ -1,11 +1,8 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
-import javax.persistence.*;
-import java.util.Date;
-import java.util.Objects;
 
-@Entity
-@Table(name = "erp_provider", schema = "", catalog = "erp3")
+import java.util.Date;
+
 public class ErpProvider {
     private Integer providerId;
     private String providerName;
@@ -17,8 +14,6 @@ public class ErpProvider {
     private Date providerTime;
     private String providerState;
 
-    @Id
-    @Column(name = "provider_id")
     public Integer getProviderId() {
         return providerId;
     }
@@ -27,8 +22,6 @@ public class ErpProvider {
         this.providerId = providerId;
     }
 
-    @Basic
-    @Column(name = "provider_name")
     public String getProviderName() {
         return providerName;
     }
@@ -37,8 +30,6 @@ public class ErpProvider {
         this.providerName = providerName;
     }
 
-    @Basic
-    @Column(name = "gys_id")
     public Integer getGysId() {
         return gysId;
     }
@@ -47,8 +38,6 @@ public class ErpProvider {
         this.gysId = gysId;
     }
 
-    @Basic
-    @Column(name = "provider_people")
     public String getProviderPeople() {
         return providerPeople;
     }
@@ -57,8 +46,6 @@ public class ErpProvider {
         this.providerPeople = providerPeople;
     }
 
-    @Basic
-    @Column(name = "provider_phone")
     public String getProviderPhone() {
         return providerPhone;
     }
@@ -67,8 +54,6 @@ public class ErpProvider {
         this.providerPhone = providerPhone;
     }
 
-    @Basic
-    @Column(name = "provider_location")
     public String getProviderLocation() {
         return providerLocation;
     }
@@ -77,8 +62,6 @@ public class ErpProvider {
         this.providerLocation = providerLocation;
     }
 
-    @Basic
-    @Column(name = "provider_money")
     public String getProviderMoney() {
         return providerMoney;
     }
@@ -88,8 +71,6 @@ public class ErpProvider {
     }
 
 
-    @Basic
-    @Column(name = "provider_time")
     public Date getProviderTime() {
         return providerTime;
     }
@@ -98,8 +79,6 @@ public class ErpProvider {
         this.providerTime = providerTime;
     }
 
-    @Basic
-    @Column(name = "provider_state")
     public String getProviderState() {
         return providerState;
     }
@@ -108,24 +87,5 @@ public class ErpProvider {
         this.providerState = providerState;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ErpProvider that = (ErpProvider) o;
-        return providerId == that.providerId &&
-                Objects.equals(providerName, that.providerName) &&
-                Objects.equals(gysId, that.gysId) &&
-                Objects.equals(providerPeople, that.providerPeople) &&
-                Objects.equals(providerPhone, that.providerPhone) &&
-                Objects.equals(providerLocation, that.providerLocation) &&
-                Objects.equals(providerMoney, that.providerMoney) &&
-                Objects.equals(providerTime, that.providerTime) &&
-                Objects.equals(providerState, that.providerState);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(providerId, providerName, gysId, providerPeople, providerPhone, providerLocation, providerMoney, providerTime, providerState);
-    }
 }
