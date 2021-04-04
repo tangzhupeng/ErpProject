@@ -1,11 +1,10 @@
-package cn.gson.jindie.model.pojos.perpojos;
+package cn.gson.jindie.model.pojos.PerPojos;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "erp_permission", schema = "", catalog = "erp3")
-public class ErpPermissionEntity {
+public class ErpPermission {
     private int perId;
     private String perName;
 
@@ -33,13 +32,19 @@ public class ErpPermissionEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ErpPermissionEntity that = (ErpPermissionEntity) o;
-        return perId == that.perId &&
-                Objects.equals(perName, that.perName);
+
+        ErpPermission that = (ErpPermission) o;
+
+        if (perId != that.perId) return false;
+        if (perName != null ? !perName.equals(that.perName) : that.perName != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(perId, perName);
+        int result = perId;
+        result = 31 * result + (perName != null ? perName.hashCode() : 0);
+        return result;
     }
 }

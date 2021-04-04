@@ -9,7 +9,7 @@
         <result column="customer_money" property="customerMoney"></result>
         <result column="customer_time" property="customerTime"></result>
         <result column="customer_state" property="customerState"></result>
-        <association property="emps" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmpEntity">
+        <association property="emps" javaType="cn.gson.jindie.model.pojos.PerPojos.ErpEmp">
             <id column="emp_id" property="empId"></id>
             <result column="emp_name" property="empName"></result>
         </association>

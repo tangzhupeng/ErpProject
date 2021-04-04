@@ -1,11 +1,10 @@
-package cn.gson.jindie.model.pojos.perpojos;
+package cn.gson.jindie.model.pojos.PerPojos;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "erp_role", schema = "", catalog = "erp3")
-public class ErpRoleEntity {
+public class ErpRole {
     private int roleId;
     private String roleName;
 
@@ -33,13 +32,19 @@ public class ErpRoleEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ErpRoleEntity that = (ErpRoleEntity) o;
-        return roleId == that.roleId &&
-                Objects.equals(roleName, that.roleName);
+
+        ErpRole erpRole = (ErpRole) o;
+
+        if (roleId != erpRole.roleId) return false;
+        if (roleName != null ? !roleName.equals(erpRole.roleName) : erpRole.roleName != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleId, roleName);
+        int result = roleId;
+        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
+        return result;
     }
 }

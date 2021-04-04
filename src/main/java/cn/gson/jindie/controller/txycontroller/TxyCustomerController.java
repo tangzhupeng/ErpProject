@@ -1,6 +1,5 @@
 package cn.gson.jindie.controller.txycontroller;
 
-import cn.gson.jindie.model.pojos.perpojos.ErpEmpEntity;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.service.txyservice.TxyCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +29,11 @@ public class TxyCustomerController {
         customerService.addCustomer(customer);
     }
     //查询职员
-    @RequestMapping("/select-user")
-    @ResponseBody
-    public List<ErpEmpEntity> selectUser(ErpEmpEntity emp){
-        return customerService.selectUser(emp);
-    }
+//    @RequestMapping("/select-user")
+//    @ResponseBody
+//    public List<ErpEmpEntity> selectUser(ErpEmpEntity emp){
+//        return customerService.selectUser(emp);
+//    }
     //删除客户
     @GetMapping("/delete-customer")
     @ResponseBody

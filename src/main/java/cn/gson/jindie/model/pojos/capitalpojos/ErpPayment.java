@@ -1,5 +1,8 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
+import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
+import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -8,15 +11,17 @@ import java.util.Objects;
 @Table(name = "erp_payment", schema = "", catalog = "erp3")
 public class ErpPayment {
     private String paymentId;
-    private Integer empId;
-    private Integer empAuditId;
-    private Integer providerId;
-    private String boNumber;
     private Timestamp paymentTime;
     private Double paymentMoney;
     private Double paymentHxmoney;
     private Double paymentDiscount;
     private String paymentRemark;
+
+    private ErpEmp emp; //收款人
+    private ErpEmp empAudit; //审批人
+    private ErpProvider provider; //供货商
+
+
 
     @Id
     @Column(name = "payment_id")
@@ -28,45 +33,39 @@ public class ErpPayment {
         this.paymentId = paymentId;
     }
 
-    @Basic
-    @Column(name = "emp_id")
-    public Integer getEmpId() {
-        return empId;
+
+    @ManyToOne
+    @JoinColumn(name = "emp_id")
+    public ErpEmp getEmp() {
+        return emp;
     }
 
-    public void setEmpId(Integer empId) {
-        this.empId = empId;
+    public void setEmp(ErpEmp emp) {
+        this.emp = emp;
     }
 
-    @Basic
-    @Column(name = "emp_audit_id")
-    public Integer getEmpAuditId() {
-        return empAuditId;
+
+    @ManyToOne
+    @JoinColumn(name = "emp_audit_id")
+    public ErpEmp getEmpAudit() {
+        return empAudit;
     }
 
-    public void setEmpAuditId(Integer empAuditId) {
-        this.empAuditId = empAuditId;
+    public void setEmpAudit(ErpEmp empAudit) {
+        this.empAudit = empAudit;
     }
 
-    @Basic
-    @Column(name = "provider_id")
-    public Integer getProviderId() {
-        return providerId;
+
+    @ManyToOne
+    @JoinColumn(name = "provider_id")
+    public ErpProvider getProvider() {
+        return provider;
     }
 
-    public void setProviderId(Integer providerId) {
-        this.providerId = providerId;
+    public void setProvider(ErpProvider provider) {
+        this.provider = provider;
     }
 
-    @Basic
-    @Column(name = "bo_number")
-    public String getBoNumber() {
-        return boNumber;
-    }
-
-    public void setBoNumber(String boNumber) {
-        this.boNumber = boNumber;
-    }
 
     @Basic
     @Column(name = "payment_time")
@@ -124,10 +123,6 @@ public class ErpPayment {
         if (o == null || getClass() != o.getClass()) return false;
         ErpPayment that = (ErpPayment) o;
         return Objects.equals(paymentId, that.paymentId) &&
-                Objects.equals(empId, that.empId) &&
-                Objects.equals(empAuditId, that.empAuditId) &&
-                Objects.equals(providerId, that.providerId) &&
-                Objects.equals(boNumber, that.boNumber) &&
                 Objects.equals(paymentTime, that.paymentTime) &&
                 Objects.equals(paymentMoney, that.paymentMoney) &&
                 Objects.equals(paymentHxmoney, that.paymentHxmoney) &&
@@ -137,6 +132,21 @@ public class ErpPayment {
 
     @Override
     public int hashCode() {
-        return Objects.hash(paymentId, empId, empAuditId, providerId, boNumber, paymentTime, paymentMoney, paymentHxmoney, paymentDiscount, paymentRemark);
+        return Objects.hash(paymentId, paymentTime, paymentMoney, paymentHxmoney, paymentDiscount, paymentRemark);
+    }
+
+    @Override
+    public String toString() {
+        return "ErpPayment{" +
+                "paymentId='" + paymentId + '\'' +
+                ", paymentTime=" + paymentTime +
+                ", paymentMoney=" + paymentMoney +
+                ", paymentHxmoney=" + paymentHxmoney +
+                ", paymentDiscount=" + paymentDiscount +
+                ", paymentRemark='" + paymentRemark + '\'' +
+                ", emp=" + emp +
+                ", empAudit=" + empAudit +
+                ", provider=" + provider +
+                '}';
     }
 }
