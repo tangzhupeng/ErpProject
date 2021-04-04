@@ -1,9 +1,6 @@
 package cn.gson.jindie.model.pojos.PurchasePojos;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
@@ -13,7 +10,7 @@ public class ErpPocreditOrder {
     private Date coDate;
     private String poNumber;
 
-    @Basic
+    @Id
     @Column(name = "co_number")
     public String getCoNumber() {
         return coNumber;
