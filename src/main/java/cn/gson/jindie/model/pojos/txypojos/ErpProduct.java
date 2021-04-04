@@ -1,12 +1,7 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
-import javax.persistence.*;
-import java.util.Objects;
-
-@Entity
-@Table(name = "erp_product", schema = "", catalog = "erp3")
 public class ErpProduct {
-    private int productId;
+    private Integer productId;
     private String productName;
     private String productPicture;
     private Integer protypeId;
@@ -16,19 +11,17 @@ public class ErpProduct {
     private Integer storeId;
     private Integer productNumber;
     private Integer productState;
+    private Double productPf;
+    private Double productVip;
 
-    @Id
-    @Column(name = "product_id")
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
-    @Basic
-    @Column(name = "product_name")
     public String getProductName() {
         return productName;
     }
@@ -37,8 +30,6 @@ public class ErpProduct {
         this.productName = productName;
     }
 
-    @Basic
-    @Column(name = "product_picture")
     public String getProductPicture() {
         return productPicture;
     }
@@ -47,8 +38,6 @@ public class ErpProduct {
         this.productPicture = productPicture;
     }
 
-    @Basic
-    @Column(name = "protype_id")
     public Integer getProtypeId() {
         return protypeId;
     }
@@ -57,8 +46,6 @@ public class ErpProduct {
         this.protypeId = protypeId;
     }
 
-    @Basic
-    @Column(name = "product_money")
     public Double getProductMoney() {
         return productMoney;
     }
@@ -67,8 +54,6 @@ public class ErpProduct {
         this.productMoney = productMoney;
     }
 
-    @Basic
-    @Column(name = "product_price")
     public Double getProductPrice() {
         return productPrice;
     }
@@ -77,8 +62,6 @@ public class ErpProduct {
         this.productPrice = productPrice;
     }
 
-    @Basic
-    @Column(name = "product_dw")
     public String getProductDw() {
         return productDw;
     }
@@ -87,8 +70,6 @@ public class ErpProduct {
         this.productDw = productDw;
     }
 
-    @Basic
-    @Column(name = "store_id")
     public Integer getStoreId() {
         return storeId;
     }
@@ -97,8 +78,6 @@ public class ErpProduct {
         this.storeId = storeId;
     }
 
-    @Basic
-    @Column(name = "product_number")
     public Integer getProductNumber() {
         return productNumber;
     }
@@ -107,8 +86,6 @@ public class ErpProduct {
         this.productNumber = productNumber;
     }
 
-    @Basic
-    @Column(name = "product_state")
     public Integer getProductState() {
         return productState;
     }
@@ -117,25 +94,21 @@ public class ErpProduct {
         this.productState = productState;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ErpProduct that = (ErpProduct) o;
-        return productId == that.productId &&
-                Objects.equals(productName, that.productName) &&
-                Objects.equals(productPicture, that.productPicture) &&
-                Objects.equals(protypeId, that.protypeId) &&
-                Objects.equals(productMoney, that.productMoney) &&
-                Objects.equals(productPrice, that.productPrice) &&
-                Objects.equals(productDw, that.productDw) &&
-                Objects.equals(storeId, that.storeId) &&
-                Objects.equals(productNumber, that.productNumber) &&
-                Objects.equals(productState, that.productState);
+
+
+    public Double getProductPf() {
+        return productPf;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, productName, productPicture, protypeId, productMoney, productPrice, productDw, storeId, productNumber, productState);
+    public void setProductPf(Double productPf) {
+        this.productPf = productPf;
+    }
+
+    public Double getProductVip() {
+        return productVip;
+    }
+
+    public void setProductVip(Double productVip) {
+        this.productVip = productVip;
     }
 }
