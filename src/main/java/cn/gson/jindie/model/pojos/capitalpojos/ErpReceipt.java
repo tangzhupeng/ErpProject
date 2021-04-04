@@ -1,14 +1,10 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
-import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 
-@Entity
-@Table(name = "erp_receipt", schema = "", catalog = "erp3")
 public class ErpReceipt {
     private String receiptId;
     private Timestamp receiptTime;
@@ -23,8 +19,6 @@ public class ErpReceipt {
     private ErpCustomer customer; //客户
 
 
-    @Id
-    @Column(name = "receipt_id")
     public String getReceiptId() {
         return receiptId;
     }
@@ -34,8 +28,6 @@ public class ErpReceipt {
     }
 
 
-    @ManyToOne
-    @JoinColumn(name = "emp_id")
     public ErpEmp getEmp() {
         return emp;
     }
@@ -46,8 +38,6 @@ public class ErpReceipt {
 
 
 
-    @ManyToOne
-    @JoinColumn(name = "emp_audit_id")
     public ErpEmp getEmpAudit() {
         return empAudit;
     }
@@ -56,8 +46,6 @@ public class ErpReceipt {
         this.empAudit = empAudit;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
     public ErpCustomer getCustomer() {
         return customer;
     }
@@ -68,8 +56,6 @@ public class ErpReceipt {
 
 
 
-    @Basic
-    @Column(name = "receipt_time")
     public Timestamp getReceiptTime() {
         return receiptTime;
     }
@@ -78,8 +64,6 @@ public class ErpReceipt {
         this.receiptTime = receiptTime;
     }
 
-    @Basic
-    @Column(name = "receipt_money")
     public Double getReceiptMoney() {
         return receiptMoney;
     }
@@ -88,8 +72,6 @@ public class ErpReceipt {
         this.receiptMoney = receiptMoney;
     }
 
-    @Basic
-    @Column(name = "receipt_hxmoney")
     public Double getReceiptHxmoney() {
         return receiptHxmoney;
     }
@@ -98,8 +80,6 @@ public class ErpReceipt {
         this.receiptHxmoney = receiptHxmoney;
     }
 
-    @Basic
-    @Column(name = "receipt_ysmoney")
     public Double getReceiptYsmoney() {
         return receiptYsmoney;
     }
@@ -108,8 +88,6 @@ public class ErpReceipt {
         this.receiptYsmoney = receiptYsmoney;
     }
 
-    @Basic
-    @Column(name = "receipt_discount")
     public String getReceiptDiscount() {
         return receiptDiscount;
     }
@@ -118,8 +96,6 @@ public class ErpReceipt {
         this.receiptDiscount = receiptDiscount;
     }
 
-    @Basic
-    @Column(name = "receipt_remark")
     public String getReceiptRemark() {
         return receiptRemark;
     }
@@ -128,24 +104,7 @@ public class ErpReceipt {
         this.receiptRemark = receiptRemark;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ErpReceipt that = (ErpReceipt) o;
-        return Objects.equals(receiptId, that.receiptId) &&
-                Objects.equals(receiptTime, that.receiptTime) &&
-                Objects.equals(receiptMoney, that.receiptMoney) &&
-                Objects.equals(receiptHxmoney, that.receiptHxmoney) &&
-                Objects.equals(receiptYsmoney, that.receiptYsmoney) &&
-                Objects.equals(receiptDiscount, that.receiptDiscount) &&
-                Objects.equals(receiptRemark, that.receiptRemark);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(receiptId, receiptTime, receiptMoney, receiptHxmoney, receiptYsmoney, receiptDiscount, receiptRemark);
-    }
 
     @Override
     public String toString() {
