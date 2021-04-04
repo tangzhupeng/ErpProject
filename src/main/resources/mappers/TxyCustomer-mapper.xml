@@ -13,13 +13,16 @@
             <id column="emp_id" property="empId"></id>
             <result column="emp_name" property="empName"></result>
         </association>
+        <association property="grades" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomerGrade">
+            <id column="grade_id" property="gradeId"></id>
+            <result column="grade_name" property="gradeName"></result>
+        </association>
     </resultMap>
 
     <!--查询所有客户-->
     <select id="allCustomer" resultMap="customer">
-        select * from erp_customer c
-        left join erp_emp e
-        on c.emp_id=e.emp_id
+        select * from erp_customer c left join erp_emp e on c.emp_id=e.emp_id
+        left join erp_customer_grade g on g.grade_id=c.grade_id
     </select>
 
     <!--新增客户-->
@@ -31,6 +34,11 @@
     <!--查询职员-->
     <select id="selectUser" resultMap="customer">
         select emp_name from erp_emp
+    </select>
+
+    <!--查询客户等级-->
+    <select id="selectGrade">
+        select grade_name from erp_customer_grade
     </select>
 
     <!--修改客户-->

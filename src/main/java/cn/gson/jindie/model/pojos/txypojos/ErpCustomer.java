@@ -15,6 +15,7 @@ public class ErpCustomer {
     private String customerPhone;
     private String customerLocation;
     private Integer empId;
+    private Integer gradeId;
     private Double customerMoney;
     private Date customerTime;
     private int customerState;
@@ -29,6 +30,18 @@ public class ErpCustomer {
 
     public void setEmps(ErpEmpEntity emps) {
         this.emps = emps;
+    }
+
+    private ErpCustomerGrade grades;
+
+    @ManyToOne
+    @JoinColumn(name = "grade_id", referencedColumnName = "grade_id")
+    public ErpCustomerGrade getGrades() {
+        return grades;
+    }
+
+    public void setGrades(ErpCustomerGrade grades) {
+        this.grades = grades;
     }
 
     @Id
@@ -89,6 +102,17 @@ public class ErpCustomer {
 
     public void setEmpId(Integer empId) {
         this.empId = empId;
+    }
+
+
+    @Basic
+    @Column(name = "grade_id")
+    public Integer getGradeId() {
+        return gradeId;
+    }
+
+    public void setGradeId(Integer gradeId) {
+        this.gradeId = gradeId;
     }
 
     @Basic
