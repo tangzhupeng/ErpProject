@@ -1,7 +1,7 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
 import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

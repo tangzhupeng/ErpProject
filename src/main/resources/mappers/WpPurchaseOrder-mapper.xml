@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.purchasemapper.PurchaseMapper">
+
+    <select id="findPOderList" resultType="java.util.Map">
+        select * from erp_p_order_master m
+        left join erp_provider p on m.provider_id = p.provider_id
+        left join erp_emp em on m.emp_id = em.emp_id
+        left join erp_store st on m.store_id = st.store_id
+        left join erp_buying_order b on m.bo_number = b.bo_number
+        left join erp_emp em1 on m.sup_emp_id = em1.emp_id
+        left join erp_p_order_detail d on m.po_number = d.po_number
+        left join erp_product s on d.product_id = s.product_id
+    </select>
+</mapper>

@@ -1,6 +1,6 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
-import cn.gson.jindie.model.pojos.PurchasePojos.ErpBuyingOrder;
+import cn.gson.jindie.model.pojos.purchasepojos.ErpBuyingOrder;
 import cn.gson.jindie.model.pojos.txypojos.ErpAccount;
 
 import javax.persistence.*;
@@ -49,18 +49,15 @@ public class ErpPaymentRecord {
         this.account = account;
     }
 
-
-
-    @ManyToOne
-    @JoinColumn(name = "bo_number")
-    public ErpBuyingOrder getBoNumber() {
-        return boNumber;
-    }
-
-    public void setBoNumber(ErpBuyingOrder boNumber) {
-        this.boNumber = boNumber;
-    }
-
+//    @ManyToOne
+//    @JoinColumn(name = "bo_number")
+//    public ErpBuyingOrder getBoNumber() {
+//        return boNumber;
+//    }
+//
+//    public void setBoNumber(ErpBuyingOrder boNumber) {
+//        this.boNumber = boNumber;
+//    }
 
     @Basic
     @Column(name = "record_way")
