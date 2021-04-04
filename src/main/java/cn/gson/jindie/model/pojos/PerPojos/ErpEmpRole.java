@@ -1,9 +1,6 @@
 package cn.gson.jindie.model.pojos.PerPojos;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "erp_emp_role", schema = "", catalog = "erp3")
@@ -11,7 +8,7 @@ public class ErpEmpRole {
     private Integer empId;
     private Integer roleId;
 
-    @Basic
+    @Id
     @Column(name = "emp_id")
     public Integer getEmpId() {
         return empId;
