@@ -32,15 +32,15 @@ public class ErpCustomer {
 
     private ErpCustomerGrade grades;
 
-    @ManyToOne
-    @JoinColumn(name = "grade_id", referencedColumnName = "grade_id")
-    public ErpCustomerGrade getGrades() {
-        return grades;
-    }
-
-    public void setGrades(ErpCustomerGrade grades) {
-        this.grades = grades;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "grade_id", referencedColumnName = "grade_id")
+//    public ErpCustomerGrade getGrades() {
+//        return grades;
+//    }
+//
+//    public void setGrades(ErpCustomerGrade grades) {
+//        this.grades = grades;
+//    }
 
     @Id
     @Column(name = "customer_id")

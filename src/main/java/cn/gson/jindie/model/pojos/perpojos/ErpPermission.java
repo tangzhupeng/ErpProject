@@ -1,4 +1,4 @@
-package cn.gson.jindie.model.pojos.PerPojos;
+package cn.gson.jindie.model.pojos.perpojos;
 
 import javax.persistence.*;
 

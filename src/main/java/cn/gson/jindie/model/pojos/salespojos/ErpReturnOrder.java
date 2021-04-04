@@ -1,6 +1,6 @@
 package cn.gson.jindie.model.pojos.salespojos;
 
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 

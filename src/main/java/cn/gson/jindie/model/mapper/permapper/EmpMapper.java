@@ -7,6 +7,12 @@ import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
-public interface LoginMapper {
-    public ErpEmp findUserLogin(String name);
+public interface EmpMapper {
+    //新增员工
+    public void addEmp(ErpEmp emp);
+    //修改员工信息
+    public ErpEmp updateEmp(ErpEmp emp);
+    //修改员工状态
+    public int updateStatus(ErpEmp emp);
+
 }
