@@ -4,8 +4,6 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 
-@Entity
-@Table(name = "erp_customer", schema = "", catalog = "erp3")
 public class ErpCustomer {
     private Integer customerId;
     private String customerName;
@@ -18,32 +16,10 @@ public class ErpCustomer {
     private Date customerTime;
     private int customerState;
 
-//    private ErpEmpEntity emps;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
-//    public ErpEmpEntity getEmps() {
-//        return emps;
-//    }
-//
-//    public void setEmps(ErpEmpEntity emps) {
-//        this.emps = emps;
-//    }
 
     private ErpCustomerGrade grades;
 
-    @ManyToOne
-    @JoinColumn(name = "grade_id", referencedColumnName = "grade_id")
-    public ErpCustomerGrade getGrades() {
-        return grades;
-    }
 
-    public void setGrades(ErpCustomerGrade grades) {
-        this.grades = grades;
-    }
-
-    @Id
-    @Column(name = "customer_id")
     public Integer getCustomerId() {
         return customerId;
     }
@@ -141,6 +117,14 @@ public class ErpCustomer {
 
     public void setCustomerState(int customerState) {
         this.customerState = customerState;
+    }
+
+    public ErpCustomerGrade getGrades() {
+        return grades;
+    }
+
+    public void setGrades(ErpCustomerGrade grades) {
+        this.grades = grades;
     }
 
     @Override
