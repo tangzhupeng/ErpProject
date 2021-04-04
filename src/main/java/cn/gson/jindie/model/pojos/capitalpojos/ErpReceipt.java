@@ -1,5 +1,8 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
+import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
+import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -8,16 +11,17 @@ import java.util.Objects;
 @Table(name = "erp_receipt", schema = "", catalog = "erp3")
 public class ErpReceipt {
     private String receiptId;
-    private Integer empId;
-    private Integer empAuditId;
-    private Integer customerId;
-    private Integer orderId;
     private Timestamp receiptTime;
     private Double receiptMoney;
     private Double receiptHxmoney;
     private Double receiptYsmoney;
     private String receiptDiscount;
     private String receiptRemark;
+
+    private ErpEmp emp; //收款人
+    private ErpEmp empAudit; //审批人
+    private ErpCustomer customer; //客户
+
 
     @Id
     @Column(name = "receipt_id")
@@ -29,45 +33,40 @@ public class ErpReceipt {
         this.receiptId = receiptId;
     }
 
-    @Basic
-    @Column(name = "emp_id")
-    public Integer getEmpId() {
-        return empId;
+
+    @ManyToOne
+    @JoinColumn(name = "emp_id")
+    public ErpEmp getEmp() {
+        return emp;
     }
 
-    public void setEmpId(Integer empId) {
-        this.empId = empId;
+    public void setEmp(ErpEmp emp) {
+        this.emp = emp;
     }
 
-    @Basic
-    @Column(name = "emp_audit_id")
-    public Integer getEmpAuditId() {
-        return empAuditId;
+
+
+    @ManyToOne
+    @JoinColumn(name = "emp_audit_id")
+    public ErpEmp getEmpAudit() {
+        return empAudit;
     }
 
-    public void setEmpAuditId(Integer empAuditId) {
-        this.empAuditId = empAuditId;
+    public void setEmpAudit(ErpEmp empAudit) {
+        this.empAudit = empAudit;
     }
 
-    @Basic
-    @Column(name = "customer_id")
-    public Integer getCustomerId() {
-        return customerId;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    public ErpCustomer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(ErpCustomer customer) {
+        this.customer = customer;
     }
 
-    @Basic
-    @Column(name = "order_id")
-    public Integer getOrderId() {
-        return orderId;
-    }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
 
     @Basic
     @Column(name = "receipt_time")
@@ -135,10 +134,6 @@ public class ErpReceipt {
         if (o == null || getClass() != o.getClass()) return false;
         ErpReceipt that = (ErpReceipt) o;
         return Objects.equals(receiptId, that.receiptId) &&
-                Objects.equals(empId, that.empId) &&
-                Objects.equals(empAuditId, that.empAuditId) &&
-                Objects.equals(customerId, that.customerId) &&
-                Objects.equals(orderId, that.orderId) &&
                 Objects.equals(receiptTime, that.receiptTime) &&
                 Objects.equals(receiptMoney, that.receiptMoney) &&
                 Objects.equals(receiptHxmoney, that.receiptHxmoney) &&
@@ -149,6 +144,22 @@ public class ErpReceipt {
 
     @Override
     public int hashCode() {
-        return Objects.hash(receiptId, empId, empAuditId, customerId, orderId, receiptTime, receiptMoney, receiptHxmoney, receiptYsmoney, receiptDiscount, receiptRemark);
+        return Objects.hash(receiptId, receiptTime, receiptMoney, receiptHxmoney, receiptYsmoney, receiptDiscount, receiptRemark);
+    }
+
+    @Override
+    public String toString() {
+        return "ErpReceipt{" +
+                "receiptId='" + receiptId + '\'' +
+                ", receiptTime=" + receiptTime +
+                ", receiptMoney=" + receiptMoney +
+                ", receiptHxmoney=" + receiptHxmoney +
+                ", receiptYsmoney=" + receiptYsmoney +
+                ", receiptDiscount='" + receiptDiscount + '\'' +
+                ", receiptRemark='" + receiptRemark + '\'' +
+                ", emp=" + emp +
+                ", empAudit=" + empAudit +
+                ", customer=" + customer +
+                '}';
     }
 }

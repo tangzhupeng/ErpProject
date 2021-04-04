@@ -1,6 +1,5 @@
 package cn.gson.jindie.model.mapper.txymapper;
 
-import cn.gson.jindie.model.pojos.perpojos.ErpEmpEntity;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

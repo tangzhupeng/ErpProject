@@ -1,7 +1,5 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
-import cn.gson.jindie.model.pojos.perpojos.ErpEmpEntity;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;

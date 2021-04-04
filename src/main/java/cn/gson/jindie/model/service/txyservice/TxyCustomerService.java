@@ -1,7 +1,6 @@
 package cn.gson.jindie.model.service.txyservice;
 
 import cn.gson.jindie.model.mapper.txymapper.TxyCustomerMapper;
-import cn.gson.jindie.model.pojos.perpojos.ErpEmpEntity;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,5 @@
 package cn.gson.jindie.controller.txycontroller;
 
-import cn.gson.jindie.model.pojos.perpojos.ErpEmpEntity;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.service.txyservice.TxyCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
