@@ -1,5 +1,8 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
+import cn.gson.jindie.model.pojos.PurchasePojos.ErpBuyingOrder;
+import cn.gson.jindie.model.pojos.txypojos.ErpAccount;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -7,11 +10,13 @@ import java.util.Objects;
 @Table(name = "erp_payment_record", schema = "", catalog = "erp3")
 public class ErpPaymentRecord {
     private int recordId;
-    private String paymentId;
-    private Integer accountId;
     private String recordWay;
     private Double recordMoney;
     private String recordRemark;
+
+    private ErpPayment payment; //付款单
+    private ErpAccount account; //结算账号
+    private ErpBuyingOrder boNumber; //购货单
 
     @Id
     @Column(name = "record_id")
@@ -23,25 +28,39 @@ public class ErpPaymentRecord {
         this.recordId = recordId;
     }
 
-    @Basic
-    @Column(name = "payment_id")
-    public String getPaymentId() {
-        return paymentId;
+
+    @ManyToOne
+    @JoinColumn(name = "payment_id")
+    public ErpPayment getPayment() {
+        return payment;
     }
 
-    public void setPaymentId(String paymentId) {
-        this.paymentId = paymentId;
+    public void setPayment(ErpPayment payment) {
+        this.payment = payment;
     }
 
-    @Basic
-    @Column(name = "account_id")
-    public Integer getAccountId() {
-        return accountId;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    public ErpAccount getAccount() {
+        return account;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+    public void setAccount(ErpAccount account) {
+        this.account = account;
     }
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "bo_number")
+    public ErpBuyingOrder getBoNumber() {
+        return boNumber;
+    }
+
+    public void setBoNumber(ErpBuyingOrder boNumber) {
+        this.boNumber = boNumber;
+    }
+
 
     @Basic
     @Column(name = "record_way")
@@ -79,8 +98,8 @@ public class ErpPaymentRecord {
         if (o == null || getClass() != o.getClass()) return false;
         ErpPaymentRecord that = (ErpPaymentRecord) o;
         return recordId == that.recordId &&
-                Objects.equals(paymentId, that.paymentId) &&
-                Objects.equals(accountId, that.accountId) &&
+                Objects.equals(payment, that.payment) &&
+                Objects.equals(account, that.account) &&
                 Objects.equals(recordWay, that.recordWay) &&
                 Objects.equals(recordMoney, that.recordMoney) &&
                 Objects.equals(recordRemark, that.recordRemark);
@@ -88,6 +107,19 @@ public class ErpPaymentRecord {
 
     @Override
     public int hashCode() {
-        return Objects.hash(recordId, paymentId, accountId, recordWay, recordMoney, recordRemark);
+        return Objects.hash(recordId, payment, account, recordWay, recordMoney, recordRemark);
+    }
+
+    @Override
+    public String toString() {
+        return "ErpPaymentRecord{" +
+                "recordId=" + recordId +
+                ", recordWay='" + recordWay + '\'' +
+                ", recordMoney=" + recordMoney +
+                ", recordRemark='" + recordRemark + '\'' +
+                ", payment=" + payment +
+                ", account=" + account +
+                ", boNumber=" + boNumber +
+                '}';
     }
 }

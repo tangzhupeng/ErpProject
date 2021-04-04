@@ -1,5 +1,8 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
+import cn.gson.jindie.model.pojos.salespojos.ErpOrder;
+import cn.gson.jindie.model.pojos.txypojos.ErpAccount;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -7,12 +10,15 @@ import java.util.Objects;
 @Table(name = "erp_receipt_record", schema = "", catalog = "erp3")
 public class ErpReceiptRecord {
     private int reId;
-    private String receiptId;
-    private Integer accountId;
     private String reWay;
     private String reMark;
     private Double reMoney;
     private String reRemark;
+
+    private ErpReceipt receiptId;
+    private ErpAccount accountId; //
+    private ErpOrder order; //销售订单
+
 
     @Id
     @Column(name = "re_id")
@@ -24,24 +30,36 @@ public class ErpReceiptRecord {
         this.reId = reId;
     }
 
-    @Basic
-    @Column(name = "receipt_id")
-    public String getReceiptId() {
+
+    @ManyToOne
+    @JoinColumn(name = "receipt_id")
+    public ErpReceipt getReceiptId() {
         return receiptId;
     }
 
-    public void setReceiptId(String receiptId) {
+    public void setReceiptId(ErpReceipt receiptId) {
         this.receiptId = receiptId;
     }
 
-    @Basic
-    @Column(name = "account_id")
-    public Integer getAccountId() {
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    public ErpAccount getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
+    public void setAccountId(ErpAccount accountId) {
         this.accountId = accountId;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    public ErpOrder getOrder() {
+        return order;
+    }
+
+    public void setOrder(ErpOrder order) {
+        this.order = order;
     }
 
     @Basic
@@ -101,5 +119,20 @@ public class ErpReceiptRecord {
     @Override
     public int hashCode() {
         return Objects.hash(reId, receiptId, accountId, reWay, reMark, reMoney, reRemark);
+    }
+
+
+    @Override
+    public String toString() {
+        return "ErpReceiptRecord{" +
+                "reId=" + reId +
+                ", reWay='" + reWay + '\'' +
+                ", reMark='" + reMark + '\'' +
+                ", reMoney=" + reMoney +
+                ", reRemark='" + reRemark + '\'' +
+                ", receiptId=" + receiptId +
+                ", accountId=" + accountId +
+                ", order=" + order +
+                '}';
     }
 }
