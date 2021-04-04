@@ -1,9 +1,15 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class ErpStore {
     private Integer storeId;
     private String storeName;
     private Integer storeState;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date storeTime;
 
     public Integer getStoreId() {
         return storeId;
@@ -29,5 +35,12 @@ public class ErpStore {
         this.storeState = storeState;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    public Date getStoreTime() {
+        return storeTime;
+    }
 
+    public void setStoreTime(Date storeTime) {
+        this.storeTime = storeTime;
+    }
 }
