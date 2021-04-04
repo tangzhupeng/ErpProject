@@ -1,4 +1,4 @@
-package cn.gson.jindie.model.pojos.PurchasePojos;
+package cn.gson.jindie.model.pojos.purchasepojos;
 
 
 import java.util.Date;
