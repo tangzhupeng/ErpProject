@@ -1,11 +1,7 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
-import javax.persistence.*;
-import java.sql.Date;
-import java.util.Objects;
+import java.util.Date;
 
-@Entity
-@Table(name = "erp_account", schema = "", catalog = "erp3")
 public class ErpAccount {
     private Integer accountId;
     private String accountName;
@@ -14,8 +10,6 @@ public class ErpAccount {
     private Date accountTime;
     private Integer accountState;
 
-    @Id
-    @Column(name = "account_id")
     public Integer getAccountId() {
         return accountId;
     }
@@ -24,8 +18,6 @@ public class ErpAccount {
         this.accountId = accountId;
     }
 
-    @Basic
-    @Column(name = "account_name")
     public String getAccountName() {
         return accountName;
     }
@@ -34,8 +26,6 @@ public class ErpAccount {
         this.accountName = accountName;
     }
 
-    @Basic
-    @Column(name = "account_balance")
     public String getAccountBalance() {
         return accountBalance;
     }
@@ -44,8 +34,6 @@ public class ErpAccount {
         this.accountBalance = accountBalance;
     }
 
-    @Basic
-    @Column(name = "account_money")
     public String getAccountMoney() {
         return accountMoney;
     }
@@ -54,8 +42,6 @@ public class ErpAccount {
         this.accountMoney = accountMoney;
     }
 
-    @Basic
-    @Column(name = "account_time")
     public Date getAccountTime() {
         return accountTime;
     }
@@ -64,8 +50,6 @@ public class ErpAccount {
         this.accountTime = accountTime;
     }
 
-    @Basic
-    @Column(name = "account_state")
     public Integer getAccountState() {
         return accountState;
     }
@@ -75,20 +59,4 @@ public class ErpAccount {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ErpAccount that = (ErpAccount) o;
-        return accountId == that.accountId &&
-                Objects.equals(accountName, that.accountName) &&
-                Objects.equals(accountBalance, that.accountBalance) &&
-                Objects.equals(accountMoney, that.accountMoney) &&
-                Objects.equals(accountTime, that.accountTime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(accountId, accountName, accountBalance, accountMoney, accountTime);
-    }
 }

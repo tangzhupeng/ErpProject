@@ -1,11 +1,7 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
-import javax.persistence.*;
-import java.sql.Date;
-import java.util.Objects;
+import java.util.Date;
 
-@Entity
-@Table(name = "erp_customer", schema = "", catalog = "erp3")
 public class ErpCustomer {
     private Integer customerId;
     private String customerName;
@@ -32,18 +28,14 @@ public class ErpCustomer {
 
     private ErpCustomerGrade grades;
 
-//    @ManyToOne
-//    @JoinColumn(name = "grade_id", referencedColumnName = "grade_id")
-//    public ErpCustomerGrade getGrades() {
-//        return grades;
-//    }
-//
-//    public void setGrades(ErpCustomerGrade grades) {
-//        this.grades = grades;
-//    }
+    public ErpCustomerGrade getGrades() {
+        return grades;
+    }
 
-    @Id
-    @Column(name = "customer_id")
+    public void setGrades(ErpCustomerGrade grades) {
+        this.grades = grades;
+    }
+
     public Integer getCustomerId() {
         return customerId;
     }
@@ -52,8 +44,6 @@ public class ErpCustomer {
         this.customerId = customerId;
     }
 
-    @Basic
-    @Column(name = "customer_name")
     public String getCustomerName() {
         return customerName;
     }
@@ -62,8 +52,6 @@ public class ErpCustomer {
         this.customerName = customerName;
     }
 
-    @Basic
-    @Column(name = "customer_people")
     public String getCustomerPeople() {
         return customerPeople;
     }
@@ -72,8 +60,6 @@ public class ErpCustomer {
         this.customerPeople = customerPeople;
     }
 
-    @Basic
-    @Column(name = "customer_phone")
     public String getCustomerPhone() {
         return customerPhone;
     }
@@ -82,8 +68,6 @@ public class ErpCustomer {
         this.customerPhone = customerPhone;
     }
 
-    @Basic
-    @Column(name = "customer_location")
     public String getCustomerLocation() {
         return customerLocation;
     }
@@ -92,8 +76,6 @@ public class ErpCustomer {
         this.customerLocation = customerLocation;
     }
 
-    @Basic
-    @Column(name = "emp_id")
     public Integer getEmpId() {
         return empId;
     }
@@ -102,9 +84,6 @@ public class ErpCustomer {
         this.empId = empId;
     }
 
-
-    @Basic
-    @Column(name = "grade_id")
     public Integer getGradeId() {
         return gradeId;
     }
@@ -113,8 +92,6 @@ public class ErpCustomer {
         this.gradeId = gradeId;
     }
 
-    @Basic
-    @Column(name = "customer_money")
     public Double getCustomerMoney() {
         return customerMoney;
     }
@@ -123,8 +100,6 @@ public class ErpCustomer {
         this.customerMoney = customerMoney;
     }
 
-    @Basic
-    @Column(name = "customer_time")
     public Date getCustomerTime() {
         return customerTime;
     }
@@ -133,8 +108,6 @@ public class ErpCustomer {
         this.customerTime = customerTime;
     }
 
-    @Basic
-    @Column(name = "customer_state")
     public int getCustomerState() {
         return customerState;
     }
@@ -143,24 +116,5 @@ public class ErpCustomer {
         this.customerState = customerState;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ErpCustomer that = (ErpCustomer) o;
-        return customerId == that.customerId &&
-                customerState == that.customerState &&
-                Objects.equals(customerName, that.customerName) &&
-                Objects.equals(customerPeople, that.customerPeople) &&
-                Objects.equals(customerPhone, that.customerPhone) &&
-                Objects.equals(customerLocation, that.customerLocation) &&
-                Objects.equals(empId, that.empId) &&
-                Objects.equals(customerMoney, that.customerMoney) &&
-                Objects.equals(customerTime, that.customerTime);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(customerId, customerName, customerPeople, customerPhone, customerLocation, empId, customerMoney, customerTime, customerState);
-    }
 }
