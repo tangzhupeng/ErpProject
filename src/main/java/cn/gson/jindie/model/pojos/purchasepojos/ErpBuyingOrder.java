@@ -1,36 +1,37 @@
-package cn.gson.jindie.model.pojos.purchasepojos;
 
-
-import java.util.Date;
+package cn.gson.jindie.model.pojos.PurchasePojos;
 
 public class ErpBuyingOrder {
-    private String boNumber;
-    private Date boDate;
-    private String poNumber;
 
-    public String getBoNumber() {
-        return boNumber;
-    }
+  private String boNumber;
+  private java.sql.Date boDate;
+  private String poNumber;
 
-    public void setBoNumber(String boNumber) {
-        this.boNumber = boNumber;
-    }
 
-    public Date getBoDate() {
-        return boDate;
-    }
+  public String getBoNumber() {
+    return boNumber;
+  }
 
-    public void setBoDate(Date boDate) {
-        this.boDate = boDate;
-    }
+  public void setBoNumber(String boNumber) {
+    this.boNumber = boNumber;
+  }
 
-    public String getPoNumber() {
-        return poNumber;
-    }
 
-    public void setPoNumber(String poNumber) {
-        this.poNumber = poNumber;
-    }
+  public java.sql.Date getBoDate() {
+    return boDate;
+  }
 
+  public void setBoDate(java.sql.Date boDate) {
+    this.boDate = boDate;
+  }
+
+
+  public String getPoNumber() {
+    return poNumber;
+  }
+
+  public void setPoNumber(String poNumber) {
+    this.poNumber = poNumber;
+  }
 
 }

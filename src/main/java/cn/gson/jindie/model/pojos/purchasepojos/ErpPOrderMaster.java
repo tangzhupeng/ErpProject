@@ -1,116 +1,126 @@
-package cn.gson.jindie.model.pojos.purchasepojos;
-
-import java.util.Date;
+package cn.gson.jindie.model.pojos.PurchasePojos;
 
 public class ErpPOrderMaster {
-    private String poNumber;
-    private Date poDate;
-    private String poTos;
-    private Integer providerId;
-    private Double poMoney;
-    private Integer empId;
-    private Integer storeId;
-    private Integer poState;
-    private String boNumber;
-    private Integer poEastate;
-    private Integer supEmpId;
-    private Integer poStstate;
 
-    public String getPoNumber() {
-        return poNumber;
-    }
+  private String poNumber;
+  private java.sql.Date poDate;
+  private String poTos;
+  private long providerId;
+  private double poMoney;
+  private long empId;
+  private long storeId;
+  private long poState;
+  private String boNumber;
+  private long poEastate;
+  private long supEmpId;
+  private long poStstate;
 
-    public void setPoNumber(String poNumber) {
-        this.poNumber = poNumber;
-    }
 
-    public Date getPoDate() {
-        return poDate;
-    }
+  public String getPoNumber() {
+    return poNumber;
+  }
 
-    public void setPoDate(Date poDate) {
-        this.poDate = poDate;
-    }
+  public void setPoNumber(String poNumber) {
+    this.poNumber = poNumber;
+  }
 
-    public String getPoTos() {
-        return poTos;
-    }
 
-    public void setPoTos(String poTos) {
-        this.poTos = poTos;
-    }
+  public java.sql.Date getPoDate() {
+    return poDate;
+  }
 
-    public Integer getProviderId() {
-        return providerId;
-    }
+  public void setPoDate(java.sql.Date poDate) {
+    this.poDate = poDate;
+  }
 
-    public void setProviderId(Integer providerId) {
-        this.providerId = providerId;
-    }
 
-    public Double getPoMoney() {
-        return poMoney;
-    }
+  public String getPoTos() {
+    return poTos;
+  }
 
-    public void setPoMoney(Double poMoney) {
-        this.poMoney = poMoney;
-    }
+  public void setPoTos(String poTos) {
+    this.poTos = poTos;
+  }
 
-    public Integer getEmpId() {
-        return empId;
-    }
 
-    public void setEmpId(Integer empId) {
-        this.empId = empId;
-    }
+  public long getProviderId() {
+    return providerId;
+  }
 
-    public Integer getStoreId() {
-        return storeId;
-    }
+  public void setProviderId(long providerId) {
+    this.providerId = providerId;
+  }
 
-    public void setStoreId(Integer storeId) {
-        this.storeId = storeId;
-    }
 
-    public Integer getPoState() {
-        return poState;
-    }
+  public double getPoMoney() {
+    return poMoney;
+  }
 
-    public void setPoState(Integer poState) {
-        this.poState = poState;
-    }
+  public void setPoMoney(double poMoney) {
+    this.poMoney = poMoney;
+  }
 
-    public String getBoNumber() {
-        return boNumber;
-    }
 
-    public void setBoNumber(String boNumber) {
-        this.boNumber = boNumber;
-    }
+  public long getEmpId() {
+    return empId;
+  }
 
-    public Integer getPoEastate() {
-        return poEastate;
-    }
+  public void setEmpId(long empId) {
+    this.empId = empId;
+  }
 
-    public void setPoEastate(Integer poEastate) {
-        this.poEastate = poEastate;
-    }
 
-    public Integer getSupEmpId() {
-        return supEmpId;
-    }
+  public long getStoreId() {
+    return storeId;
+  }
 
-    public void setSupEmpId(Integer supEmpId) {
-        this.supEmpId = supEmpId;
-    }
+  public void setStoreId(long storeId) {
+    this.storeId = storeId;
+  }
 
-    public Integer getPoStstate() {
-        return poStstate;
-    }
 
-    public void setPoStstate(Integer poStstate) {
-        this.poStstate = poStstate;
-    }
+  public long getPoState() {
+    return poState;
+  }
 
+  public void setPoState(long poState) {
+    this.poState = poState;
+  }
+
+
+  public String getBoNumber() {
+    return boNumber;
+  }
+
+  public void setBoNumber(String boNumber) {
+    this.boNumber = boNumber;
+  }
+
+
+  public long getPoEastate() {
+    return poEastate;
+  }
+
+  public void setPoEastate(long poEastate) {
+    this.poEastate = poEastate;
+  }
+
+
+  public long getSupEmpId() {
+    return supEmpId;
+  }
+
+  public void setSupEmpId(long supEmpId) {
+    this.supEmpId = supEmpId;
+  }
+
+
+  public long getPoStstate() {
+    return poStstate;
+  }
+
+  public void setPoStstate(long poStstate) {
+    this.poStstate = poStstate;
+  }
 
 }

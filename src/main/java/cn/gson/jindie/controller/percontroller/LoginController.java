@@ -1,6 +1,6 @@
 package cn.gson.jindie.controller.percontroller;
 
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.service.perservice.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +26,6 @@ public class LoginController {
         }
 
     }
-
-//    @GetMapping("/")
-//
-//    public void shouye(){
-//        return ;
-//    }
 
 
 }

@@ -1,4 +1,4 @@
-package cn.gson.jindie.model.pojos.PerPojos;
+package cn.gson.jindie.model.pojos.perpojos;
 
 public class ErpRolePerPK {
     private Integer roleId;
