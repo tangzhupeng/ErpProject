@@ -4,15 +4,16 @@
         <id column="store_id" property="storeId"></id>
         <result column="store_name" property="storeName"></result>
         <result column="store_state" property="storeState"></result>
+        <result column="store_time" property="storeTime"></result>
     </resultMap>
 
-    <!--分页，模糊查询所有仓库-->
+    <!--分页，查询所有仓库-->
     <select id="allStore" resultMap="stores">
         select * from erp_store
         <where>
-            <if test="storeName != null and storeName !=''">
-                and (store_id like '%${storeName}%'
-                or store_name like '%${storeName}%'
+            <if test="storeName !=null and storeName!=''">
+                and(store_id like '%${storeName}%'
+                or store_name like '%${storeName}%')
             </if>
         </where>
         order by store_time desc
@@ -20,7 +21,7 @@
 
     <!--新增仓库-->
     <insert id="addStore">
-        insert into erp_store(store_name) values(#{storeName})
+        insert into erp_store(store_name,store_time) values(#{storeName},#{storeTime})
     </insert>
 
     <!--编辑仓库-->
