@@ -23,6 +23,17 @@
     <select id="allCustomer" resultMap="customer">
         select * from erp_customer c left join erp_emp e on c.emp_id=e.emp_id
         left join erp_customer_grade g on g.grade_id=c.grade_id
+        <where>
+            <if test="customerName !=null and customerName !=''">
+                and(c.customer_id='%${customerName}%'
+                or c.customer_name='%${customerName}%'
+                or c.customer_people='%${customerName}%'
+                or c.customer_location='%${customerName}%'
+                or e.emp_name='%${customerName}%'
+                or g.grade_name='%${customerName}%')
+            </if>
+        </where>
+        order by c.customer_time desc
     </select>
 
     <!--新增客户-->
@@ -33,12 +44,12 @@
 
     <!--查询职员-->
     <select id="selectUser" resultMap="customer">
-        select emp_name from erp_emp
+        select * from erp_emp
     </select>
 
     <!--查询客户等级-->
-    <select id="selectGrade">
-        select grade_name from erp_customer_grade
+    <select id="selectGrade" resultMap="customer">
+        select * from erp_customer_grade
     </select>
 
     <!--修改客户-->

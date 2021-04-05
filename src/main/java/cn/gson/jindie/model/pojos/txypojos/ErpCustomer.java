@@ -1,5 +1,8 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
+import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class ErpCustomer {
@@ -11,20 +14,19 @@ public class ErpCustomer {
     private Integer empId;
     private Integer gradeId;
     private Double customerMoney;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date customerTime;
     private int customerState;
 
-//    private ErpEmpEntity emps;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
-//    public ErpEmpEntity getEmps() {
-//        return emps;
-//    }
-//
-//    public void setEmps(ErpEmpEntity emps) {
-//        this.emps = emps;
-//    }
+    private ErpEmp emps;
+
+    public ErpEmp getEmps() {
+        return emps;
+    }
+
+    public void setEmps(ErpEmp emps) {
+        this.emps = emps;
+    }
 
     private ErpCustomerGrade grades;
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,12 +16,13 @@ public class TxyStoreService {
     TxyStoreMapper storeMapper;
 
     //查询所有仓库
-    public List<ErpStore> allStore(ErpStore store){
-        return storeMapper.allStore(store);
+    public List<ErpStore> allStore(ErpStore stores){
+        return storeMapper.allStore(stores);
     }
     //新增仓库
     public void addStore(ErpStore store){
         if(store.getStoreId()==null){
+            store.setStoreTime(new Date());
             storeMapper.addStore(store);
         }else{
             storeMapper.updateStore(store);
