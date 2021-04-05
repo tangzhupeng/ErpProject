@@ -21,8 +21,8 @@ public class TxyAccountService {
     }
 
     //查询所有
-    public List<ErpAccount> SerAccount(ErpAccount account){
-        return accountMapper.SerAccount(account);
+    public List<ErpAccount> SerAccount(){
+        return accountMapper.SerAccount();
     }
 
     //新增账户

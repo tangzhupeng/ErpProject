@@ -12,7 +12,7 @@ public interface TxyAccountMapper {
     //分页，模糊查询所有账户
     public List<ErpAccount> allAccount(ErpAccount account);
     //查询所有账户
-    public List<ErpAccount> SerAccount(ErpAccount account);
+    public List<ErpAccount> SerAccount();
     //新增账户
     public void addAccount(ErpAccount account);
     //编辑账户

@@ -19,7 +19,7 @@
         </association>
     </resultMap>
 
-    <!--查询所有客户-->
+    <!--分页查询所有客户-->
     <select id="allCustomer" resultMap="customer">
         select * from erp_customer c
         left join erp_emp e on c.emp_id=e.emp_id
@@ -35,6 +35,11 @@
             </if>
         </where>
         order by c.customer_time desc
+    </select>
+
+    <!--查询所有客户-->
+    <select id="SerCustomer" resultMap="customer">
+        select * from erp_customer where customer_state=1
     </select>
 
     <!--新增客户-->
