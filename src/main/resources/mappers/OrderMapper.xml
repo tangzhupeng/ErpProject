@@ -1,0 +1,53 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.salemapper.OrderMapper">
+
+    <resultMap id="orderMap" type="cn.gson.jindie.model.pojos.salespojos.ErpOrder">
+
+        <id property="orderId" column="order_id" />
+        <result property="orderNumber" column="order_number" />
+        <result property="documentDate" column="document_date" />
+        <result property="deliveryDate" column="delivery_date" />
+        <result property="accountReceivable" column="account_receivable" />
+        <result property="paymentReceived" column="payment_received" />
+        <result property="deliveryStatus" column="delivery_status" />
+        <result property="creatorPerson" column="creator_person" />
+        <result property="createTime" column="create_time" />
+        <result property="approvalStatus" column="approval_status" />
+        <result property="orderStatus" column="order_status"/>
+        <result property="deliveryOrderNumber" column="delivery_order_number" />
+        <result property="currentExaminer" column="current_examiner" />
+
+        <association property="erpCustomer" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
+            <id property="empId" column="emp_id"/>
+            <result property="customerName" column="customer_name" />
+            <result property="customerPeople" column="customer_people" />
+            <result property="customerPhone" column="customer_phone" />
+            <result property="customerLocation" column="customer_location" />
+            <result property="customerMoney" column="customer_money" />
+            <result property="customerTime" column="customer_time" />
+            <result property="customerState" column="customer_state" />
+        </association>
+
+        <association property="erpEmp" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp" >
+            <id property="empId" column="emp_id" />
+            <result property="empName" column="emp_name"/>
+            <result property="password" column="password"/>
+            <result property="phone" column="phone"/>
+            <result property="statu" column="statu" />
+        </association>
+
+        <association property="erpStore" javaType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+            <id property="storeId"  column="store_id" />
+            <result property="storeName" column="store_name"/>
+            <result property="storeState" column="storeState" />
+        </association>
+    </resultMap>
+
+
+    <select id="findAll" resultMap="orderMap">
+        select  * from erp_order eo left join erp_order_details eod on eo.order_id = eod.order_id
+    </select>
+
+</mapper>

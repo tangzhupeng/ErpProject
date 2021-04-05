@@ -1,11 +1,13 @@
 package cn.gson.jindie.model.pojos.purchasepojos;
 
 
+import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
+
 public class ErpPOrderDetail {
 
-  private String podNumber;
+  private ErpPOrderMaster podNumber;
   private String poNumber;
-  private long productId;
+  private ErpProduct productId;
   private long podAmount;
   private String podUnit;
   private long podUnitprice;
@@ -13,11 +15,11 @@ public class ErpPOrderDetail {
   private String podDescribe;
 
 
-  public String getPodNumber() {
+  public ErpPOrderMaster getPodNumber() {
     return podNumber;
   }
 
-  public void setPodNumber(String podNumber) {
+  public void setPodNumber(ErpPOrderMaster podNumber) {
     this.podNumber = podNumber;
   }
 
@@ -31,11 +33,11 @@ public class ErpPOrderDetail {
   }
 
 
-  public long getProductId() {
+  public ErpProduct getProductId() {
     return productId;
   }
 
-  public void setProductId(long productId) {
+  public void setProductId(ErpProduct productId) {
     this.productId = productId;
   }
 

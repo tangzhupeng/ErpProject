@@ -2,15 +2,110 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.gson.jindie.model.mapper.purchasemapper.PurchaseMapper">
+    <resultMap id="mpurchaseorder" type="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster">
+        <id column="po_number" property="poNumber"/>
+        <result column="po_date" property="poDate"/>
+        <result column="po_tos" property="poTos"/>
+        <result column="po_money" property="poMoney"/>
+        <result column="po_state" property="poState"/>
+        <result column="po_eastate" property="poEastate"/>
+        <result column="po_ststate" property="poStstate"/>
+        <association property="providerId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProvider">
+            <id column="provider_id" property="providerId"/>
+            <result column="provider_name" property="providerName"/>
+            <result column="provider_people" property="providerPeople"/>
+            <result column="provider_phone" property="providerPhone"/>
+        </association>
+        <association property="empId" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+            <id column="emp_id" property="empId"/>
+            <result column="emp_name" property="empName"/>
+            <result column="phone" property="phone"/>
+        </association>
+        <association property="storeId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+            <id column="store_id" property="storeId"/>
+            <result column="store_name" property="storeName"/>
+            <result column="store_state" property="storeState"/>
+        </association>
+        <association property="boNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpBuyingOrder">
+            <id column="bo_number" property="boNumber"/>
+            <result column="bo_date" property="boDate"/>
+        </association>
+        <association property="supEmpId" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+            <id column="emp_id" property="empId"/>
+            <result column="emp_name" property="empName"/>
+            <result column="phone" property="phone"/>
+        </association>
+    </resultMap>
 
-    <select id="findPOderList" resultType="java.util.Map">
+    <resultMap id="dpurchaseorder" type="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderDetail">
+        <id column="po_number" property="poNumber"/>
+        <result column="po_date" property="poDate"/>
+        <result column="pod_money" property="podMoney"/>
+        <result column="pod_describe" property="podDescribe"/>
+        <association property="podNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster">
+        <id column="po_number" property="poNumber"/>
+        <result column="po_date" property="poDate"/>
+        <result column="po_tos" property="poTos"/>
+        <result column="po_money" property="poMoney"/>
+        <result column="po_state" property="poState"/>
+        <result column="po_eastate" property="poEastate"/>
+        <result column="po_ststate" property="poStstate"/>
+            <association property="providerId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProvider">
+                <id column="provider_id" property="providerId"/>
+                <result column="provider_name" property="providerName"/>
+                <result column="provider_people" property="providerPeople"/>
+                <result column="provider_phone" property="providerPhone"/>
+            </association>
+            <association property="empId" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+                <id column="emp_id" property="empId"/>
+                <result column="emp_name" property="empName"/>
+                <result column="phone" property="phone"/>
+            </association>
+            <association property="storeId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+                <id column="store_id" property="storeId"/>
+                <result column="store_name" property="storeName"/>
+                <result column="store_state" property="storeState"/>
+            </association>
+            <association property="boNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpBuyingOrder">
+                <id column="bo_number" property="boNumber"/>
+                <result column="bo_date" property="boDate"/>
+            </association>
+            <association property="supEmpId" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+                <id column="emp_id" property="empId"/>
+                <result column="emp_name" property="empName"/>
+                <result column="phone" property="phone"/>
+            </association>
+    </association>
+<!--        <association property="productId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProduct">-->
+<!--            <id column="po_number" property="productId"/>-->
+<!--            <result column="po_date" property="productName"/>-->
+<!--            <result column="pod_money" property="productPicture"/>-->
+<!--            <result column="pod_describe" property="podDescribe"/>-->
+<!--        </association>-->
+    </resultMap>
+
+    <select id="findPOderList" resultMap="mpurchaseorder">
         select * from erp_p_order_master m
         left join erp_provider p on m.provider_id = p.provider_id
         left join erp_emp em on m.emp_id = em.emp_id
         left join erp_store st on m.store_id = st.store_id
         left join erp_buying_order b on m.bo_number = b.bo_number
         left join erp_emp em1 on m.sup_emp_id = em1.emp_id
-        left join erp_p_order_detail d on m.po_number = d.po_number
-        left join erp_product s on d.product_id = s.product_id
     </select>
+
+    <insert id="addMPurO">
+        insert into erp_p_order_master values(
+        #{poNumber},#{poDate},#{poTos},#{providerId},
+        #{poMoney},#{empId},#{storeId},#{poState}
+        ,#{boNumber},#{poEastate},#{supEmpId},#{poStstate}
+        )
+    </insert>
+
+    <insert id="addDPurO">
+        insert into erp_p_order_ values(
+        #{poNumber},#{poDate},#{poTos},#{providerId},
+        #{poMoney},#{empId},#{storeId},#{poState}
+        ,#{boNumber},#{poEastate},#{supEmpId},#{poStstate}
+        )
+    </insert>
 </mapper>

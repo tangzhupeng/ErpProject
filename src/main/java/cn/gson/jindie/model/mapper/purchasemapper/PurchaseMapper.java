@@ -11,4 +11,5 @@ import java.util.Map;
 @Repository
 public interface PurchaseMapper {
     public List<Map<String,Object>> findPOderList();
+    public void addMPurO(ErpPOrderMaster erpPOrderMaster);
 }
