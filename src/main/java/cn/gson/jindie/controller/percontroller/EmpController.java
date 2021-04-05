@@ -3,6 +3,7 @@ package cn.gson.jindie.controller.percontroller;
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.service.perservice.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,12 +23,10 @@ public class EmpController {
     }
 
     //查询所有员工
-    @PostMapping("/selectAllEmp")
+    @GetMapping("/selectAllEmp")
     @ResponseBody
     public List<ErpEmp> selectAllEmp(){
-        List<ErpEmp> erpEmps = empService.selectAllEmp();
-        System.out.println(erpEmps);
-        return erpEmps;
+        return empService.selectAllEmp();
     }
 
 
