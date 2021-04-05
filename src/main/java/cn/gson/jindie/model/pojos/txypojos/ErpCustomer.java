@@ -11,8 +11,8 @@ public class ErpCustomer {
     private String customerPeople;
     private String customerPhone;
     private String customerLocation;
-    private Integer empId;
-    private Integer gradeId;
+    /*private Integer empId;
+    private Integer gradeId;*/
     private Double customerMoney;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date customerTime;
@@ -78,7 +78,7 @@ public class ErpCustomer {
         this.customerLocation = customerLocation;
     }
 
-    public Integer getEmpId() {
+    /*public Integer getEmpId() {
         return empId;
     }
 
@@ -92,7 +92,7 @@ public class ErpCustomer {
 
     public void setGradeId(Integer gradeId) {
         this.gradeId = gradeId;
-    }
+    }*/
 
     public Double getCustomerMoney() {
         return customerMoney;
@@ -118,5 +118,19 @@ public class ErpCustomer {
         this.customerState = customerState;
     }
 
-
+    @Override
+    public String toString() {
+        return "ErpCustomer{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", customerPeople='" + customerPeople + '\'' +
+                ", customerPhone='" + customerPhone + '\'' +
+                ", customerLocation='" + customerLocation + '\'' +
+                ", customerMoney=" + customerMoney +
+                ", customerTime=" + customerTime +
+                ", customerState=" + customerState +
+                ", emps=" + emps +
+                ", grades=" + grades +
+                '}';
+    }
 }

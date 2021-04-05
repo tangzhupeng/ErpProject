@@ -39,8 +39,8 @@
 
     <!--新增客户-->
     <insert id="addCustomer">
-        insert into erp_customer(customer_name,customer_people,customer_phone,customer_location,emp_id,customer_time)
-        values(#{customerName},#{customerPeople},#{customerPhone},#{customerLocation},#{emps},#{customerTime})
+        insert into erp_customer(customer_name,customer_people,customer_phone,customer_location,emp_id,grade_id,customer_time)
+        values(#{customerName},#{customerPeople},#{customerPhone},#{customerLocation},#{emps.empId},#{grades.gradeId},#{customerTime})
     </insert>
 
     <!--查询职员-->
@@ -56,7 +56,7 @@
     <!--修改客户-->
     <update id="updateCustomer">
         update erp_customer set customer_name=#{customerName},customer_people=#{customerPeople},
-        customer_phone=#{customerPhone},customer_location=#{customerLocation},emp_id=#{emps}
+        customer_phone=#{customerPhone},customer_location=#{customerLocation},emp_id=#{emps},grade_id=#{grades}
         where customer_id=#{customerId}
     </update>
 

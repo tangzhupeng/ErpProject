@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,6 +23,7 @@ public class TxyCustomerService {
     //新增客户
     public void addCustomer(ErpCustomer customer){
         if(customer.getCustomerId()==null){
+            customer.setCustomerTime(new Date());
             customerMapper.addCustomer(customer);
         }else{
             customerMapper.updateCustomer(customer);

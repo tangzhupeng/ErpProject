@@ -9,10 +9,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,8 +37,9 @@ public class TxyCustomerController {
     //新增客户
     @PostMapping("/add-customer")
     @ResponseBody
-    public void addCustomer(ErpCustomer customer){
+    public void addCustomer(@RequestBody ErpCustomer customer){
         customerService.addCustomer(customer);
+        System.err.println("客户"+customer);
     }
     //查询职员
     @RequestMapping("/select-user")
