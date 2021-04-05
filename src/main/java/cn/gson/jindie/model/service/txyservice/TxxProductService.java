@@ -11,7 +11,9 @@ import java.util.List;
 @Service
 @Transactional
 public class TxxProductService {
+
     @Autowired
+
     private TxxProductMapper txxProductMapper;
     //查询所有客户
     public List<ErpProduct> allProduct(){
