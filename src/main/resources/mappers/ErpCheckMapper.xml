@@ -20,14 +20,15 @@
             <id property="storeId" column="store_id"/>
             <result property="storeName" column="store_name"></result>
         </collection>
+
     </resultMap>
+
     <select id="erpCheckList" resultMap="erpcheck">
         select *
         from erp_check c
                  left join erp_product ea on c.product_id = ea.product_id
                  left join erp_store e on c.store_id = e.store_id
     </select>
-
 
 
 </mapper>
