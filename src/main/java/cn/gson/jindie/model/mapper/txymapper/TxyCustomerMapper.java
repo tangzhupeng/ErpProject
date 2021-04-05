@@ -1,5 +1,5 @@
 package cn.gson.jindie.model.mapper.txymapper;
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomerGrade;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,7 +15,7 @@ public interface TxyCustomerMapper {
     //新增客户
     public void addCustomer(ErpCustomer customer);
     //查询职员
-    public List<ErpEmp> selectUser(ErpEmp emp);
+    public List<ErpEmp> selectUser();
     //查询客户等级
     public List<ErpCustomerGrade> selectGrade();
     //编辑客户

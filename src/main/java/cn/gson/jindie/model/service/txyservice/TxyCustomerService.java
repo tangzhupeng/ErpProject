@@ -1,6 +1,6 @@
 package cn.gson.jindie.model.service.txyservice;
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
 import cn.gson.jindie.model.mapper.txymapper.TxyCustomerMapper;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomerGrade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,8 @@ public class TxyCustomerService {
         }
     }
     //查询职员
-    public List<ErpEmp> selectUser(ErpEmp emp){
-        return customerMapper.selectUser(emp);
+    public List<ErpEmp> selectUser(){
+        return customerMapper.selectUser();
     }
     //查询客户等级
     public List<ErpCustomerGrade> selectGrade(){

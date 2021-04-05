@@ -1,5 +1,5 @@
 package cn.gson.jindie.controller.txycontroller;
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomerGrade;
 import cn.gson.jindie.model.service.txyservice.TxyCustomerService;
@@ -46,8 +46,8 @@ public class TxyCustomerController {
     //查询职员
     @RequestMapping("/select-user")
     @ResponseBody
-    public List<ErpEmp> selectUser(ErpEmp emp){
-        return customerService.selectUser(emp);
+    public List<ErpEmp> selectUser(){
+        return customerService.selectUser();
     }
     //查询客户等级
     @RequestMapping("/select-grade")

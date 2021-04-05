@@ -9,10 +9,10 @@
         <result column="customer_money" property="customerMoney"></result>
         <result column="customer_time" property="customerTime"></result>
         <result column="customer_state" property="customerState"></result>
-<!--        <association property="emps" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">-->
-<!--            <id column="emp_id" property="empId"></id>-->
-<!--            <result column="emp_name" property="empName"></result>-->
-<!--        </association>-->
+        <association property="emps" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+            <id column="emp_id" property="empId"></id>
+            <result column="emp_name" property="empName"></result>
+        </association>
         <association property="grades" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomerGrade">
             <id column="grade_id" property="gradeId"></id>
             <result column="grade_name" property="gradeName"></result>
@@ -31,15 +31,15 @@
         values(#{customerName},#{customerPeople},#{customerPhone},#{customerLocation},#{emps},#{customerTime})
     </insert>
 
-<!--    &lt;!&ndash;查询职员&ndash;&gt;-->
-<!--    <select id="selectUser" resultMap="customer">-->
-<!--        select emp_name from erp_emp-->
-<!--    </select>-->
+    <!--查询职员-->
+    <select id="selectUser" resultMap="customer">
+        select * from erp_emp
+    </select>
 
-<!--    &lt;!&ndash;查询客户等级&ndash;&gt;-->
-<!--    <select id="selectGrade">-->
-<!--        select grade_name from erp_customer_grade-->
-<!--    </select>-->
+    <!--查询客户等级-->
+    <select id="selectGrade">
+        select * from erp_customer_grade
+    </select>
 
     <!--修改客户-->
     <update id="updateCustomer">
