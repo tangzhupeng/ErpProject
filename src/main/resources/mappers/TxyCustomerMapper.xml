@@ -21,8 +21,20 @@
 
     <!--查询所有客户-->
     <select id="allCustomer" resultMap="customer">
-        select * from erp_customer c left join erp_emp e on c.emp_id=e.emp_id
+        select * from erp_customer c
+        left join erp_emp e on c.emp_id=e.emp_id
         left join erp_customer_grade g on g.grade_id=c.grade_id
+        <where>
+            <if test="customerName !=null and customerName!=''">
+                and c.customer_id like '%${customerName}%'
+                or c.customer_name like '%${customerName}%'
+                or c.customer_people like '%${customerName}%'
+                or c.customer_location like '%${customerName}%'
+                or e.emp_name like '%${customerName}%'
+                or g.grade_name like '%${customerName}%'
+            </if>
+        </where>
+        order by c.customer_time desc
     </select>
 
     <!--新增客户-->
@@ -37,7 +49,7 @@
     </select>
 
     <!--查询客户等级-->
-    <select id="selectGrade">
+    <select id="selectGrade" resultMap="customer">
         select * from erp_customer_grade
     </select>
 

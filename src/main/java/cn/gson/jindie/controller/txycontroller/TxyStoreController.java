@@ -38,6 +38,7 @@ public class TxyStoreController {
     @PostMapping("/add-store")
     @ResponseBody
     public void addStore(@RequestBody ErpStore store){
+        System.err.println("新增：" +store.getStoreName());
         storeService.addStore(store);
     }
 

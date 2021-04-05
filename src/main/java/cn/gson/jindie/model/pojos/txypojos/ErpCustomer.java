@@ -1,6 +1,6 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
