@@ -5,6 +5,8 @@ import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface EmpMapper {
@@ -14,5 +16,7 @@ public interface EmpMapper {
     public ErpEmp updateEmp(ErpEmp emp);
     //修改员工状态
     public int updateStatus(ErpEmp emp);
+    //查询所有员工
+    public List<ErpEmp> selectAllEmp();
 
 }

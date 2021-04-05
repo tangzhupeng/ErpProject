@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class EmpService {
@@ -25,6 +27,12 @@ public class EmpService {
     //修改员工信息
     public void updateEmp(ErpEmp emp){
         empMapper.updateEmp(emp);
+    }
+
+
+    //查询所有员工
+    public List<ErpEmp> selectAllEmp(){
+        return empMapper.selectAllEmp();
     }
 
 }
