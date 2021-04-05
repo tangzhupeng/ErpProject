@@ -10,8 +10,13 @@ import java.util.List;
 @Mapper
 @Repository
 public interface TxyCustomerMapper {
-    //查询所有客户
+    //分页模糊查询所有客户
     public List<ErpCustomer> allCustomer(ErpCustomer customer);
+
+
+    //查询所有客户
+    public List<ErpCustomer> SerCustomer();
+
     //新增客户
     public void addCustomer(ErpCustomer customer);
     //查询职员

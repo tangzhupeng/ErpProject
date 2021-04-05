@@ -16,10 +16,15 @@
         <association property="customer" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
             <id column="customer_id" property="customerId"></id>
             <result column="customer_name" property="customerName"></result>
+            <result column="customer_money" property="customerMoney"></result>
         </association>
     </resultMap>
 
 
+<!--    &lt;!&ndash;新增收款单&ndash;&gt;-->
+<!--    <insert id="InReceipt">-->
+<!--        insert into erp_receipt values (#{receiptId},#{receiptTime},#{receiptMoney},#{},#{},#{},#{})-->
+<!--    </insert>-->
 
 
 </mapper>

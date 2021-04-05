@@ -37,8 +37,8 @@ public class TxyAccountController {
     //查询所有
     @RequestMapping("/Ser-account")
     @ResponseBody
-    public List<ErpAccount> SerAccount(ErpAccount account){
-        return accountService.SerAccount(account);
+    public List<ErpAccount> SerAccount(){
+        return accountService.SerAccount();
     }
 
     //新增账户
