@@ -1,9 +1,6 @@
 package cn.gson.jindie.model.pojos.perpojos;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "erp_emp", schema = "", catalog = "erp3")
 public class ErpEmp {
     private int empId;
     private String empName;
@@ -11,8 +8,6 @@ public class ErpEmp {
     private String phone;
     private Integer statu;
 
-    @Id
-    @Column(name = "emp_id")
     public int getEmpId() {
         return empId;
     }
@@ -21,8 +16,6 @@ public class ErpEmp {
         this.empId = empId;
     }
 
-    @Basic
-    @Column(name = "emp_name")
     public String getEmpName() {
         return empName;
     }
@@ -31,8 +24,6 @@ public class ErpEmp {
         this.empName = empName;
     }
 
-    @Basic
-    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -41,8 +32,6 @@ public class ErpEmp {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "phone")
     public String getPhone() {
         return phone;
     }
@@ -51,8 +40,6 @@ public class ErpEmp {
         this.phone = phone;
     }
 
-    @Basic
-    @Column(name = "statu")
     public Integer getStatu() {
         return statu;
     }
@@ -61,31 +48,6 @@ public class ErpEmp {
         this.statu = statu;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ErpEmp erpEmp = (ErpEmp) o;
-
-        if (empId != erpEmp.empId) return false;
-        if (empName != null ? !empName.equals(erpEmp.empName) : erpEmp.empName != null) return false;
-        if (password != null ? !password.equals(erpEmp.password) : erpEmp.password != null) return false;
-        if (phone != null ? !phone.equals(erpEmp.phone) : erpEmp.phone != null) return false;
-        if (statu != null ? !statu.equals(erpEmp.statu) : erpEmp.statu != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = empId;
-        result = 31 * result + (empName != null ? empName.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (statu != null ? statu.hashCode() : 0);
-        return result;
-    }
 
     @Override
     public String toString() {

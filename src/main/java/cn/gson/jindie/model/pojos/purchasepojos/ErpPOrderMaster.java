@@ -1,23 +1,18 @@
-package cn.gson.jindie.model.pojos.purchasepojos;
-
-
-import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
-import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
-import cn.gson.jindie.model.pojos.txypojos.ErpStore;
+package cn.gson.jindie.model.pojos.PurchasePojos;
 
 public class ErpPOrderMaster {
 
   private String poNumber;
   private java.sql.Date poDate;
   private String poTos;
-  private ErpProvider providerId;
+  private long providerId;
   private double poMoney;
-  private ErpEmp empId;
-  private ErpStore storeId;
+  private long empId;
+  private long storeId;
   private long poState;
-  private ErpBuyingOrder boNumber;
+  private String boNumber;
   private long poEastate;
-  private ErpEmp supEmpId;
+  private long supEmpId;
   private long poStstate;
 
 
@@ -48,11 +43,11 @@ public class ErpPOrderMaster {
   }
 
 
-  public ErpProvider getProviderId() {
+  public long getProviderId() {
     return providerId;
   }
 
-  public void setProviderId(ErpProvider providerId) {
+  public void setProviderId(long providerId) {
     this.providerId = providerId;
   }
 
@@ -66,20 +61,20 @@ public class ErpPOrderMaster {
   }
 
 
-  public ErpEmp getEmpId() {
+  public long getEmpId() {
     return empId;
   }
 
-  public void setEmpId(ErpEmp empId) {
+  public void setEmpId(long empId) {
     this.empId = empId;
   }
 
 
-  public ErpStore getStoreId() {
+  public long getStoreId() {
     return storeId;
   }
 
-  public void setStoreId(ErpStore storeId) {
+  public void setStoreId(long storeId) {
     this.storeId = storeId;
   }
 
@@ -93,11 +88,11 @@ public class ErpPOrderMaster {
   }
 
 
-  public ErpBuyingOrder getBoNumber() {
+  public String getBoNumber() {
     return boNumber;
   }
 
-  public void setBoNumber(ErpBuyingOrder boNumber) {
+  public void setBoNumber(String boNumber) {
     this.boNumber = boNumber;
   }
 
@@ -111,11 +106,11 @@ public class ErpPOrderMaster {
   }
 
 
-  public ErpEmp getSupEmpId() {
+  public long getSupEmpId() {
     return supEmpId;
   }
 
-  public void setSupEmpId(ErpEmp supEmpId) {
+  public void setSupEmpId(long supEmpId) {
     this.supEmpId = supEmpId;
   }
 

@@ -1,6 +1,10 @@
 package cn.gson.jindie.model.pojos.salespojos;
 
 
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
+import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
+import cn.gson.jindie.model.pojos.txypojos.ErpStore;
+
 public class ErpOrder {
 
   private Integer orderId;
@@ -15,9 +19,9 @@ public class ErpOrder {
   private Integer approvalStatus;
   private Integer orderStatus;
   private String deliveryOrderNumber;
-  private Integer customerId;
-  private Integer empId;
-  private Integer storeId;
+  private ErpCustomer erpCustomer;
+  private ErpEmp erpEmp;
+  private ErpStore erpStore;
   private String currentExaminer;
 
 
@@ -128,33 +132,29 @@ public class ErpOrder {
     this.deliveryOrderNumber = deliveryOrderNumber;
   }
 
-
-  public Integer getCustomerId() {
-    return customerId;
+  public ErpCustomer getErpCustomer() {
+    return erpCustomer;
   }
 
-  public void setCustomerId(Integer customerId) {
-    this.customerId = customerId;
+  public void setErpCustomer(ErpCustomer erpCustomer) {
+    this.erpCustomer = erpCustomer;
   }
 
-
-  public Integer getEmpId() {
-    return empId;
+  public ErpEmp getErpEmp() {
+    return erpEmp;
   }
 
-  public void setEmpId(Integer empId) {
-    this.empId = empId;
+  public void setErpEmp(ErpEmp erpEmp) {
+    this.erpEmp = erpEmp;
   }
 
-
-  public Integer getStoreId() {
-    return storeId;
+  public ErpStore getErpStore() {
+    return erpStore;
   }
 
-  public void setStoreId(Integer storeId) {
-    this.storeId = storeId;
+  public void setErpStore(ErpStore erpStore) {
+    this.erpStore = erpStore;
   }
-
 
   public String getCurrentExaminer() {
     return currentExaminer;

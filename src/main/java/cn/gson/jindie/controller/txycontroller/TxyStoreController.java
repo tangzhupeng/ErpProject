@@ -2,6 +2,10 @@ package cn.gson.jindie.controller.txycontroller;
 
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 import cn.gson.jindie.model.service.txyservice.TxyStoreService;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,18 +13,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class TxyStoreController {
     @Autowired
     TxyStoreService storeService;
 
-    //查询所有仓库
+    //分页查询所有仓库
     @RequestMapping("/all-store")
     @ResponseBody
-    public List<ErpStore> allStore(ErpStore store){
-        return storeService.allStore(store);
+    public Map<String, Object> demo(Integer pageNum, Integer size, String store) {
+        Map<String, Object> map = new HashMap<>();
+
+        ErpStore s = JSONObject.toJavaObject(JSON.parseObject(store), ErpStore.class);
+        Page<Object> page = PageHelper.startPage(pageNum, size);
+        List<ErpStore> sectors = storeService.allStore(s);
+        map.put("total", page.getTotal());
+        map.put("rows", sectors);
+
+        return map;
     }
 
     //新增仓库
