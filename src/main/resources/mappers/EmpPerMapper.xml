@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.permapper.EmpPerMapper">
+    <resultMap id="login" type="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+<!--    <id column="emp_per_id" property="id"></id>-->
+<!--    <result column="emp_id" property="empId"></result>-->
+<!--    <result column="per_id" property="perId"></result>-->
+<!--    <association property="emp" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">-->
+<!--        <id column="emp_id" property="empId"></id>-->
+<!--        <result column="emp_name" property="empName"></result>-->
+<!--        <result column="password" property="password"></result>-->
+<!--    </association>-->
+<!--    <association property="permission" javaType="cn.gson.jindie.model.pojos.perpojos.ErpPermission">-->
+<!--        <id column="per_id" property="perId"></id>-->
+<!--        <result column="per_name" property="perName"></result>-->
+<!--    </association>-->
+        <id column="epm_id" property="empId"></id>
+        <result column="emp_name" property="empName"></result>
+        <result column="password" property="password"></result>
+        <result column="phone" property="phone"></result>
+        <result column="statu" property="statu"></result>
+        <collection property="permissionList" ofType="cn.gson.jindie.model.pojos.perpojos.ErpPermission">
+            <id column="per_id" property="perId"></id>
+            <result column="per_name" property="perName"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findPerLogin" resultMap="login">
+            SELECT e.*,p.per_name FROM erp_emp_per ep
+            LEFT JOIN erp_emp e ON e.emp_id = ep.emp_id
+            LEFT JOIN erp_permission p ON p.per_id = ep.per_id
+            where e.emp_name = #{empName}
+    </select>
+
+</mapper>

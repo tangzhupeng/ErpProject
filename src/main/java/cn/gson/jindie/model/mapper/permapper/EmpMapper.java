@@ -18,5 +18,7 @@ public interface EmpMapper {
     public int updateStatus(ErpEmp emp);
     //查询所有员工
     public List<ErpEmp> selectAllEmp();
+//    //删除员工
+//    public int deleteEmp(Integer empid);
 
 }

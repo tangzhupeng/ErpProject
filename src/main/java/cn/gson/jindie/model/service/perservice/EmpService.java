@@ -12,10 +12,11 @@ import java.util.List;
 @Transactional
 public class EmpService {
     @Autowired
-    EmpMapper empMapper;
+    private EmpMapper empMapper;
 
     /*新增员工*/
     public void addEmp(ErpEmp emp){
+//        int empid = empMapper.getClass().get
 
         empMapper.addEmp(emp);
     }
@@ -34,5 +35,11 @@ public class EmpService {
     public List<ErpEmp> selectAllEmp(){
         return empMapper.selectAllEmp();
     }
+
+    //根据id删除员工信息
+//    public int deleteEmp(Integer empid){
+//
+//        return empMapper.deleteEmp(empid);
+//    }
 
 }

@@ -11,7 +11,7 @@
     </resultMap>
     <!--新增角色-->
     <insert id="addEmp">
-        insert into erp_emp(emp_name,passwore,phone,statu) values(#{empName},#{password},#{phone},#{statu})
+        insert into erp_emp(emp_name,password,phone,statu) values(#{empName},#{password},#{phone},#{statu})
     </insert>
     <!--修改状态-->
     <update id="updateStatus">
@@ -21,9 +21,9 @@
     <update id="updateEmp">
         update erp_emp set emp_name=#{emp_name},password=#{password},phone=#{phone} where emp_id=#{empId}
     </update>
-<!--    &lt;!&ndash;删除员工信息&ndash;&gt;-->
+<!--        &lt;!&ndash;删除员工信息&ndash;&gt;-->
 <!--    <delete id="deleteEmp">-->
-<!--        delete -->
+<!--        delete from erp_emp where emp_id=#{empId}-->
 <!--    </delete>-->
     <!--查询所有员工信息-->
     <select id="selectAllEmp" resultMap="emp">
