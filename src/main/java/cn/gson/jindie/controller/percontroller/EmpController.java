@@ -30,9 +30,10 @@ public class EmpController {
     @ResponseBody
     public List<ErpEmp> selectAllEmp(){
         List<ErpEmp> erpEmps = empService.selectAllEmp();
-        System.out.println(erpEmps);
+//        System.out.println(erpEmps);
         return erpEmps;
     }
+
 
     @PostMapping("/updateEmp")
     @ResponseBody
