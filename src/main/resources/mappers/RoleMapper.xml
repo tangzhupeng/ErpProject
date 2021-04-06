@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.permapper.RoleMapper">
+    <resultMap id="role" type="cn.gson.jindie.model.pojos.perpojos.ErpRole">
+        <id column="role_id" property="roleId"></id>
+        <result column="role_name" property="roleName"></result>
+    </resultMap>
+
+    <!--新增角色-->
+    <insert id="addRole">
+        insert into erp_role.role_name values #{roleName}
+    </insert>
+    <!--修改角色信息-->
+    <update id="updateRole">
+        update erp_role set role_name=#{roleName} where emp_id=#{empId}
+    </update>
+    <!--查询所有角色信息-->
+    <select id="selectAllRole" resultMap="role">
+        select * from erp_role
+    </select>
+
+</mapper>
