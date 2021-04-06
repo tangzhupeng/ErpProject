@@ -8,6 +8,8 @@ import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 import cn.gson.jindie.model.service.perservice.EmpService;
 import cn.gson.jindie.model.service.purchaseservice.WpPurchaseService;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,6 @@ public class WpPurchaseController {
     @PostMapping("/addMPurO")
     @ResponseBody
     public String addMPurO(@RequestBody ErpPOrderMaster erpPOrderMaster){
-        System.out.println(erpPOrderMaster);
         try {
             System.out.println(1);
             wpPurchaseService.addMPurO(erpPOrderMaster);
@@ -51,6 +52,20 @@ public class WpPurchaseController {
         }
         return "新增成功";
     }
+//
+//    @PostMapping("/addDPurO")
+//    @ResponseBody
+//    public String addDPurO(@RequestBody ErpPOrderDetail erpPOrderDetail){
+//        System.out.println(erpPOrderDetail);
+//        try {
+//            System.out.println(1);
+//            wpPurchaseService.addDPurO(erpPOrderDetail);
+//        }catch (Exception e){
+//            System.out.println(2);
+//            System.out.println(e.getMessage());
+//        }
+//        return "新增成功";
+//    }
 
     @PostMapping("/updatepoEastate")
     @ResponseBody
@@ -100,5 +115,21 @@ public class WpPurchaseController {
     @ResponseBody
     public List<ErpPOrderDetail> findPOderListpmi(String poNumber){
         return wpPurchaseService.findPOderListpmi(poNumber);
+    }
+
+//筛选
+    @RequestMapping("/filter-poderList")
+    @ResponseBody
+    public Map<String,Object> FilterPOderList(Integer pageNum,Integer size,String erpPOrderMaster){
+        ErpPOrderMaster e = JSONObject.toJavaObject(JSON.parseObject(erpPOrderMaster),ErpPOrderMaster.class);
+        System.out.println(e);
+        Map<String,Object> map = new HashMap<>();
+        Page<Object> page = PageHelper.startPage(pageNum, size);
+        List<ErpPOrderMaster> e1 = wpPurchaseService.filterPOderList(e);
+        PageHelper.startPage(pageNum,size);
+        System.out.println(e1);
+        map.put("rows",e1);
+        map.put("total",page.getTotal());
+        return map;
     }
 }

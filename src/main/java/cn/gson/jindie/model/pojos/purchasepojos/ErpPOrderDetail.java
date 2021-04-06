@@ -6,6 +6,7 @@ public class ErpPOrderDetail {
 
   private String podNumber;
   private ErpPOrderMaster poNumber;
+  private String zpoNumber;
   private ErpProduct productId;
   private long podAmount;
   private String podUnit;
@@ -13,6 +14,13 @@ public class ErpPOrderDetail {
   private double podMoney;
   private String podDescribe;
 
+  public String getZpoNumber() {
+    return zpoNumber;
+  }
+
+  public void setZpoNumber(String zpoNumber) {
+    this.zpoNumber = zpoNumber;
+  }
 
   public String getPodNumber() {
     return podNumber;

@@ -8,7 +8,7 @@ public class ErpProduct {
     private Double productMoney;
     private Double productPrice;
     private String productDw;
-    private Integer storeId;
+    private ErpStore storeId;
     private Integer productNumber;
     private Integer productState;
     private Double productPf;
@@ -70,11 +70,11 @@ public class ErpProduct {
         this.productDw = productDw;
     }
 
-    public Integer getStoreId() {
+    public ErpStore getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(Integer storeId) {
+    public void setStoreId(ErpStore storeId) {
         this.storeId = storeId;
     }
 

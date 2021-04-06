@@ -42,6 +42,8 @@
         <id column="pod_number" property="podNumber"/>
         <result column="pod_amount" property="podAmount"/>
         <result column="pod_money" property="podMoney"/>
+        <result column="pod_unitprice" property="podUnitprice"/>
+        <result column="pod_unit" property="podUnit"/>
         <result column="pod_describe" property="podDescribe"/>
         <association property="poNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster">
         <id column="po_number" property="poNumber"/>
@@ -85,6 +87,10 @@
             <result column="product_money" property="productMoney"/>
             <result column="product_price" property="productPrice"/>
             <result column="product_dw" property="productDw"/>
+            <association property="storeId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+                <id column="store_id" property="storeId"/>
+                <result column="store_name" property="storeName"/>
+            </association>
         </association>
     </resultMap>
 
@@ -124,13 +130,37 @@
         where m.po_number = #{poNumber}
     </select>
 
-<!--    <insert id="addDPurO">-->
-<!--        insert into erp_p_order_ values(-->
-<!--        #{poNumber},#{poDate},#{poTos},#{providerId},-->
-<!--        #{poMoney},#{empId},#{storeId},#{poState}-->
-<!--        ,#{boNumber},#{poEastate},#{supEmpId},#{poStstate}-->
-<!--        )-->
-<!--    </insert>-->
+    <select id="filterPOderList" resultMap="mpurchaseorder">
+        select * from erp_p_order_master m
+        left join erp_provider p on m.provider_id = p.provider_id
+        left join erp_emp em on m.emp_id = em.emp_id
+        left join erp_store st on m.store_id = st.store_id
+        left join erp_buying_order b on m.bo_number = b.bo_number
+        left join erp_emp em1 on m.sup_emp_id = em1.emp_id
+        <where>
+            <if test="poNumber != null and poNumber != ''">
+                and m.po_number like '%${poNumber}%'
+            </if>
+            <if test="startingTime != null and startingTime != '' and endTime != null and endTime != ''">
+                and m.po_date between #{startingTime} and #{endTime}
+            </if>
+            <if test="providerId.providerName != null and providerId.providerName != ''">
+                and p.provider_name like '%${providerId.providerName}%'
+            </if>
+            <if test="empId.empName != null and empId.empName != ''">
+                and em.emp_name like '%${empId.empName}%'
+            </if>
+        </where>
+    </select>
+
+    <insert id="addDPurO">
+        insert into erp_p_order_detail values(
+        "${podNumber}","${zpoNumber}"
+        ,"${productId.productId}","${podAmount}"
+        ,"${podUnit}","${podUnitprice}","${podMoney}"
+        ,"${podDescribe}"
+        )
+    </insert>
 
     <update id="updatepoEastate">
         update erp_p_order_master set po_eastate = 1,po_state = 1,sup_emp_id = "${supEmpId.empId}"

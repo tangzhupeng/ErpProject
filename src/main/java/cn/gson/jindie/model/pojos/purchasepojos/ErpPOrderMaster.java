@@ -5,6 +5,7 @@ import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ErpPOrderMaster {
 
@@ -20,8 +21,11 @@ public class ErpPOrderMaster {
   private long poEastate;
   private ErpEmp supEmpId;
   private long poStstate;
+  private String startingTime;
+  private String endTime;
+  private List<ErpPOrderDetail> detail;
 
-  public ErpPOrderMaster(String poNumber, Date poDate, String poTos, ErpProvider providerId, double poMoney, ErpEmp empId, ErpStore storeId, long poState, ErpBuyingOrder boNumber, long poEastate, ErpEmp supEmpId, long poStstate) {
+  public ErpPOrderMaster(String poNumber, Date poDate, String poTos, ErpProvider providerId, double poMoney, ErpEmp empId, ErpStore storeId, long poState, ErpBuyingOrder boNumber, long poEastate, ErpEmp supEmpId, long poStstate, String startingTime, String endTime) {
     this.poNumber = poNumber;
     this.poDate = poDate;
     this.poTos = poTos;
@@ -34,6 +38,32 @@ public class ErpPOrderMaster {
     this.poEastate = poEastate;
     this.supEmpId = supEmpId;
     this.poStstate = poStstate;
+    this.startingTime = startingTime;
+    this.endTime = endTime;
+  }
+
+  public List<ErpPOrderDetail> getDetail() {
+    return detail;
+  }
+
+  public void setDetail(List<ErpPOrderDetail> detail) {
+    this.detail = detail;
+  }
+
+  public String getStartingTime() {
+    return startingTime;
+  }
+
+  public void setStartingTime(String startingTime) {
+    this.startingTime = startingTime;
+  }
+
+  public String getEndTime() {
+    return endTime;
+  }
+
+  public void setEndTime(String endTime) {
+    this.endTime = endTime;
   }
 
   public ErpPOrderMaster() {
@@ -161,6 +191,8 @@ public class ErpPOrderMaster {
             ", poEastate=" + poEastate +
             ", supEmpId=" + supEmpId +
             ", poStstate=" + poStstate +
+            ", startingTime=" + startingTime +
+            ", endTime=" + endTime +
             '}';
   }
 }

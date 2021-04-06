@@ -16,4 +16,6 @@ public interface PurchaseMapper {
     public List<ErpPOrderDetail> findPOderListpdi(String poNumber);
     public List<ErpPOrderDetail> findPOderListpmi(String poNumber);
     public void updatepoEastate(ErpPOrderMaster erpPOrderMaster);
+    public List<ErpPOrderMaster> filterPOderList(ErpPOrderMaster erpPOrderMaster);
+    public void addDPurO(ErpPOrderDetail erpPOrderDetail);
 }
