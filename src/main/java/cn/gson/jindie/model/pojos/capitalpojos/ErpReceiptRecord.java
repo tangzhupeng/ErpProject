@@ -41,15 +41,15 @@ public class ErpReceiptRecord {
         this.receiptId = receiptId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    public ErpAccount getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(ErpAccount accountId) {
-        this.accountId = accountId;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "account_id")
+//    public ErpAccount getAccountId() {
+//        return accountId;
+//    }
+//
+//    public void setAccountId(ErpAccount accountId) {
+//        this.accountId = accountId;
+//    }
 
 
 //    @ManyToOne

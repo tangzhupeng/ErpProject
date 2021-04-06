@@ -15,6 +15,7 @@
             <result column="provider_name" property="providerName"/>
             <result column="provider_people" property="providerPeople"/>
             <result column="provider_phone" property="providerPhone"/>
+            <result column="provider_location" property="providerLocation"/>
         </association>
         <association property="empId" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
             <id column="emp_id" property="empId"/>
@@ -38,11 +39,11 @@
     </resultMap>
 
     <resultMap id="dpurchaseorder" type="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderDetail">
-        <id column="po_number" property="poNumber"/>
-        <result column="po_date" property="poDate"/>
+        <id column="pod_number" property="podNumber"/>
+        <result column="pod_amount" property="podAmount"/>
         <result column="pod_money" property="podMoney"/>
         <result column="pod_describe" property="podDescribe"/>
-        <association property="podNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster">
+        <association property="poNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster">
         <id column="po_number" property="poNumber"/>
         <result column="po_date" property="poDate"/>
         <result column="po_tos" property="poTos"/>
@@ -55,6 +56,7 @@
                 <result column="provider_name" property="providerName"/>
                 <result column="provider_people" property="providerPeople"/>
                 <result column="provider_phone" property="providerPhone"/>
+                <result column="provider_location" property="providerLocation"/>
             </association>
             <association property="empId" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
                 <id column="emp_id" property="empId"/>
@@ -75,13 +77,15 @@
                 <result column="emp_name" property="empName"/>
                 <result column="phone" property="phone"/>
             </association>
-    </association>
-<!--        <association property="productId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProduct">-->
-<!--            <id column="po_number" property="productId"/>-->
-<!--            <result column="po_date" property="productName"/>-->
-<!--            <result column="pod_money" property="productPicture"/>-->
-<!--            <result column="pod_describe" property="podDescribe"/>-->
-<!--        </association>-->
+        </association>
+        <association property="productId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProduct">
+            <id column="product_id" property="productId"/>
+            <result column="product_name" property="productName"/>
+            <result column="product_picture" property="productPicture"/>
+            <result column="product_money" property="productMoney"/>
+            <result column="product_price" property="productPrice"/>
+            <result column="product_dw" property="productDw"/>
+        </association>
     </resultMap>
 
     <select id="findPOderList" resultMap="mpurchaseorder">
@@ -95,17 +99,41 @@
 
     <insert id="addMPurO">
         insert into erp_p_order_master values(
-        #{poNumber},#{poDate},#{poTos},#{providerId},
-        #{poMoney},#{empId},#{storeId},#{poState}
-        ,#{boNumber},#{poEastate},#{supEmpId},#{poStstate}
+        "${poNumber}","${poDate}","${poTos}","${providerId.providerId}","${poMoney}","${empId.empId}","${storeId.storeId}","${poState}","${boNumber.boNumber}","${poEastate}","${supEmpId.empId}","${poStstate}"
         )
     </insert>
 
-    <insert id="addDPurO">
-        insert into erp_p_order_ values(
-        #{poNumber},#{poDate},#{poTos},#{providerId},
-        #{poMoney},#{empId},#{storeId},#{poState}
-        ,#{boNumber},#{poEastate},#{supEmpId},#{poStstate}
-        )
-    </insert>
+    <select id="findPOderListpdi" resultMap="dpurchaseorder">
+        select * from erp_p_order_detail d
+        left join erp_product s on d.product_id = s.product_id
+        left join erp_p_order_master m on d.po_number = m.po_number
+        left join erp_emp em on m.emp_id = em.emp_id
+        left join erp_store st on m.store_id = st.store_id
+        left join erp_buying_order b on m.bo_number = b.bo_number
+        left join erp_emp em1 on m.sup_emp_id = em1.emp_id
+        where d.po_number = #{poNumber}
+    </select>
+
+    <select id="findPOderListpmi" resultMap="mpurchaseorder">
+        select * from erp_p_order_master m
+        left join erp_provider p on m.provider_id = p.provider_id
+        left join erp_emp em on m.emp_id = em.emp_id
+        left join erp_store st on m.store_id = st.store_id
+        left join erp_buying_order b on m.bo_number = b.bo_number
+        left join erp_emp em1 on m.sup_emp_id = em1.emp_id
+        where m.po_number = #{poNumber}
+    </select>
+
+<!--    <insert id="addDPurO">-->
+<!--        insert into erp_p_order_ values(-->
+<!--        #{poNumber},#{poDate},#{poTos},#{providerId},-->
+<!--        #{poMoney},#{empId},#{storeId},#{poState}-->
+<!--        ,#{boNumber},#{poEastate},#{supEmpId},#{poStstate}-->
+<!--        )-->
+<!--    </insert>-->
+
+    <update id="updatepoEastate">
+        update erp_p_order_master set po_eastate = 1,po_state = 1,sup_emp_id = "${supEmpId.empId}"
+        where po_number = "${poNumber}"
+    </update>
 </mapper>

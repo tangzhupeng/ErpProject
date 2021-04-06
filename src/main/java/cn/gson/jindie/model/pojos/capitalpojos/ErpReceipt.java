@@ -1,7 +1,7 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
-import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
+import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -34,37 +34,37 @@ public class ErpReceipt {
     }
 
 
-    @ManyToOne
-    @JoinColumn(name = "emp_id")
-    public ErpEmp getEmp() {
-        return emp;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "emp_id")
+//    public ErpEmp getEmp() {
+//        return emp;
+//    }
+//
+//    public void setEmp(ErpEmp emp) {
+//        this.emp = emp;
+//    }
 
-    public void setEmp(ErpEmp emp) {
-        this.emp = emp;
-    }
 
 
-
-    @ManyToOne
-    @JoinColumn(name = "emp_audit_id")
-    public ErpEmp getEmpAudit() {
-        return empAudit;
-    }
-
-    public void setEmpAudit(ErpEmp empAudit) {
-        this.empAudit = empAudit;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    public ErpCustomer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(ErpCustomer customer) {
-        this.customer = customer;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "emp_audit_id")
+//    public ErpEmp getEmpAudit() {
+//        return empAudit;
+//    }
+//
+//    public void setEmpAudit(ErpEmp empAudit) {
+//        this.empAudit = empAudit;
+//    }
+//
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    public ErpCustomer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(ErpCustomer customer) {
+//        this.customer = customer;
+//    }
 
 
 

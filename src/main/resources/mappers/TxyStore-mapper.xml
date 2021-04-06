@@ -6,6 +6,10 @@
         <result column="store_state" property="storeState"></result>
     </resultMap>
 
+    <select id="findStore" resultMap="stores">
+        select * from erp_store
+    </select>
+
     <!--分页，模糊查询所有仓库-->
     <select id="allStore" resultMap="stores">
         select * from erp_store

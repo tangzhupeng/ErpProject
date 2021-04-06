@@ -1,7 +1,7 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
-import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
+import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -33,38 +33,38 @@ public class ErpPayment {
         this.paymentId = paymentId;
     }
 
+//
+//    @ManyToOne
+//    @JoinColumn(name = "emp_id")
+//    public ErpEmp getEmp() {
+//        return emp;
+//    }
+//
+//    public void setEmp(ErpEmp emp) {
+//        this.emp = emp;
+//    }
+//
+//
+//    @ManyToOne
+//    @JoinColumn(name = "emp_audit_id")
+//    public ErpEmp getEmpAudit() {
+//        return empAudit;
+//    }
+//
+//    public void setEmpAudit(ErpEmp empAudit) {
+//        this.empAudit = empAudit;
+//    }
 
-    @ManyToOne
-    @JoinColumn(name = "emp_id")
-    public ErpEmp getEmp() {
-        return emp;
-    }
 
-    public void setEmp(ErpEmp emp) {
-        this.emp = emp;
-    }
-
-
-    @ManyToOne
-    @JoinColumn(name = "emp_audit_id")
-    public ErpEmp getEmpAudit() {
-        return empAudit;
-    }
-
-    public void setEmpAudit(ErpEmp empAudit) {
-        this.empAudit = empAudit;
-    }
-
-
-    @ManyToOne
-    @JoinColumn(name = "provider_id")
-    public ErpProvider getProvider() {
-        return provider;
-    }
-
-    public void setProvider(ErpProvider provider) {
-        this.provider = provider;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "provider_id")
+//    public ErpProvider getProvider() {
+//        return provider;
+//    }
+//
+//    public void setProvider(ErpProvider provider) {
+//        this.provider = provider;
+//    }
 
 
     @Basic
