@@ -30,7 +30,7 @@
             <result property="customerState" column="customer_state" />
         </association>
 
-        <association property="erpEmp" javaType="cn.gson.jindie.model.pojos.PerPojos.ErpEmp" >
+        <association property="erpEmp" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp" >
             <id property="empId" column="emp_id" />
             <result property="empName" column="emp_name"/>
             <result property="password" column="password"/>
@@ -95,7 +95,7 @@
             <result property="customerState" column="customer_state" />
         </association>
 
-        <association property="erpEmp" javaType="cn.gson.jindie.model.pojos.PerPojos.ErpEmp" >
+        <association property="erpEmp" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp" >
             <id property="empId" column="emp_id" />
             <result property="empName" column="emp_name"/>
             <result property="password" column="password"/>

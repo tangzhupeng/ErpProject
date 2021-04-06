@@ -1,6 +1,6 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
-import cn.gson.jindie.model.pojos.PurchasePojos.ErpBuyingOrder;
+import cn.gson.jindie.model.pojos.purchasepojos.ErpBuyingOrder;
 import cn.gson.jindie.model.pojos.txypojos.ErpAccount;
 
 public class ErpPaymentRecord {

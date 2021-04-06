@@ -1,7 +1,7 @@
 package cn.gson.jindie.model.pojos.storempojos;
 
 
-import cn.gson.jindie.model.pojos.PurchasePojos.ErpPOrderDetail;
+import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderDetail;
 import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 

@@ -19,7 +19,11 @@
     </update>
     <!--修改员工信息-->
     <update id="updateEmp">
+<<<<<<< Updated upstream
         update erp_emp e set emp_name=#{empName},e.password=#{password},e.phone=#{phone} where emp_id=#{empId}
+=======
+        update erp_emp set emp_name=#{empName},password=#{password},phone=#{phone} where emp_id=#{empId}
+>>>>>>> Stashed changes
     </update>
 <!--        &lt;!&ndash;删除员工信息&ndash;&gt;-->
 <!--    <delete id="deleteEmp">-->
