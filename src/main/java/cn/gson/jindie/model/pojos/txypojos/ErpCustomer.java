@@ -1,5 +1,8 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class ErpCustomer {
@@ -8,23 +11,22 @@ public class ErpCustomer {
     private String customerPeople;
     private String customerPhone;
     private String customerLocation;
-    private Integer empId;
-    private Integer gradeId;
+    /*private Integer empId;
+    private Integer gradeId;*/
     private Double customerMoney;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date customerTime;
     private int customerState;
 
-//    private ErpEmpEntity emps;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
-//    public ErpEmpEntity getEmps() {
-//        return emps;
-//    }
-//
-//    public void setEmps(ErpEmpEntity emps) {
-//        this.emps = emps;
-//    }
+    private ErpEmp emps;
+
+    public ErpEmp getEmps() {
+        return emps;
+    }
+
+    public void setEmps(ErpEmp emps) {
+        this.emps = emps;
+    }
 
     private ErpCustomerGrade grades;
 
@@ -76,7 +78,7 @@ public class ErpCustomer {
         this.customerLocation = customerLocation;
     }
 
-    public Integer getEmpId() {
+    /*public Integer getEmpId() {
         return empId;
     }
 
@@ -90,7 +92,7 @@ public class ErpCustomer {
 
     public void setGradeId(Integer gradeId) {
         this.gradeId = gradeId;
-    }
+    }*/
 
     public Double getCustomerMoney() {
         return customerMoney;
@@ -116,5 +118,19 @@ public class ErpCustomer {
         this.customerState = customerState;
     }
 
-
+    @Override
+    public String toString() {
+        return "ErpCustomer{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", customerPeople='" + customerPeople + '\'' +
+                ", customerPhone='" + customerPhone + '\'' +
+                ", customerLocation='" + customerLocation + '\'' +
+                ", customerMoney=" + customerMoney +
+                ", customerTime=" + customerTime +
+                ", customerState=" + customerState +
+                ", emps=" + emps +
+                ", grades=" + grades +
+                '}';
+    }
 }

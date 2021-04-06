@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface TxxProductMapper {
+public interface TxyProductMapper {
     //查询所有账户
     public List<ErpProduct> allProduct();
 }

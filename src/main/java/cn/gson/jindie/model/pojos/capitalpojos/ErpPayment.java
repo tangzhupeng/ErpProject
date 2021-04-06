@@ -1,5 +1,6 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
+
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
 

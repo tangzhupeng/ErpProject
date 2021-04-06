@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface TxyStoreMapper {
     //查询所有仓库
-    public List<ErpStore> allStore(ErpStore store);
+    public List<ErpStore> allStore(ErpStore stores);
     //新增仓库
     public void addStore(ErpStore store);
     //修改仓库

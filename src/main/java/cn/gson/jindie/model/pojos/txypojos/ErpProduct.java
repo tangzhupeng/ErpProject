@@ -5,14 +5,14 @@ public class ErpProduct {
     private String productName;
     private String productPicture;
     private Integer protypeId;
-    private Double productMoney;
-    private Double productPrice;
+    private Double productMoney;//成本价
+    private Double productPrice;//零售价
     private String productDw;
     private Integer storeId;
     private Integer productNumber;
     private Integer productState;
-    private Double productPf;
-    private Double productVip;
+    private Double productPf;//批发价
+    private Double productVip;//VIP价格
 
     public Integer getProductId() {
         return productId;
