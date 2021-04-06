@@ -17,6 +17,7 @@ public class ErpCustomer {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date customerTime;
     private int customerState;
+    private String customerDizhi;
 
     private ErpEmp emps;
 
@@ -116,6 +117,14 @@ public class ErpCustomer {
 
     public void setCustomerState(int customerState) {
         this.customerState = customerState;
+    }
+
+    public String getCustomerDizhi() {
+        return customerDizhi;
+    }
+
+    public void setCustomerDizhi(String customerDizhi) {
+        this.customerDizhi = customerDizhi;
     }
 
     @Override

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxyProviderMapper">
+    <resultMap id="providerList" type="cn.gson.jindie.model.pojos.txypojos.ErpProvider">
+        <id column="provider_id" property="providerId"/>
+        <result column="provider_name" property="providerName"/>
+        <result column="provider_people" property="providerPeople"/>
+        <result column="provider_phone" property="providerPhone"/>
+        <result column="provider_location" property="providerLocation"/>
+        <result column="provider_dizhi" property="providerDizhi"></result>
+        <result column="provider_money" property="providerMoney"/>
+        <result column="provider_time" property="providerTime"/>
+        <result column="provider_state" property="providerState"/>
+        <association property="gysId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProviderType">
+            <id column="gys_id" property="gysId"/>
+            <result column="gys_name" property="gysName"/>
+        </association>
+    </resultMap>
+
+    <!--查询所有供应商-->
+    <select id="findProvider" resultMap="providerList">
+        select * from erp_provider p
+        left join erp_provider_type ept on p.gys_id = ept.gys_id
+    </select>
+
+    <!--分页，模糊查询所有供应商-->
+    <select id="allProvider" resultMap="providerList">
+        select * from erp_provider p
+        left join erp_provider_type t on p.gys_id = t.gys_id
+        <where>
+          and p.provider_state=1
+            <if test="providerName != null and providerName !=''">
+                and provider_id like '%${providerName}%'
+                or provider_name like '%${providerName}%'
+                or provider_people like '%${providerName}%'
+                or provider_phone like '%${providerName}%'
+                or provider_dizhi like '%${providerName}%'
+            </if>
+            <if test="gysId != null">
+                <if test="gysId.gysName != null and gysId.gysName !=''">
+                    and gys_name like '%${gysId.gysName}%'
+                </if>
+            </if>
+        </where>
+        order by p.provider_time desc
+    </select>
+
+    <!--查询供应商类别-->
+    <resultMap id="gys" type="cn.gson.jindie.model.pojos.txypojos.ErpProviderType">
+        <id column="gys_id" property="gysId"/>
+        <result column="gys_name" property="gysName"/>
+    </resultMap>
+    <select id="selectGys" resultMap="gys">
+        select * from erp_provider_type
+    </select>
+
+    <!--新增供应商-->
+    <insert id="addProvider">
+        insert into erp_provider(provider_name, gys_id, provider_people, provider_phone, provider_location, provider_dizhi, provider_time)
+        values(#{providerName},#{gysId.gysId},#{providerPeople},#{providerPhone},#{providerLocation},#{providerDizhi},#{providerTime})
+    </insert>
+
+    <!--编辑供应商-->
+    <update id="updateProvider">
+        update erp_provider set provider_name=#{providerName},gys_id=#{gysId.gysId},provider_people=#{providerPeople},
+        provider_phone=#{providerPhone},provider_location=#{providerLocation},provider_dizhi=#{providerDizhi}
+        where provider_id=#{providerId}
+    </update>
+
+    <!--查看应付款金额为0的供应商-->
+    <select id="nullMoney" resultMap="providerList">
+        select * from erp_provider p
+        left join erp_provider_type t on p.gys_id = t.gys_id
+        where p.provider_money=0
+    </select>
+    <!--禁用供应商-->
+    <update id="jyProvider">
+        update erp_provider set provider_state=0
+        where provider_id=#{providerId}
+    </update>
+
+    <!--查看禁用供应商-->
+    <select id="findJy" resultMap="providerList">
+        select * from erp_provider p
+        left join erp_provider_type t on p.gys_id = t.gys_id
+        where p.provider_state=0
+    </select>
+    <!--恢复供应商-->
+    <update id="hfProvider">
+        update erp_provider set provider_state=1
+        where provider_id=#{providerId}
+    </update>
+
+    <!--删除供应商-->
+    <delete id="deleteProvider">
+        delete from erp_provider where provider_id=#{providerId}
+    </delete>
+</mapper>

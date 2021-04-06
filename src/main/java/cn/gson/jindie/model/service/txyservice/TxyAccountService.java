@@ -28,6 +28,7 @@ public class TxyAccountService {
     //新增账户
     public void addAccount(ErpAccount account){
         if(account.getAccountId()==null){
+            account.setAccountBalance(account.getAccountMoney());
             account.setAccountTime(new Date());
             accountMapper.addAccount(account);
         }else{
@@ -38,5 +39,10 @@ public class TxyAccountService {
     //冻结账户
     public void deleteAccount(Integer accountId){
         accountMapper.deleteAccount(accountId);
+    }
+
+    //恢复账户
+    public void hfAccount(Integer accountId){
+        accountMapper.hfAccount(accountId);
     }
 }

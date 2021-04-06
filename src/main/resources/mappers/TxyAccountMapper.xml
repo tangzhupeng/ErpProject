@@ -1,12 +1,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxyAccountMapper">
     <resultMap id="account" type="cn.gson.jindie.model.pojos.txypojos.ErpAccount">
-        <id column="account_id" property="accountId"></id>
-        <result column="account_name" property="accountName"></result>
-        <result column="account_balance" property="accountBalance"></result>
-        <result column="account_money" property="accountMoney"></result>
-        <result column="account_time" property="accountTime"></result>
-        <result column="account_state" property="accountState"></result>
+        <id property="accountId" column="account_id"/>
+        <result property="accountName" column="account_name"/>
+        <result property="accountBalance" column="account_balance"/>
+        <result property="accountMoney" column="account_money"/>
+        <result property="accountTime" column="account_time"/>
+        <result property="accountState" column="account_state"/>
     </resultMap>
 
     <!--分页，模糊查询所有账户-->
@@ -28,8 +28,8 @@
 
     <!--新增账户-->
     <insert id="addAccount">
-        insert into erp_account(account_name, account_money, account_time)
-        values(#{accountName},#{accountMoney},#{accountTime})
+        insert into erp_account(account_name, account_money, account_balance,account_time)
+        values(#{accountName},#{accountMoney},#{accountMoney},#{accountTime})
     </insert>
 
     <!--修改账户-->
@@ -41,6 +41,12 @@
     <!--冻结账户-->
     <update id="deleteAccount">
         update erp_account set account_state=0
+        where account_id=#{accountId}
+    </update>
+
+    <!--恢复账户-->
+    <update id="hfAccount">
+        update erp_account set account_state=1
         where account_id=#{accountId}
     </update>
 </mapper>

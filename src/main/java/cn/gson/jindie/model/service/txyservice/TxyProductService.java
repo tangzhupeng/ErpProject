@@ -12,9 +12,9 @@ import java.util.List;
 @Transactional
 public class TxyProductService {
     @Autowired
-    private TxyProductMapper txyProductMapper;
-    //查询所有客户
+    private TxyProductMapper productMapper;
+    //查询所有商品
     public List<ErpProduct> allProduct(){
-        return txyProductMapper.allProduct();
+        return productMapper.allProduct();
     }
 }
