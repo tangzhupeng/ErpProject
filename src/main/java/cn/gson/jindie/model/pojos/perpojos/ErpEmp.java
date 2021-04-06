@@ -10,17 +10,26 @@ public class ErpEmp {
     private String phone;
     private Integer statu;
     private List<ErpPermission> permissionList;
+    private List<ErpRole> roleList;
 
-    public ErpEmp(int empId, String empName, String password, String phone, Integer statu, List<ErpPermission> permissionList) {
+    public ErpEmp(int empId, String empName, String password, String phone, Integer statu, List<ErpPermission> permissionList, List<ErpRole> roleList) {
         this.empId = empId;
         this.empName = empName;
         this.password = password;
         this.phone = phone;
         this.statu = statu;
         this.permissionList = permissionList;
+        this.roleList = roleList;
+    }
+    public ErpEmp(){}
+
+    public List<ErpRole> getRoleList() {
+        return roleList;
     }
 
-    public ErpEmp(){}
+    public void setRoleList(List<ErpRole> roleList) {
+        this.roleList = roleList;
+    }
 
     public List<ErpPermission> getPermissionList() {
         return permissionList;

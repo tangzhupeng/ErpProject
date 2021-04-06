@@ -15,8 +15,8 @@ public class EmpPerController {
     @Autowired
     EmpPerService empPerService;
 
-    @Autowired
-    LoginService loginService;
+//    @Autowired
+//    LoginService loginService;
 
     @RequestMapping("/login")
     @ResponseBody

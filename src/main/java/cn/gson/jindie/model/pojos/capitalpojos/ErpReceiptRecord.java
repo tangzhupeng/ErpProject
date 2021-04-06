@@ -1,6 +1,7 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
-import cn.gson.jindie.model.pojos.salespojos.ErpOrder;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
+import cn.gson.jindie.model.pojos.salespojos.ErpDeliveryOrder;
 import cn.gson.jindie.model.pojos.txypojos.ErpAccount;
 
 public class ErpReceiptRecord {
@@ -9,11 +10,29 @@ public class ErpReceiptRecord {
     private String reMark;
     private Double reMoney;
     private String reRemark;
+    private int empState;//审核状态
 
-    private ErpReceipt receiptId;
-    private ErpAccount accountId; //
-    private ErpOrder order; //销售订单
+    private ErpEmp erpEmp;//审核人
+    private ErpReceipt receipt;//收款单
+    private ErpAccount account;//收款账号
+    private ErpDeliveryOrder deliveryOrder; //销售订单
 
+
+    public int getEmpState() {
+        return empState;
+    }
+
+    public void setEmpState(int empState) {
+        this.empState = empState;
+    }
+
+    public ErpEmp getErpEmp() {
+        return erpEmp;
+    }
+
+    public void setErpEmp(ErpEmp erpEmp) {
+        this.erpEmp = erpEmp;
+    }
 
     public int getReId() {
         return reId;
@@ -23,30 +42,28 @@ public class ErpReceiptRecord {
         this.reId = reId;
     }
 
-
-    public ErpReceipt getReceiptId() {
-        return receiptId;
+    public ErpReceipt getReceipt() {
+        return receipt;
     }
 
-    public void setReceiptId(ErpReceipt receiptId) {
-        this.receiptId = receiptId;
+    public void setReceipt(ErpReceipt receipt) {
+        this.receipt = receipt;
     }
 
-    public ErpAccount getAccountId() {
-        return accountId;
+    public ErpAccount getAccount() {
+        return account;
     }
 
-    public void setAccountId(ErpAccount accountId) {
-        this.accountId = accountId;
+    public void setAccount(ErpAccount account) {
+        this.account = account;
     }
 
-
-    public ErpOrder getOrder() {
-        return order;
+    public ErpDeliveryOrder getDeliveryOrder() {
+        return deliveryOrder;
     }
 
-    public void setOrder(ErpOrder order) {
-        this.order = order;
+    public void setDeliveryOrder(ErpDeliveryOrder deliveryOrder) {
+        this.deliveryOrder = deliveryOrder;
     }
 
     public String getReWay() {
@@ -81,7 +98,6 @@ public class ErpReceiptRecord {
         this.reRemark = reRemark;
     }
 
-
     @Override
     public String toString() {
         return "ErpReceiptRecord{" +
@@ -90,9 +106,9 @@ public class ErpReceiptRecord {
                 ", reMark='" + reMark + '\'' +
                 ", reMoney=" + reMoney +
                 ", reRemark='" + reRemark + '\'' +
-                ", receiptId=" + receiptId +
-                ", accountId=" + accountId +
-                ", order=" + order +
+                ", receipt=" + receipt +
+                ", account=" + account +
+                ", deliveryOrder=" + deliveryOrder +
                 '}';
     }
 }
