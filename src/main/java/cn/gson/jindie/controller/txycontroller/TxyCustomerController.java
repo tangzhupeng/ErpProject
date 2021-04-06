@@ -41,22 +41,53 @@ public class TxyCustomerController {
         customerService.addCustomer(customer);
         System.err.println("客户"+customer);
     }
+
     //查询职员
     @RequestMapping("/select-user")
     @ResponseBody
     public List<ErpEmp> selectUser(){
         return customerService.selectUser();
     }
+
     //查询客户等级
     @RequestMapping("/select-grade")
     @ResponseBody
     public List<ErpCustomerGrade> selectGrade(){
         return customerService.selectGrade();
     }
+
     //删除客户
     @GetMapping("/delete-customer")
     @ResponseBody
     public void deleteCustomer(Integer customerId){
         customerService.deleteCustomer(customerId);
+    }
+
+    //查询包含销售人员客户
+    @RequestMapping("/have-emp")
+    @ResponseBody
+    public List<ErpCustomer> haveEmp(){
+        return customerService.haveEmp();
+    }
+
+    //查询禁用客户
+    @RequestMapping("/not-state")
+    @ResponseBody
+    public List<ErpCustomer> notState(){
+        return customerService.notState();
+    }
+
+    //禁用客户
+    @GetMapping("/jy-customer")
+    @ResponseBody
+    public void jyCustomer(Integer customerId){
+        customerService.jyCustomer(customerId);
+    }
+
+    //恢复客户
+    @GetMapping("/hf-customer")
+    @ResponseBody
+    public void hfCustomer(Integer customerId){
+        customerService.hfCustomer(customerId);
     }
 }

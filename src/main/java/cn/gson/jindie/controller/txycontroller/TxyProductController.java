@@ -12,13 +12,13 @@ import java.util.List;
 @Controller
 public class TxyProductController {
     @Autowired
-     private TxyProductService txyProductService;
+     private TxyProductService productService;
     //查询所有商品
     @RequestMapping("/all-product")
     @ResponseBody
     public List<ErpProduct> allAccount(){
 
-        return txyProductService.allProduct();
+        return productService.allProduct();
     }
 
 }

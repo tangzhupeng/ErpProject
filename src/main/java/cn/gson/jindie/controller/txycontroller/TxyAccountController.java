@@ -54,4 +54,12 @@ public class TxyAccountController {
     public void deleteAccount(Integer accountId){
         accountService.deleteAccount(accountId);
     }
+
+    //恢复账户
+    @GetMapping("/hf-account")
+    @ResponseBody
+    public void hfAccount(Integer accountId){
+        accountService.hfAccount(accountId);
+    }
+
 }

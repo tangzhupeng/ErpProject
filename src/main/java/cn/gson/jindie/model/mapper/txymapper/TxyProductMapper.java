@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper
 @Repository
 public interface TxyProductMapper {
-    //查询所有账户
+    //查询所有商品
     public List<ErpProduct> allProduct();
 }
