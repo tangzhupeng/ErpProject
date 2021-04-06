@@ -1,7 +1,6 @@
 package cn.gson.jindie.controller.capitalcontroller;
 
 import cn.gson.jindie.model.pojos.capitalpojos.ErpReceipt;
-import cn.gson.jindie.model.pojos.capitalpojos.ErpReceiptRecord;
 import cn.gson.jindie.model.pojos.salespojos.ErpDeliveryOrder;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.service.capitalservice.ReceiptService;
