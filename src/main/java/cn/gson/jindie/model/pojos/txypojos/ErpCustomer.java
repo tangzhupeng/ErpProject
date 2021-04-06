@@ -116,5 +116,20 @@ public class ErpCustomer {
         this.customerState = customerState;
     }
 
-
+    @Override
+    public String toString() {
+        return "ErpCustomer{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", customerPeople='" + customerPeople + '\'' +
+                ", customerPhone='" + customerPhone + '\'' +
+                ", customerLocation='" + customerLocation + '\'' +
+                ", empId=" + empId +
+                ", gradeId=" + gradeId +
+                ", customerMoney=" + customerMoney +
+                ", customerTime=" + customerTime +
+                ", customerState=" + customerState +
+                ", grades=" + grades +
+                '}';
+    }
 }

@@ -4,15 +4,19 @@ package cn.gson.jindie.model.pojos.salespojos;
 import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ErpDeliveryOrder {
 
   private Integer deliveryOrderId;
   private String deliveryOrderNumber;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private java.sql.Timestamp deliveryTime;
   private double receivables;
   private Integer deliveryStatus;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private java.sql.Timestamp createTime;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private java.sql.Timestamp updateTime;
   private Integer approvalStatus;
   private String orderNumber;

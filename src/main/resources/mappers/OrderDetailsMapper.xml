@@ -1,0 +1,56 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.salemapper.ErpOrderDetailsMapper">
+
+    <resultMap id="orderDetailsMap" type="cn.gson.jindie.view.OrderDetailsVo">
+        <id property="orderId" column="order_id" />
+        <result property="empName" column="emp_name" />
+        <result property="customerName" column="customer_name" />
+        <result property="storeName" column="store_name" />
+        <result property="customerPhone" column="customer_phone" />
+        <result property="customerLocation" column="customer_location" />
+        <result property="orderNumber" column="order_number" />
+        <result property="documentDate" column="document_date" />
+        <result property="deliveryDate" column="delivery_date" />
+        <result property="accountReceivable" column="account_receivable" />
+        <result property="createTime" column="create_time" />
+        <result property="approvalStatus" column="approval_status" />
+        <result property="orderStatus" column="order_status"/>
+        <result property="currentExaminer" column="current_examiner" />
+        <collection property="erpOrderDetails" ofType="cn.gson.jindie.model.pojos.salespojos.ErpOrderDetails">
+            <id property="orderDetailsId" column="order_details_id"/>
+            <result property="erpOrder.orderId" column="order_id" />
+            <result property="erpOrder.approvalStatus" column="approval_status"/>
+            <result property="erpOrder.orderStatus" column="order_status"/>
+            <result property="productName" column="product_name" />
+            <result property="number" column="number" />
+            <result property="productPrice" column="product_price" />
+            <result property="productMoney" column="product_money" />
+            <result property="orderDetailsRemarks" column="order_details_remarks" />
+        </collection>
+    </resultMap>
+
+
+
+    <select id="orderDetailsVoList"  resultMap="orderDetailsMap">
+        SELECT *
+        FROM erp_order eo LEFT JOIN erp_order_details eod on eo.order_id=eod.order_id
+        LEFT JOIN erp_emp ee on eo.emp_id = ee.emp_id
+        LEFT JOIN  erp_customer ec on eo.customer_id = ec.customer_id
+        LEFT JOIN erp_store es on eo.store_id = es.store_id
+        where eod.order_id =#{id}
+    </select>
+
+    <select id="selectOrderById" resultType="cn.gson.jindie.model.pojos.salespojos.ErpOrder">
+        select * from erp_order t where  t.order_id=#{id}
+    </select>
+
+    <update id="updateOrderStatusById">
+        update erp_order  set approval_status= 2 , order_status = 1 where order_id=#{id}
+    </update>
+
+    <update id="updateExecuteStatusById">
+        update erp_order  set order_status = 1  where order_id=#{id}
+    </update>
+</mapper>

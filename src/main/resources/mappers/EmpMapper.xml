@@ -1,0 +1,9 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gson.jindie.model.mapper.salemapper.EmpMapper">
+    <select id="personnelEmpClientList"  resultType="cn.gson.jindie.model.pojos.PerPojos.ErpEmp">
+            select  *  from  erp_emp
+    </select>
+
+</mapper>

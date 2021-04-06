@@ -4,17 +4,23 @@ package cn.gson.jindie.model.pojos.salespojos;
 import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class ErpOrder {
 
   private Integer orderId;
   private String orderNumber;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private java.sql.Timestamp documentDate;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private java.sql.Timestamp deliveryDate;
   private double accountReceivable;
   private double paymentReceived;
   private Integer deliveryStatus;
   private String creatorPerson;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private java.sql.Timestamp createTime;
   private Integer approvalStatus;
   private Integer orderStatus;
@@ -164,4 +170,25 @@ public class ErpOrder {
     this.currentExaminer = currentExaminer;
   }
 
+  @Override
+  public String toString() {
+    return "ErpOrder{" +
+            "orderId=" + orderId +
+            ", orderNumber='" + orderNumber + '\'' +
+            ", documentDate=" + documentDate +
+            ", deliveryDate=" + deliveryDate +
+            ", accountReceivable=" + accountReceivable +
+            ", paymentReceived=" + paymentReceived +
+            ", deliveryStatus=" + deliveryStatus +
+            ", creatorPerson='" + creatorPerson + '\'' +
+            ", createTime=" + createTime +
+            ", approvalStatus=" + approvalStatus +
+            ", orderStatus=" + orderStatus +
+            ", deliveryOrderNumber='" + deliveryOrderNumber + '\'' +
+            ", erpCustomer=" + erpCustomer +
+            ", erpEmp=" + erpEmp +
+            ", erpStore=" + erpStore +
+            ", currentExaminer='" + currentExaminer + '\'' +
+            '}';
+  }
 }
