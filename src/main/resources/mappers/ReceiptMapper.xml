@@ -3,12 +3,11 @@
 
     <resultMap id="Receipt" type="cn.gson.jindie.model.pojos.capitalpojos.ErpReceipt">
         <id column="receipt_id" property="receiptId"></id>
+        <result column="prepared_by" property="preparedBy"></result>
         <result column="receipt_time" property="receiptTime"></result>
         <result column="receipt_money" property="receiptMoney"></result>
-        <result column="receipt_hxmoney" property="receiptHxmoney"></result>
-        <result column="receipt_ysmoney" property="receiptYsmoney"></result>
+        <result column="receipt_hx_money" property="receiptHxMoney"></result>
         <result column="receipt_discount" property="receiptDiscount"></result>
-        <result column="receipt_remark" property="receiptRemark"></result>
         <association property="emp" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
             <id column="epm_id" property="empId"></id>
             <result column="emp_name" property="empName"></result>
@@ -17,14 +16,40 @@
             <id column="customer_id" property="customerId"></id>
             <result column="customer_name" property="customerName"></result>
             <result column="customer_money" property="customerMoney"></result>
+            <result column="create_time" property="createTime"></result>
         </association>
     </resultMap>
 
 
-<!--    &lt;!&ndash;新增收款单&ndash;&gt;-->
-<!--    <insert id="InReceipt">-->
-<!--        insert into erp_receipt values (#{receiptId},#{receiptTime},#{receiptMoney},#{},#{},#{},#{})-->
-<!--    </insert>-->
+    <resultMap id="DeliveryOrder" type="cn.gson.jindie.model.pojos.salespojos.ErpDeliveryOrder">
+        <id column="delivery_order_id" property="deliveryOrderId"></id>
+        <result column="order_number" property="orderNumber"></result>
+        <result column="receivables" property="receivables"></result>
+        <result column="unverifiedAmount" property="unverifiedAmount"></result>
+        <result column="cancelledAmount" property="cancelledAmount"></result>
+        <result column="create_time" property="createTime"></result>
+    </resultMap>
 
+    <!--查询销货单-->
+    <select id="SerDeliveryOrder" resultMap="DeliveryOrder">
+        select * from erp_delivery_order where cancelledAmount!=delivery_order_number
+    </select>
+
+    <!--根据销货id，查询对应的销货单-->
+    <select id="findByDeliveryOrderId" resultMap="DeliveryOrder">
+        select * from erp_delivery_order where delivery_order_id=#{deliveryOrderId}
+    </select>
+
+    <!--新增收款单-->
+    <insert id="InReceipt">
+        insert into erp_receipt values (#{receiptId},#{emp.empId},#{customer.customerId},#{preparedBy},
+        #{receiptTime},#{receiptMoney},#{receiptHxMoney},#{receiptDiscount})
+    </insert>
+
+    <!--新增收款记录单-->
+    <insert id="InReceiptRecord">
+        insert into erp_receipt_record values (#{reId},#{receipt.receiptId},#{account.accountId},
+        #{deliveryOrder.deliveryOrderId},#{reWay},#{reMark},#{reMoney},#{reRemark},#{erpEmp.empId},#{empState})
+    </insert>
 
 </mapper>

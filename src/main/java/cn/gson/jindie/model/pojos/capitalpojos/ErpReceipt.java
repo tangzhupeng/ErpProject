@@ -3,21 +3,40 @@ package cn.gson.jindie.model.pojos.capitalpojos;
 
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.sql.Timestamp;
+import java.util.Date;
+
 
 public class ErpReceipt {
     private String receiptId;
-    private Timestamp receiptTime;
+    private String preparedBy;//制单人
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date receiptTime;
     private Double receiptMoney;
-    private Double receiptHxmoney;
-    private Double receiptYsmoney;
+    private Double receiptHxMoney;
     private String receiptDiscount;
-    private String receiptRemark;
 
     private ErpEmp emp; //收款人
     private ErpCustomer customer; //客户
+    private ErpReceiptRecord receiptRecords;
 
+    public ErpReceiptRecord getReceiptRecords() {
+        return receiptRecords;
+    }
+
+    public void setReceiptRecords( ErpReceiptRecord receiptRecords) {
+        this.receiptRecords = receiptRecords;
+    }
+
+    public String getPreparedBy() {
+        return preparedBy;
+    }
+
+    public void setPreparedBy(String preparedBy) {
+        this.preparedBy = preparedBy;
+    }
 
     public String getReceiptId() {
         return receiptId;
@@ -47,11 +66,11 @@ public class ErpReceipt {
 
 
 
-    public Timestamp getReceiptTime() {
+    public Date getReceiptTime() {
         return receiptTime;
     }
 
-    public void setReceiptTime(Timestamp receiptTime) {
+    public void setReceiptTime(Date receiptTime) {
         this.receiptTime = receiptTime;
     }
 
@@ -63,20 +82,12 @@ public class ErpReceipt {
         this.receiptMoney = receiptMoney;
     }
 
-    public Double getReceiptHxmoney() {
-        return receiptHxmoney;
+    public Double getReceiptHxMoney() {
+        return receiptHxMoney;
     }
 
-    public void setReceiptHxmoney(Double receiptHxmoney) {
-        this.receiptHxmoney = receiptHxmoney;
-    }
-
-    public Double getReceiptYsmoney() {
-        return receiptYsmoney;
-    }
-
-    public void setReceiptYsmoney(Double receiptYsmoney) {
-        this.receiptYsmoney = receiptYsmoney;
+    public void setReceiptHxMoney(Double receiptHxMoney) {
+        this.receiptHxMoney = receiptHxMoney;
     }
 
     public String getReceiptDiscount() {
@@ -87,28 +98,19 @@ public class ErpReceipt {
         this.receiptDiscount = receiptDiscount;
     }
 
-    public String getReceiptRemark() {
-        return receiptRemark;
-    }
-
-    public void setReceiptRemark(String receiptRemark) {
-        this.receiptRemark = receiptRemark;
-    }
-
-
 
     @Override
     public String toString() {
         return "ErpReceipt{" +
                 "receiptId='" + receiptId + '\'' +
+                ", preparedBy='" + preparedBy + '\'' +
                 ", receiptTime=" + receiptTime +
                 ", receiptMoney=" + receiptMoney +
-                ", receiptHxmoney=" + receiptHxmoney +
-                ", receiptYsmoney=" + receiptYsmoney +
+                ", receiptHxMoney=" + receiptHxMoney +
                 ", receiptDiscount='" + receiptDiscount + '\'' +
-                ", receiptRemark='" + receiptRemark + '\'' +
                 ", emp=" + emp +
                 ", customer=" + customer +
+                ", receiptRecords=" + receiptRecords +
                 '}';
     }
 }

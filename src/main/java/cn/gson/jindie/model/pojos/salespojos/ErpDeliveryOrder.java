@@ -165,4 +165,25 @@ public class ErpDeliveryOrder {
     this.currentExaminer = currentExaminer;
   }
 
+  @Override
+  public String toString() {
+    return "ErpDeliveryOrder{" +
+            "deliveryOrderId=" + deliveryOrderId +
+            ", deliveryOrderNumber='" + deliveryOrderNumber + '\'' +
+            ", deliveryTime=" + deliveryTime +
+            ", receivables=" + receivables +
+            ", deliveryStatus=" + deliveryStatus +
+            ", createTime=" + createTime +
+            ", updateTime=" + updateTime +
+            ", approvalStatus=" + approvalStatus +
+            ", orderNumber='" + orderNumber + '\'' +
+            ", salesReturnsNumber='" + salesReturnsNumber + '\'' +
+            ", erpCustomer=" + erpCustomer +
+            ", erpEmp=" + erpEmp +
+            ", erpStore=" + erpStore +
+            ", unverifiedAmount=" + unverifiedAmount +
+            ", cancelledAmount=" + cancelledAmount +
+            ", currentExaminer='" + currentExaminer + '\'' +
+            '}';
+  }
 }
