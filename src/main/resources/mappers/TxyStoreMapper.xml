@@ -1,19 +1,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxyStoreMapper">
-    <resultMap id="store" type="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+    <resultMap id="stores" type="cn.gson.jindie.model.pojos.txypojos.ErpStore">
         <id column="store_id" property="storeId"></id>
         <result column="store_name" property="storeName"></result>
         <result column="store_state" property="storeState"></result>
+        <result column="store_time" property="storeTime"></result>
     </resultMap>
 
-    <!--查询所有仓库-->
-    <select id="allStore" resultMap="store">
+    <!--分页，查询所有仓库-->
+    <select id="allStore" resultMap="stores">
         select * from erp_store
+        <where>
+          and store_state=1
+            <if test="storeName !=null and storeName!=''">
+                and store_id like '%${storeName}%'
+                or store_name like '%${storeName}%'
+            </if>
+        </where>
+        order by store_time desc
     </select>
 
     <!--新增仓库-->
     <insert id="addStore">
-        insert into erp_store(store_name) values(#{storeName})
+        insert into erp_store(store_name,store_time) values(#{storeName},#{storeTime})
     </insert>
 
     <!--编辑仓库-->
@@ -22,9 +31,39 @@
         where store_id=#{storeId}
     </update>
 
-    <!--删除仓库-->
-    <update id="deleteStore">
+    <!--查看禁用仓库-->
+    <select id="byStore" resultMap="stores">
+        select * from erp_store where store_state=0
+    </select>
+
+    <resultMap id="goods" type="cn.gson.jindie.model.pojos.txypojos.ErpProduct">
+        <id property="productId" column="product_id"></id>
+        <result property="productName" column="product_name"></result>
+        <association property="stores" javaType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+            <id column="store_id" property="storeId"></id>
+            <result column="store_name" property="storeName"></result>
+        </association>
+    </resultMap>
+    <select id="storeGood" resultMap="goods">
+        select * from erp_product p
+        left join erp_store s on s.store_id=p.store_id
+        where p.store_id=#{storeId}
+    </select>
+
+    <!--禁用仓库-->
+    <update id="jyStore">
         update erp_store set store_state=0
         where store_id=#{storeId}
     </update>
+
+    <!--恢复仓库-->
+    <update id="hfStore">
+        update erp_store set store_state=1
+        where store_id=#{storeId}
+    </update>
+
+    <!--删除仓库-->
+    <delete id="deleteStore">
+        delete from erp_store where store_id=#{storeId}
+    </delete>
 </mapper>

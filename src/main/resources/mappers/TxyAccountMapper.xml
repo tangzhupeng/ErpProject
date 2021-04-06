@@ -9,15 +9,27 @@
         <result property="accountState" column="account_state"/>
     </resultMap>
 
-    <!--查询所有账户-->
+    <!--分页，模糊查询所有账户-->
     <select id="allAccount" resultMap="account">
+        select * from erp_account
+        <where>
+            <if test="accountName !=null and accountName !=''">
+                and account_id like '%${accountName}%'
+                or account_name like '%${accountName}%'
+            </if>
+        </where>
+        order by account_time desc
+    </select>
+
+    <!--查询所有账户-->
+    <select id="SerAccount" resultMap="account">
         select * from erp_account
     </select>
 
     <!--新增账户-->
     <insert id="addAccount">
-        insert into erp_account(account_name, account_money, account_time)
-        values(#{accountName},#{accountMoney},#{accountTime})
+        insert into erp_account(account_name, account_money, account_balance,account_time)
+        values(#{accountName},#{accountMoney},#{accountMoney},#{accountTime})
     </insert>
 
     <!--修改账户-->
@@ -29,6 +41,12 @@
     <!--冻结账户-->
     <update id="deleteAccount">
         update erp_account set account_state=0
+        where account_id=#{accountId}
+    </update>
+
+    <!--恢复账户-->
+    <update id="hfAccount">
+        update erp_account set account_state=1
         where account_id=#{accountId}
     </update>
 </mapper>

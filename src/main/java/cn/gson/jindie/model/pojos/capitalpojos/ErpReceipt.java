@@ -1,6 +1,7 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 
 import java.sql.Timestamp;
@@ -15,7 +16,6 @@ public class ErpReceipt {
     private String receiptRemark;
 
     private ErpEmp emp; //收款人
-    private ErpEmp empAudit; //审批人
     private ErpCustomer customer; //客户
 
 
@@ -36,15 +36,6 @@ public class ErpReceipt {
         this.emp = emp;
     }
 
-
-
-    public ErpEmp getEmpAudit() {
-        return empAudit;
-    }
-
-    public void setEmpAudit(ErpEmp empAudit) {
-        this.empAudit = empAudit;
-    }
 
     public ErpCustomer getCustomer() {
         return customer;
@@ -117,7 +108,6 @@ public class ErpReceipt {
                 ", receiptDiscount='" + receiptDiscount + '\'' +
                 ", receiptRemark='" + receiptRemark + '\'' +
                 ", emp=" + emp +
-                ", empAudit=" + empAudit +
                 ", customer=" + customer +
                 '}';
     }

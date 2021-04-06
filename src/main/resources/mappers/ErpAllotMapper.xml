@@ -1,0 +1,31 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.storemmapper.ErpAllotMapper">
+    <resultMap id="erpojos" type="ErpAllot">
+        <id column="allot_id" property="allotId"></id>
+        <result column="allot_name" property="allotName"></result>
+        <result column="allot_money" property="allotMoney"></result>
+        <result column="allot_num" property="allotNum"/>
+        <result column="create_date" property="createDate"></result>
+        <result column="allot_approve" property="allotApprove"></result>
+        <result column="allot_state" property="allotState"></result>
+        <result column="allot_apdate" property="allotApdate"></result>
+        <result column="allot_in_address" property="allotInAddress"></result>
+        <result column="allot_out_address" property="allotOutAddress"></result>
+        <result column="allot_stock" property="allotStock"></result>
+        <result column="allot_bz" property="allotBz"></result>
+        <collection property="erpProduct" ofType="ErpProduct">
+            <id property="productId" column="product_id"/>
+            <result property="productName" column="product_name"></result>
+        </collection>
+        <collection property="erpStore" ofType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+            <id property="storeId" column="store_id"/>
+            <result property="storeName" column="store_name"></result>
+        </collection>
+    </resultMap>
+    <select id="erpAllList" resultMap="erpojos">
+        select *
+        from erp_allot a
+                 left join erp_product ea on a.product_id = ea.product_id
+                 left join erp_store e on a.store_id = e.store_id
+    </select>
+</mapper>

@@ -2,7 +2,7 @@ package cn.gson.jindie.model.service.perservice;
 
 import cn.gson.jindie.model.mapper.permapper.LoginMapper;
 
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,9 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class LoginService {
     @Autowired
-    LoginMapper loginMapper;
+    private LoginMapper loginMapper;
 
+    //通过用户名和密码登录
     public ErpEmp findUserLogin(String name){
         return loginMapper.findUserLogin(name);
     }
+
+
 }

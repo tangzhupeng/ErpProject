@@ -1,0 +1,30 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.capitalmapper.ReceiptMapper">
+
+    <resultMap id="Receipt" type="cn.gson.jindie.model.pojos.capitalpojos.ErpReceipt">
+        <id column="receipt_id" property="receiptId"></id>
+        <result column="receipt_time" property="receiptTime"></result>
+        <result column="receipt_money" property="receiptMoney"></result>
+        <result column="receipt_hxmoney" property="receiptHxmoney"></result>
+        <result column="receipt_ysmoney" property="receiptYsmoney"></result>
+        <result column="receipt_discount" property="receiptDiscount"></result>
+        <result column="receipt_remark" property="receiptRemark"></result>
+        <association property="emp" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+            <id column="epm_id" property="empId"></id>
+            <result column="emp_name" property="empName"></result>
+        </association>
+        <association property="customer" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
+            <id column="customer_id" property="customerId"></id>
+            <result column="customer_name" property="customerName"></result>
+            <result column="customer_money" property="customerMoney"></result>
+        </association>
+    </resultMap>
+
+
+<!--    &lt;!&ndash;新增收款单&ndash;&gt;-->
+<!--    <insert id="InReceipt">-->
+<!--        insert into erp_receipt values (#{receiptId},#{receiptTime},#{receiptMoney},#{},#{},#{},#{})-->
+<!--    </insert>-->
+
+
+</mapper>
