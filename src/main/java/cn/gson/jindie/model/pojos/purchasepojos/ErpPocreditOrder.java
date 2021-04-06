@@ -1,5 +1,6 @@
-package cn.gson.jindie.model.pojos.purchasepojos;
 
+
+package cn.gson.jindie.model.pojos.purchasepojos;
 public class ErpPocreditOrder {
 
   private String coNumber;

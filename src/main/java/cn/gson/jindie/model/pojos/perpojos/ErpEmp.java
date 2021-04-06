@@ -1,12 +1,43 @@
 package cn.gson.jindie.model.pojos.perpojos;
 
 
+import java.util.List;
+
 public class ErpEmp {
     private int empId;
     private String empName;
     private String password;
     private String phone;
     private Integer statu;
+    private List<ErpPermission> permissionList;
+    private List<ErpRole> roleList;
+
+    public ErpEmp(int empId, String empName, String password, String phone, Integer statu, List<ErpPermission> permissionList, List<ErpRole> roleList) {
+        this.empId = empId;
+        this.empName = empName;
+        this.password = password;
+        this.phone = phone;
+        this.statu = statu;
+        this.permissionList = permissionList;
+        this.roleList = roleList;
+    }
+    public ErpEmp(){}
+
+    public List<ErpRole> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<ErpRole> roleList) {
+        this.roleList = roleList;
+    }
+
+    public List<ErpPermission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<ErpPermission> permissionList) {
+        this.permissionList = permissionList;
+    }
 
     public int getEmpId() {
         return empId;

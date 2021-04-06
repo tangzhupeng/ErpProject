@@ -1,73 +1,20 @@
 package cn.gson.jindie.model.pojos.purchasepojos;
 
-import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
-import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
-import cn.gson.jindie.model.pojos.txypojos.ErpStore;
-
-import java.sql.Date;
-import java.util.List;
-
 public class ErpPOrderMaster {
 
   private String poNumber;
   private java.sql.Date poDate;
   private String poTos;
-  private ErpProvider providerId;
+  private long providerId;
   private double poMoney;
-  private ErpEmp empId;
-  private ErpStore storeId;
+  private long empId;
+  private long storeId;
   private long poState;
-  private ErpBuyingOrder boNumber;
+  private String boNumber;
   private long poEastate;
-  private ErpEmp supEmpId;
+  private long supEmpId;
   private long poStstate;
-  private String startingTime;
-  private String endTime;
-  private List<ErpPOrderDetail> detail;
 
-  public ErpPOrderMaster(String poNumber, Date poDate, String poTos, ErpProvider providerId, double poMoney, ErpEmp empId, ErpStore storeId, long poState, ErpBuyingOrder boNumber, long poEastate, ErpEmp supEmpId, long poStstate, String startingTime, String endTime) {
-    this.poNumber = poNumber;
-    this.poDate = poDate;
-    this.poTos = poTos;
-    this.providerId = providerId;
-    this.poMoney = poMoney;
-    this.empId = empId;
-    this.storeId = storeId;
-    this.poState = poState;
-    this.boNumber = boNumber;
-    this.poEastate = poEastate;
-    this.supEmpId = supEmpId;
-    this.poStstate = poStstate;
-    this.startingTime = startingTime;
-    this.endTime = endTime;
-  }
-
-  public List<ErpPOrderDetail> getDetail() {
-    return detail;
-  }
-
-  public void setDetail(List<ErpPOrderDetail> detail) {
-    this.detail = detail;
-  }
-
-  public String getStartingTime() {
-    return startingTime;
-  }
-
-  public void setStartingTime(String startingTime) {
-    this.startingTime = startingTime;
-  }
-
-  public String getEndTime() {
-    return endTime;
-  }
-
-  public void setEndTime(String endTime) {
-    this.endTime = endTime;
-  }
-
-  public ErpPOrderMaster() {
-  }
 
   public String getPoNumber() {
     return poNumber;
@@ -96,11 +43,11 @@ public class ErpPOrderMaster {
   }
 
 
-  public ErpProvider getProviderId() {
+  public long getProviderId() {
     return providerId;
   }
 
-  public void setProviderId(ErpProvider providerId) {
+  public void setProviderId(long providerId) {
     this.providerId = providerId;
   }
 
@@ -114,20 +61,20 @@ public class ErpPOrderMaster {
   }
 
 
-  public ErpEmp getEmpId() {
+  public long getEmpId() {
     return empId;
   }
 
-  public void setEmpId(ErpEmp empId) {
+  public void setEmpId(long empId) {
     this.empId = empId;
   }
 
 
-  public ErpStore getStoreId() {
+  public long getStoreId() {
     return storeId;
   }
 
-  public void setStoreId(ErpStore storeId) {
+  public void setStoreId(long storeId) {
     this.storeId = storeId;
   }
 
@@ -141,11 +88,11 @@ public class ErpPOrderMaster {
   }
 
 
-  public ErpBuyingOrder getBoNumber() {
+  public String getBoNumber() {
     return boNumber;
   }
 
-  public void setBoNumber(ErpBuyingOrder boNumber) {
+  public void setBoNumber(String boNumber) {
     this.boNumber = boNumber;
   }
 
@@ -159,11 +106,11 @@ public class ErpPOrderMaster {
   }
 
 
-  public ErpEmp getSupEmpId() {
+  public long getSupEmpId() {
     return supEmpId;
   }
 
-  public void setSupEmpId(ErpEmp supEmpId) {
+  public void setSupEmpId(long supEmpId) {
     this.supEmpId = supEmpId;
   }
 
@@ -176,23 +123,4 @@ public class ErpPOrderMaster {
     this.poStstate = poStstate;
   }
 
-  @Override
-  public String toString() {
-    return "ErpPOrderMaster{" +
-            "poNumber='" + poNumber + '\'' +
-            ", poDate=" + poDate +
-            ", poTos='" + poTos + '\'' +
-            ", providerId=" + providerId +
-            ", poMoney=" + poMoney +
-            ", empId=" + empId +
-            ", storeId=" + storeId +
-            ", poState=" + poState +
-            ", boNumber=" + boNumber +
-            ", poEastate=" + poEastate +
-            ", supEmpId=" + supEmpId +
-            ", poStstate=" + poStstate +
-            ", startingTime=" + startingTime +
-            ", endTime=" + endTime +
-            '}';
-  }
 }

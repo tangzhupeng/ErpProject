@@ -1,6 +1,8 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class ErpProvider {
@@ -10,9 +12,11 @@ public class ErpProvider {
     private String providerPeople;
     private String providerPhone;
     private String providerLocation;
-    private String providerMoney;
+    private Double providerMoney;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date providerTime;
-    private String providerState;
+    private int providerState;
+    private String providerDizhi;
 
     public Integer getProviderId() {
         return providerId;
@@ -62,11 +66,11 @@ public class ErpProvider {
         this.providerLocation = providerLocation;
     }
 
-    public String getProviderMoney() {
+    public Double getProviderMoney() {
         return providerMoney;
     }
 
-    public void setProviderMoney(String providerMoney) {
+    public void setProviderMoney(Double providerMoney) {
         this.providerMoney = providerMoney;
     }
 
@@ -79,13 +83,19 @@ public class ErpProvider {
         this.providerTime = providerTime;
     }
 
-    public String getProviderState() {
+    public int getProviderState() {
         return providerState;
     }
 
-    public void setProviderState(String providerState) {
+    public void setProviderState(int providerState) {
         this.providerState = providerState;
     }
 
+    public String getProviderDizhi() {
+        return providerDizhi;
+    }
 
+    public void setProviderDizhi(String providerDizhi) {
+        this.providerDizhi = providerDizhi;
+    }
 }

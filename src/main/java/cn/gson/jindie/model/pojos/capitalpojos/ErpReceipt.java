@@ -1,30 +1,43 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
+
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
+import java.util.Date;
 
-@Entity
-@Table(name = "erp_receipt", schema = "", catalog = "erp3")
+
 public class ErpReceipt {
     private String receiptId;
-    private Timestamp receiptTime;
+    private String preparedBy;//制单人
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date receiptTime;
     private Double receiptMoney;
-    private Double receiptHxmoney;
-    private Double receiptYsmoney;
+    private Double receiptHxMoney;
     private String receiptDiscount;
-    private String receiptRemark;
 
     private ErpEmp emp; //收款人
-    private ErpEmp empAudit; //审批人
     private ErpCustomer customer; //客户
+    private ErpReceiptRecord receiptRecords;
 
+    public ErpReceiptRecord getReceiptRecords() {
+        return receiptRecords;
+    }
 
-    @Id
-    @Column(name = "receipt_id")
+    public void setReceiptRecords( ErpReceiptRecord receiptRecords) {
+        this.receiptRecords = receiptRecords;
+    }
+
+    public String getPreparedBy() {
+        return preparedBy;
+    }
+
+    public void setPreparedBy(String preparedBy) {
+        this.preparedBy = preparedBy;
+    }
+
     public String getReceiptId() {
         return receiptId;
     }
@@ -34,52 +47,33 @@ public class ErpReceipt {
     }
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "emp_id")
-//    public ErpEmp getEmp() {
-//        return emp;
-//    }
-//
-//    public void setEmp(ErpEmp emp) {
-//        this.emp = emp;
-//    }
+    public ErpEmp getEmp() {
+        return emp;
+    }
+
+    public void setEmp(ErpEmp emp) {
+        this.emp = emp;
+    }
+
+
+    public ErpCustomer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(ErpCustomer customer) {
+        this.customer = customer;
+    }
 
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "emp_audit_id")
-//    public ErpEmp getEmpAudit() {
-//        return empAudit;
-//    }
-//
-//    public void setEmpAudit(ErpEmp empAudit) {
-//        this.empAudit = empAudit;
-//    }
-//
-//    @ManyToOne
-//    @JoinColumn(name = "customer_id")
-//    public ErpCustomer getCustomer() {
-//        return customer;
-//    }
-//
-//    public void setCustomer(ErpCustomer customer) {
-//        this.customer = customer;
-//    }
-
-
-
-    @Basic
-    @Column(name = "receipt_time")
-    public Timestamp getReceiptTime() {
+    public Date getReceiptTime() {
         return receiptTime;
     }
 
-    public void setReceiptTime(Timestamp receiptTime) {
+    public void setReceiptTime(Date receiptTime) {
         this.receiptTime = receiptTime;
     }
 
-    @Basic
-    @Column(name = "receipt_money")
     public Double getReceiptMoney() {
         return receiptMoney;
     }
@@ -88,28 +82,14 @@ public class ErpReceipt {
         this.receiptMoney = receiptMoney;
     }
 
-    @Basic
-    @Column(name = "receipt_hxmoney")
-    public Double getReceiptHxmoney() {
-        return receiptHxmoney;
+    public Double getReceiptHxMoney() {
+        return receiptHxMoney;
     }
 
-    public void setReceiptHxmoney(Double receiptHxmoney) {
-        this.receiptHxmoney = receiptHxmoney;
+    public void setReceiptHxMoney(Double receiptHxMoney) {
+        this.receiptHxMoney = receiptHxMoney;
     }
 
-    @Basic
-    @Column(name = "receipt_ysmoney")
-    public Double getReceiptYsmoney() {
-        return receiptYsmoney;
-    }
-
-    public void setReceiptYsmoney(Double receiptYsmoney) {
-        this.receiptYsmoney = receiptYsmoney;
-    }
-
-    @Basic
-    @Column(name = "receipt_discount")
     public String getReceiptDiscount() {
         return receiptDiscount;
     }
@@ -118,48 +98,19 @@ public class ErpReceipt {
         this.receiptDiscount = receiptDiscount;
     }
 
-    @Basic
-    @Column(name = "receipt_remark")
-    public String getReceiptRemark() {
-        return receiptRemark;
-    }
-
-    public void setReceiptRemark(String receiptRemark) {
-        this.receiptRemark = receiptRemark;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ErpReceipt that = (ErpReceipt) o;
-        return Objects.equals(receiptId, that.receiptId) &&
-                Objects.equals(receiptTime, that.receiptTime) &&
-                Objects.equals(receiptMoney, that.receiptMoney) &&
-                Objects.equals(receiptHxmoney, that.receiptHxmoney) &&
-                Objects.equals(receiptYsmoney, that.receiptYsmoney) &&
-                Objects.equals(receiptDiscount, that.receiptDiscount) &&
-                Objects.equals(receiptRemark, that.receiptRemark);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(receiptId, receiptTime, receiptMoney, receiptHxmoney, receiptYsmoney, receiptDiscount, receiptRemark);
-    }
 
     @Override
     public String toString() {
         return "ErpReceipt{" +
                 "receiptId='" + receiptId + '\'' +
+                ", preparedBy='" + preparedBy + '\'' +
                 ", receiptTime=" + receiptTime +
                 ", receiptMoney=" + receiptMoney +
-                ", receiptHxmoney=" + receiptHxmoney +
-                ", receiptYsmoney=" + receiptYsmoney +
+                ", receiptHxMoney=" + receiptHxMoney +
                 ", receiptDiscount='" + receiptDiscount + '\'' +
-                ", receiptRemark='" + receiptRemark + '\'' +
                 ", emp=" + emp +
-                ", empAudit=" + empAudit +
                 ", customer=" + customer +
+                ", receiptRecords=" + receiptRecords +
                 '}';
     }
 }

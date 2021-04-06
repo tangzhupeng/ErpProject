@@ -10,21 +10,23 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    @RequestMapping("/login")
-    @ResponseBody
-    public Object findUserLogin(@RequestBody ErpEmp erpEmp){
-        System.out.println(erpEmp);
-        ErpEmp emp = loginService.findUserLogin(erpEmp.getEmpName());
-        if(emp == null){
-            System.out.println("用户不存在");
-            return "账号不存在";
-        }else if(!emp.getPassword().equals(erpEmp.getPassword())){
-            return "密码错误";
-        }else{
-            System.out.println("登陆成功");
-            return emp;
-        }
-    }
+//    @RequestMapping("/login")
+//    @ResponseBody
+//    public Object findUserLogin(@RequestBody ErpEmp erpEmp){
+//        System.out.println(erpEmp);
+//        ErpEmp emp = loginService.findUserLogin(erpEmp.getEmpName());
+//        if(emp == null){
+//            System.out.println("用户不存在");
+//            return "账号不存在";
+//        }else if(!emp.getPassword().equals(erpEmp.getPassword())){
+//            return "findPerLogin密码错误";
+//        }else{
+//            System.out.println("登陆成功");
+//            return emp;
+//        }
+//
+//    }
+
 
 
 }

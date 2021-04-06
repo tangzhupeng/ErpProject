@@ -1,5 +1,6 @@
 package cn.gson.jindie.controller.txycontroller;
 
+import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 import cn.gson.jindie.model.service.txyservice.TxyStoreService;
 import com.alibaba.fastjson.JSON;
@@ -42,6 +43,35 @@ public class TxyStoreController {
     @ResponseBody
     public void addStore(ErpStore store){
         storeService.addStore(store);
+    }
+
+    //查看禁用仓库
+    @RequestMapping("/by-store")
+    @ResponseBody
+    public List<ErpStore> byStore(){
+        return storeService.byStore();
+    }
+
+    //根据仓库id查询商品
+    @GetMapping("/store-good")
+    @ResponseBody
+    public List<ErpProduct> storeGood(Integer storeId){
+        return storeService.storeGood(storeId);
+    }
+
+    //禁用仓库
+    @GetMapping("/jy-store")
+    @ResponseBody
+    public void jyStore(Integer storeId){
+
+        storeService.jyStore(storeId);
+    }
+
+    //恢复仓库
+    @GetMapping("/hf-store")
+    @ResponseBody
+    public void hfStore(Integer storeId){
+        storeService.hfStore(storeId);
     }
 
     //删除仓库

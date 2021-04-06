@@ -1,27 +1,39 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
-import cn.gson.jindie.model.pojos.salespojos.ErpOrder;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
+import cn.gson.jindie.model.pojos.salespojos.ErpDeliveryOrder;
 import cn.gson.jindie.model.pojos.txypojos.ErpAccount;
 
-import javax.persistence.*;
-import java.util.Objects;
-
-@Entity
-@Table(name = "erp_receipt_record", schema = "", catalog = "erp3")
 public class ErpReceiptRecord {
     private int reId;
     private String reWay;
     private String reMark;
     private Double reMoney;
     private String reRemark;
+    private int empState;//审核状态
 
-    private ErpReceipt receiptId;
-    private ErpAccount accountId; //
-    private ErpOrder order; //销售订单
+    private ErpEmp erpEmp;//审核人
+    private ErpReceipt receipt;//收款单
+    private ErpAccount account;//收款账号
+    private ErpDeliveryOrder deliveryOrder; //销售订单
 
 
-    @Id
-    @Column(name = "re_id")
+    public int getEmpState() {
+        return empState;
+    }
+
+    public void setEmpState(int empState) {
+        this.empState = empState;
+    }
+
+    public ErpEmp getErpEmp() {
+        return erpEmp;
+    }
+
+    public void setErpEmp(ErpEmp erpEmp) {
+        this.erpEmp = erpEmp;
+    }
+
     public int getReId() {
         return reId;
     }
@@ -30,40 +42,30 @@ public class ErpReceiptRecord {
         this.reId = reId;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "receipt_id")
-    public ErpReceipt getReceiptId() {
-        return receiptId;
+    public ErpReceipt getReceipt() {
+        return receipt;
     }
 
-    public void setReceiptId(ErpReceipt receiptId) {
-        this.receiptId = receiptId;
+    public void setReceipt(ErpReceipt receipt) {
+        this.receipt = receipt;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name = "account_id")
-//    public ErpAccount getAccountId() {
-//        return accountId;
-//    }
-//
-//    public void setAccountId(ErpAccount accountId) {
-//        this.accountId = accountId;
-//    }
+    public ErpAccount getAccount() {
+        return account;
+    }
 
+    public void setAccount(ErpAccount account) {
+        this.account = account;
+    }
 
-//    @ManyToOne
-//    @JoinColumn(name = "order_id")
-//    public ErpOrder getOrder() {
-//        return order;
-//    }
-//
-//    public void setOrder(ErpOrder order) {
-//        this.order = order;
-//    }
+    public ErpDeliveryOrder getDeliveryOrder() {
+        return deliveryOrder;
+    }
 
-    @Basic
-    @Column(name = "re_way")
+    public void setDeliveryOrder(ErpDeliveryOrder deliveryOrder) {
+        this.deliveryOrder = deliveryOrder;
+    }
+
     public String getReWay() {
         return reWay;
     }
@@ -72,8 +74,6 @@ public class ErpReceiptRecord {
         this.reWay = reWay;
     }
 
-    @Basic
-    @Column(name = "re_mark")
     public String getReMark() {
         return reMark;
     }
@@ -82,8 +82,6 @@ public class ErpReceiptRecord {
         this.reMark = reMark;
     }
 
-    @Basic
-    @Column(name = "re_money")
     public Double getReMoney() {
         return reMoney;
     }
@@ -92,8 +90,6 @@ public class ErpReceiptRecord {
         this.reMoney = reMoney;
     }
 
-    @Basic
-    @Column(name = "re_remark")
     public String getReRemark() {
         return reRemark;
     }
@@ -103,26 +99,6 @@ public class ErpReceiptRecord {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ErpReceiptRecord that = (ErpReceiptRecord) o;
-        return reId == that.reId &&
-                Objects.equals(receiptId, that.receiptId) &&
-                Objects.equals(accountId, that.accountId) &&
-                Objects.equals(reWay, that.reWay) &&
-                Objects.equals(reMark, that.reMark) &&
-                Objects.equals(reMoney, that.reMoney) &&
-                Objects.equals(reRemark, that.reRemark);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(reId, receiptId, accountId, reWay, reMark, reMoney, reRemark);
-    }
-
-
-    @Override
     public String toString() {
         return "ErpReceiptRecord{" +
                 "reId=" + reId +
@@ -130,9 +106,9 @@ public class ErpReceiptRecord {
                 ", reMark='" + reMark + '\'' +
                 ", reMoney=" + reMoney +
                 ", reRemark='" + reRemark + '\'' +
-                ", receiptId=" + receiptId +
-                ", accountId=" + accountId +
-                ", order=" + order +
+                ", receipt=" + receipt +
+                ", account=" + account +
+                ", deliveryOrder=" + deliveryOrder +
                 '}';
     }
 }

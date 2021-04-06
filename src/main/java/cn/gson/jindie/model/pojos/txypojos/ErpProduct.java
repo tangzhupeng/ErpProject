@@ -5,14 +5,24 @@ public class ErpProduct {
     private String productName;
     private String productPicture;
     private Integer protypeId;
-    private Double productMoney;
-    private Double productPrice;
+    private Double productMoney;//成本价
+    private Double productPrice;//零售价
     private String productDw;
-    private ErpStore storeId;
+    /*private Integer storeId;*/
     private Integer productNumber;
     private Integer productState;
-    private Double productPf;
-    private Double productVip;
+    private Double productPf;//批发价
+    private Double productVip;//VIP价格
+
+    private ErpStore stores;
+
+    public ErpStore getStores() {
+        return stores;
+    }
+
+    public void setStores(ErpStore stores) {
+        this.stores = stores;
+    }
 
     public Integer getProductId() {
         return productId;
@@ -70,14 +80,6 @@ public class ErpProduct {
         this.productDw = productDw;
     }
 
-    public ErpStore getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(ErpStore storeId) {
-        this.storeId = storeId;
-    }
-
     public Integer getProductNumber() {
         return productNumber;
     }
@@ -93,8 +95,6 @@ public class ErpProduct {
     public void setProductState(Integer productState) {
         this.productState = productState;
     }
-
-
 
     public Double getProductPf() {
         return productPf;
