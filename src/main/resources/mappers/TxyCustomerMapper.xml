@@ -115,7 +115,7 @@
     </update>
 
     <!--删除客户-->
-    <delete id="">
+    <delete id="deleteCustomer">
         delete from erp_customer where customer_id=#{customerId}
     </delete>
 </mapper>
