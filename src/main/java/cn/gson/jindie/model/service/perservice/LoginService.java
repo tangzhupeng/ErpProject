@@ -11,9 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class LoginService {
     @Autowired
-    LoginMapper loginMapper;
+    private LoginMapper loginMapper;
 
+    //通过用户名和密码登录
     public ErpEmp findUserLogin(String name){
         return loginMapper.findUserLogin(name);
     }
+
+
 }
