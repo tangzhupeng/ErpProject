@@ -1,11 +1,11 @@
 package cn.gson.jindie.model.service.perservice;
 
-import cn.gson.jindie.model.mapper.permapper.EmpMapper;
+
 import cn.gson.jindie.model.mapper.permapper.EmpRoleMapper;
-import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
+
 import cn.gson.jindie.model.pojos.perpojos.ErpEmpRole;
-import cn.gson.jindie.model.vo.EmpRoleVo;
-import cn.gson.jindie.model.vo.EmpRoleVos;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +40,7 @@ public class EmpRoleService {
         return empRoleMapper.findEmpRole();
         
     }
-
+    //修改角色
     public void updateEmpRole(Integer roleId,Integer empId,Integer empRoleId){
 
 

@@ -17,5 +17,8 @@ public interface RoleMapper {
 
     //查询所有员工
     public List<ErpRole> selectAllRole();
+    //通过角色名查询角色信息
+    public Integer selectRoleByName(String roleName);
+
 
 }

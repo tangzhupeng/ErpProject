@@ -13,11 +13,14 @@ public interface EmpMapper {
     //新增员工
     public void addEmp(ErpEmp emp);
     //修改员工信息
-    public ErpEmp updateEmp(ErpEmp emp);
+    public void updateEmp(String empName,String password,String phone,Integer empId);
     //修改员工状态
-    public int updateStatus(ErpEmp emp);
+    public void updateStatus();
     //查询所有员工
     public List<ErpEmp> selectAllEmp();
-//    //删除员工
-//    public int deleteEmp(Integer empid);
+    //删除员工
+    public Integer deleteEmp(Integer empId);
+    //根据姓名查询员工信息
+    public ErpEmp selectByEmpName(String empName);
+
 }
