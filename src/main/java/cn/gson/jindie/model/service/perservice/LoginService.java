@@ -18,5 +18,4 @@ public class LoginService {
         return loginMapper.findUserLogin(name);
     }
 
-
 }

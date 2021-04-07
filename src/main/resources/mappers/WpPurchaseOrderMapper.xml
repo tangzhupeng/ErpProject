@@ -87,7 +87,7 @@
             <result column="product_money" property="productMoney"/>
             <result column="product_price" property="productPrice"/>
             <result column="product_dw" property="productDw"/>
-            <association property="storeId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+            <association property="stores" javaType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
                 <id column="store_id" property="storeId"/>
                 <result column="store_name" property="storeName"/>
             </association>
@@ -100,12 +100,23 @@
         left join erp_emp em on m.emp_id = em.emp_id
         left join erp_store st on m.store_id = st.store_id
         left join erp_buying_order b on m.bo_number = b.bo_number
+        left join erp_emp em1 on m.sup_emp_id = em1.emp_id order by m.po_date desc
+    </select>
+
+    <select id="findPOderListispoState0" resultMap="mpurchaseorder">
+        select * from erp_p_order_master m
+        left join erp_provider p on m.provider_id = p.provider_id
+        left join erp_emp em on m.emp_id = em.emp_id
+        left join erp_store st on m.store_id = st.store_id
+        left join erp_buying_order b on m.bo_number = b.bo_number
         left join erp_emp em1 on m.sup_emp_id = em1.emp_id
+        where po_state = 1
+        order by m.po_date desc
     </select>
 
     <insert id="addMPurO">
         insert into erp_p_order_master values(
-        "${poNumber}","${poDate}","${poTos}","${providerId.providerId}","${poMoney}","${empId.empId}","${storeId.storeId}","${poState}","${boNumber.boNumber}","${poEastate}","${supEmpId.empId}","${poStstate}"
+        "${poNumber}","${poDate}","采购","${providerId.providerId}","${poMoney}","${empId.empId}","${storeId.storeId}","${poState}","${boNumber.boNumber}","${poEastate}","${supEmpId.empId}","${poStstate}"
         )
     </insert>
 
@@ -166,4 +177,5 @@
         update erp_p_order_master set po_eastate = 1,po_state = 1,sup_emp_id = "${supEmpId.empId}"
         where po_number = "${poNumber}"
     </update>
+
 </mapper>

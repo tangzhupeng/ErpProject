@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.purchasemapper.PurchaseNoteMapper">
+    <resultMap id="puNote" type="cn.gson.jindie.model.pojos.purchasepojos.ErpBuyingOrder">
+        <id column="bo_number" property="boNumber"/>
+        <result column="bo_date" property="boDate"/>
+        <result column="consumed" property="consumed"/>
+        <result column="notconsumed" property="notconsumed"/>
+        <association property="poNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster">
+            <id column="po_number" property="poNumber"/>
+            <result column="po_date" property="poDate"/>
+            <result column="po_tos" property="poTos"/>
+            <result column="po_money" property="poMoney"/>
+            <result column="po_state" property="poState"/>
+            <result column="po_eastate" property="poEastate"/>
+            <result column="po_ststate" property="poStstate"/>
+            <association property="providerId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProvider">
+                <id column="provider_id" property="providerId"/>
+                <result column="provider_name" property="providerName"/>
+                <result column="provider_people" property="providerPeople"/>
+                <result column="provider_phone" property="providerPhone"/>
+                <result column="provider_location" property="providerLocation"/>
+            </association>
+            <association property="empId" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+                <id column="emp_id" property="empId"/>
+                <result column="emp_name" property="empName"/>
+                <result column="phone" property="phone"/>
+            </association>
+            <association property="storeId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+                <id column="store_id" property="storeId"/>
+                <result column="store_name" property="storeName"/>
+                <result column="store_state" property="storeState"/>
+            </association>
+            <association property="boNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpBuyingOrder">
+                <id column="bo_number" property="boNumber"/>
+                <result column="bo_date" property="boDate"/>
+            </association>
+            <association property="supEmpId" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+                <id column="emp_id" property="empId"/>
+                <result column="emp_name" property="empName"/>
+                <result column="phone" property="phone"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <insert id="addPurNote">
+        insert into erp_buying_order values(
+        "${boNumber}","${boDate}","${poNumber.poNumber}",0,0
+        )
+    </insert>
+
+    <select id="findAllPurNote" resultMap="puNote">
+        select * from erp_buying_order ebo
+        left join erp_p_order_master epom on ebo.po_number = epom.po_number
+        left join erp_p_order_detail epod on ebo.po_number = epod.po_number
+        left join erp_provider ep on epom.provider_id = ep.provider_id
+        left join erp_store es on epom.store_id = es.store_id
+        left join erp_emp ee on epom.emp_id = ee.emp_id
+        left join erp_emp ee1 on epom.sup_emp_id = ee1.emp_id
+    </select>
+
+
+    <select id="findAllPurNoteT" resultMap="puNote">
+        select * from erp_buying_order ebo
+        left join erp_p_order_master epom on ebo.po_number = epom.po_number
+        where ebo.bo_number = #{boNumber}
+    </select>
+
+    <update id="updateboEastate">
+        update erp_p_order_master set po_eastate = 1,po_state = 2,po_ststate = 1,bo_number = "${boNumber}"
+        where po_number = "${poNumber.poNumber}"
+    </update>
+</mapper>

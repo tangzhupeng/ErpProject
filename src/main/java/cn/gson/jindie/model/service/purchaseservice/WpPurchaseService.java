@@ -22,7 +22,7 @@ import java.util.Map;
 @Service
 @Transactional
 public class WpPurchaseService {
-    String ztiem;
+
     @Autowired
     PurchaseMapper purchaseMapper;
 
@@ -47,7 +47,7 @@ public class WpPurchaseService {
         return purchaseMapper.findPOderListpmi(poNumber);
     }
 
-//    筛选
+    // 筛选
     public List<ErpPOrderMaster> filterPOderList(ErpPOrderMaster erpPOrderMaster){
         return purchaseMapper.filterPOderList(erpPOrderMaster);
     }
@@ -56,10 +56,10 @@ public class WpPurchaseService {
     public void addMPurO(ErpPOrderMaster erpPOrderMaster){
         Date date = new Date();
         SimpleDateFormat sformat = new SimpleDateFormat("yyyyMMddHHmmss");//日期格式
-        ztiem = "CGM"+sformat.format(date);
+        String ztiem = "CGM"+sformat.format(date);
         erpPOrderMaster.setPoNumber(ztiem);
-        purchaseMapper.addMPurO(erpPOrderMaster);
 
+        // 循环新增主表
         erpPOrderMaster.getDetail().forEach(v->{
             Date date1 = new Date();
             SimpleDateFormat sformat1 = new SimpleDateFormat("yyyyMMddHHmmss");//日期格式
@@ -71,13 +71,8 @@ public class WpPurchaseService {
             v.setZpoNumber(ztiem);
             purchaseMapper.addDPurO(v);
         });
+        purchaseMapper.addMPurO(erpPOrderMaster);
     }
-
-    // 新增销售订单从表
-//    public void addDPurO(ErpPOrderDetail erpPOrderDetail){
-//        System.out.println("sbhz"+ztiem);
-//
-//    }
 
     public void updatepoEastate(ErpPOrderMaster erpPOrderMaster){
         purchaseMapper.updatepoEastate(erpPOrderMaster);

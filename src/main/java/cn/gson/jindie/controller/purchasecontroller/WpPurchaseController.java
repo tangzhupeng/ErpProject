@@ -43,6 +43,7 @@ public class WpPurchaseController {
     @PostMapping("/addMPurO")
     @ResponseBody
     public String addMPurO(@RequestBody ErpPOrderMaster erpPOrderMaster){
+        System.out.println(erpPOrderMaster.getPoMoney());
         try {
             System.out.println(1);
             wpPurchaseService.addMPurO(erpPOrderMaster);
@@ -66,13 +67,6 @@ public class WpPurchaseController {
         return "修改成功";
     }
 
-
-    @RequestMapping("/findprovider")
-    @ResponseBody
-    public List<ErpProvider> findProvider(){
-        return wpPurchaseService.findProvider();
-    }
-
     @RequestMapping("/find-emp")
     @ResponseBody
     public List<ErpEmp> selectAllEmp(){
@@ -93,8 +87,14 @@ public class WpPurchaseController {
 
     @RequestMapping("/find-pdid")
     @ResponseBody
-    public List<ErpPOrderDetail> findPOderListpdi(String poNumber){
-        return wpPurchaseService.findPOderListpdi(poNumber);
+    public Map<String,Object> findPOderListpdi(Integer pageNum,Integer size,String poNumber){
+        Map<String,Object> map = new HashMap<>();
+        Page<Object> page = PageHelper.startPage(pageNum, size);
+        List<ErpPOrderDetail> list = wpPurchaseService.findPOderListpdi(poNumber);
+        PageHelper.startPage(pageNum,size);
+        map.put("rows",list);
+        map.put("total",page.getTotal());
+        return map;
     }
 
     @RequestMapping("/find-pmid")
