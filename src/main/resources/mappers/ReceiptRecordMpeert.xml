@@ -66,7 +66,7 @@
                and re.emp_state like '%${empState}%'
             </if>
             <if test="receipt.customer.customerId !=null and receipt.customer.customerId !=''">
-                and ec.customer_id=#{receipt.customer.customerId}
+                and ec.customer_id like '%${receipt.customer.customerId}%'
             </if>
             <if test="receipt.preparedBy !=null and receipt.preparedBy !=''">
                 and er.prepared_by like '%${receipt.preparedBy}%'
