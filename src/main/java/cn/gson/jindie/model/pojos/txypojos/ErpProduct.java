@@ -4,7 +4,7 @@ public class ErpProduct {
     private Integer productId;
     private String productName;
     private String productPicture;
-    private Integer protypeId;
+    /*private Integer protypeId;*/
     private Double productMoney;//成本价
     private Double productPrice;//零售价
     private String productDw;
@@ -22,6 +22,16 @@ public class ErpProduct {
 
     public void setStores(ErpStore stores) {
         this.stores = stores;
+    }
+
+    private ErpProductType protype;
+
+    public ErpProductType getProtype() {
+        return protype;
+    }
+
+    public void setProtype(ErpProductType protype) {
+        this.protype = protype;
     }
 
     public Integer getProductId() {
@@ -46,14 +56,6 @@ public class ErpProduct {
 
     public void setProductPicture(String productPicture) {
         this.productPicture = productPicture;
-    }
-
-    public Integer getProtypeId() {
-        return protypeId;
-    }
-
-    public void setProtypeId(Integer protypeId) {
-        this.protypeId = protypeId;
     }
 
     public Double getProductMoney() {

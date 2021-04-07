@@ -1,0 +1,43 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxyCustomerGradeMapper">
+    <resultMap id="customerGrade" type="cn.gson.jindie.model.pojos.txypojos.ErpCustomerGrade">
+        <id column="grade_id" property="gradeId"></id>
+        <result column="grade_name" property="gradeName"></result>
+    </resultMap>
+
+    <!--查询所有客户等级-->
+    <select id="allCustomerGrade" resultMap="customerGrade">
+        select * from erp_customer_grade
+    </select>
+
+    <!--新增客户等级-->
+    <insert id="addCustomerGrade">
+        insert into erp_customer_grade(grade_name) values(#{gradeName})
+    </insert>
+
+    <!--编辑客户等级-->
+    <update id="updateGrade">
+        update erp_customer_grade set grade_name=#{gradeName}
+        where grade_id=#{gradeId}
+    </update>
+
+    <!--删除客户等级-->
+    <delete id="deleteCustomerGrade">
+        delete from erp_customer_grade where grade_id=#{gradeId}
+    </delete>
+
+    <resultMap id="customer" type="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
+        <id column="customer_id" property="customerId"></id>
+        <result column="customer_name" property="customerName"></result>
+        <association property="grades" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomerGrade">
+            <id column="grade_id" property="gradeId"></id>
+            <result column="grade_name" property="gradeName"></result>
+        </association>
+    </resultMap>
+    <select id="gradeType" resultMap="customer">
+        select * from erp_customer c
+        left join erp_customer_grade g
+        on c.grade_id=g.grade_id
+        where c.grade_id=#{gradeId}
+    </select>
+</mapper>
