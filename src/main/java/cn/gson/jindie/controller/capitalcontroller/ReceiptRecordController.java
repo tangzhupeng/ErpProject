@@ -1,13 +1,13 @@
 package cn.gson.jindie.controller.capitalcontroller;
 
 import cn.gson.jindie.model.pojos.capitalpojos.ErpReceiptRecord;
-import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.service.capitalservice.ReceiptRecordService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,20 +22,20 @@ public class ReceiptRecordController {
     @Autowired
     ReceiptRecordService receiptRecordService;
 
-    //查询所有付款记录
-    @RequestMapping("/SerReceiptRecord")
-    @ResponseBody
-    public Map<String, Object> SerReceiptRecord(Integer pageNum, Integer size, String receiptRecord) {
-        Map<String, Object> map = new HashMap<>();
-
-        ErpReceiptRecord  receipt= JSONObject.toJavaObject(JSON.parseObject(receiptRecord), ErpReceiptRecord.class);
-        Page<Object> page = PageHelper.startPage(pageNum, size);
-        List<ErpReceiptRecord> erpReceiptRecords = receiptRecordService.SerReceiptRecord(receipt);
-        map.put("total", page.getTotal());
-        map.put("rows", erpReceiptRecords);
-
-        return map;
-    }
+//    //查询所有收款记录
+//    @RequestMapping("/SerReceiptRecord")
+//    @ResponseBody
+//    public Map<String, Object> SerReceiptRecord(Integer pageNum, Integer size, String receiptRecord) {
+//        Map<String, Object> map = new HashMap<>();
+//
+//        ErpReceiptRecord  receipt= JSONObject.toJavaObject(JSON.parseObject(receiptRecord), ErpReceiptRecord.class);
+//        Page<Object> page = PageHelper.startPage(pageNum, size);
+//        List<ErpReceiptRecord> erpReceiptRecords = receiptRecordService.SerReceiptRecord(receipt);
+//        map.put("total", page.getTotal());
+//        map.put("rows", erpReceiptRecords);
+//
+//        return map;
+//    }
 
 
     //根据id删除对应的收款单记录
@@ -43,5 +43,20 @@ public class ReceiptRecordController {
     @ResponseBody
     public void DelReId(Integer reId,String receiptId){
         receiptRecordService.DelReId(reId,receiptId);
+    }
+
+    //批量删除收款记录单
+    @RequestMapping("/DelReidList")
+    @ResponseBody
+    public void DelReidList(@RequestBody List<ErpReceiptRecord> receiptRecords){
+        receiptRecordService.DelReidList(receiptRecords);
+    }
+
+
+    //根据id修改对应的审批状态
+    @RequestMapping("/upEmpState")
+    @ResponseBody
+    public void upEmpState(@RequestBody List<ErpReceiptRecord> receiptRecords){
+       receiptRecordService.upEmpState(receiptRecords);
     }
 }

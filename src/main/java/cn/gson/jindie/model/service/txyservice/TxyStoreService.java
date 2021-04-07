@@ -52,4 +52,8 @@ public class TxyStoreService {
     public List<ErpStore> queryStore( ){
         return storeMapper.queryStore();
     }
+
+    public List<ErpStore> findAllStore() {
+        return storeMapper.findAllStore();
+    }
 }

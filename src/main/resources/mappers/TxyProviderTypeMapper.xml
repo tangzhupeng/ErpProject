@@ -1,0 +1,39 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxyProviderTypeMapper">
+    <resultMap id="providerType" type="cn.gson.jindie.model.pojos.txypojos.ErpProviderType">
+        <id column="gys_id" property="gysId"></id>
+        <result column="gys_name" property="gysName"></result>
+    </resultMap>
+
+    <!--查询所有供应商类别-->
+    <select id="allProviderType" resultMap="providerType">
+        select * from erp_provider_type
+    </select>
+
+    <!--新增供应商类别-->
+    <insert id="addGys">
+        insert into erp_provider_type(gys_name) values(#{gysName})
+    </insert>
+
+    <!--编辑供应商类别-->
+    <update id="updateGys">
+        update erp_provider_type set gys_name=#{gysName}
+        where gys_id=#{gysId}
+    </update>
+
+    <!--删除供应商-->
+    <delete id="deleteProviderType">
+        delete from erp_provider_type where gys_id=#{gysId}
+    </delete>
+
+    <resultMap id="provider" type="cn.gson.jindie.model.pojos.txypojos.ErpProvider">
+        <id column="provider_id" property="providerId"/>
+        <result column="provider_name" property="providerName"/>
+    </resultMap>
+    <select id="gysType" resultMap="provider">
+        select * from erp_provider p
+        left join erp_provider_type t
+        on p.gys_id=t.gys_id
+        where p.gys_id=#{gysId}
+    </select>
+</mapper>

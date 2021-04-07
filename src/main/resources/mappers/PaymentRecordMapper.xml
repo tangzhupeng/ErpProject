@@ -1,0 +1,114 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.capitalmapper.PaymentRecordMapper">
+
+    <resultMap id="PaymentRecord" type="cn.gson.jindie.model.pojos.capitalpojos.ErpPaymentRecord">
+        <id column="record_id" property="recordId"></id>
+        <result column="record_way" property="recordWay"></result>
+        <result column="record_mark" property="recordMark"></result>
+        <result column="record_money" property="recordMoney"></result>
+        <result column="record_remark" property="recordRemark"></result>
+        <result column="emp_state" property="empState"></result>
+        <result column="emp_name" property="empName"></result>
+        <association property="payment" javaType="cn.gson.jindie.model.pojos.capitalpojos.ErpPayment">
+            <id column="payment_id" property="paymentId"></id>
+            <result column="prepared_by" property="preparedBy"></result>
+            <result column="payment_time" property="paymentTime"></result>
+            <result column="payment_money" property="paymentMoney"></result>
+            <result column="payment_hx_money" property="paymentHxMoney"></result>
+            <result column="payment_discount" property="paymentDiscount"></result>
+            <association property="emp" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+                <id column="epm_id" property="empId"></id>
+                <result column="emp_name" property="empName"></result>
+            </association>
+            <association property="provider" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProvider">
+                <id column="provider_id" property="providerId"/>
+                <result column="provider_name" property="providerName"/>
+                <result column="provider_people" property="providerPeople"/>
+                <result column="provider_phone" property="providerPhone"/>
+                <result column="provider_location" property="providerLocation"/>
+                <result column="provider_dizhi" property="providerDizhi"></result>
+                <result column="provider_money" property="providerMoney"/>
+                <result column="provider_time" property="providerTime"/>
+                <result column="provider_state" property="providerState"/>
+            </association>
+        </association>
+        <association property="account" javaType="cn.gson.jindie.model.pojos.txypojos.ErpAccount">
+            <id column="account_id" property="accountId"></id>
+            <result column="account_name" property="accountName"></result>
+            <result column="account_balance" property="accountBalance"></result>
+            <result column="account_money" property="accountMoney"></result>
+        </association>
+        <association property="boNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpBuyingOrder">
+            <id column="bo_number" property="boNumber"/>
+            <result column="bo_date" property="boDate"/>
+            <result column="consumed" property="consumed"/>
+            <result column="notconsumed" property="notconsumed"/>
+            <association property="poNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster">
+                <id column="po_number" property="poNumber"/>
+                <result column="po_date" property="poDate"/>
+                <result column="po_tos" property="poTos"/>
+                <result column="po_money" property="poMoney"/>
+                <result column="po_state" property="poState"/>
+                <result column="po_eastate" property="poEastate"/>
+                <result column="po_ststate" property="poStstate"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <!--分页模糊查询付款记录单信息-->
+    <select id="SerPaymentRecord" resultMap="PaymentRecord">
+        select * from erp_payment_record pr
+        left join  erp_payment p on pr.payment_id=p.payment_id
+        left join erp_emp e on p.emp_id=e.emp_id
+        left join erp_provider pro on p.provider_id=pro.provider_id
+        left join erp_buying_order bu on pr.bo_number=bu.bo_number
+        left join erp_p_order_master po on bu.po_number=po.po_number
+        left join erp_account ac on pr.account_id=ac.account_id
+		<where>
+            <if test="reWay !=null and reWay !='' ">
+                and  er.receipt_id  like '%${reWay}%'
+                or  ec.customer_name like '%${reWay}%'
+                or re.re_remark like '%${reWay}%'
+            </if>
+            <if test="payment.emp.empId !=null and payment.emp.empId !='' ">
+               and ee.emp_id like '%${provider.emp.empId}%'
+            </if>
+            <if test="empState !=null and empState !='' ">
+               and re.emp_state like '%${empState}%'
+            </if>
+            <if test="payment.provider.providerId !=null and provider.provider.providerId !=''">
+                and ec.customer_id like '%${payment.provider.providerId}%'
+            </if>
+            <if test="payment.preparedBy !=null and payment.preparedBy !=''">
+                and er.prepared_by like '%${payment.preparedBy}%'
+            </if>
+            <if test="account.accountId !=null and account.accountId !='' ">
+                and ac.account_id like '%${account.accountId}%'
+            </if>
+            <if test="recordRemark !=null and recordRemark !=''">
+                and re_remark like '%${recordRemark}%'
+            </if>
+
+
+        </where>
+    </select>
+
+
+    <!--根据id删除对应的付款单记录-->
+    <delete id="DelRecordId">
+        delete from erp_payment_record where record_id=#{recordId}
+    </delete>
+
+    <!--根据id删除对应付款单-->
+    <delete id="DelReceiptId">
+        delete from erp_payment where payment_id=#{paymentId}
+    </delete>
+
+    <!--根据id修改对应付款记录单的审批状态-->
+    <update id="upEmpState">
+        update erp_payment_record set emp_state=2 where record_id=#{recordId}
+    </update>
+
+
+
+</mapper>

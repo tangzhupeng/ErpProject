@@ -1,0 +1,39 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxyProductTypeMapper">
+    <resultMap id="productType" type="cn.gson.jindie.model.pojos.txypojos.ErpProductType">
+        <id column="protype_id" property="protypeId"></id>
+        <result column="protype_name" property="protypeName"></result>
+    </resultMap>
+
+    <!--查询所有商品类别-->
+    <select id="allProductType" resultMap="productType">
+        select * from erp_product_type
+    </select>
+
+    <resultMap id="proType" type="cn.gson.jindie.model.pojos.txypojos.ErpProduct">
+        <id property="productId" column="product_id"></id>
+        <result property="productName" column="product_name"></result>
+    </resultMap>
+    <select id="productType" resultMap="proType">
+        select * from erp_product p
+        left join erp_product_type t
+        on p.protype_id=t.protype_id
+        where p.protype_id=#{protypeId}
+    </select>
+
+    <!--新增商品类别-->
+    <insert id="addProtype">
+        insert into erp_product_type(protype_name) values (#{protypeName})
+    </insert>
+
+    <!--编辑商品类别-->
+    <update id="updateProtype">
+        update erp_product_type set protype_name=#{protypeName}
+        where protype_id=#{protypeId}
+    </update>
+
+    <!--删除商品类别-->
+    <delete id="deleteProType">
+        delete from erp_product_type where protype_id=#{protypeId}
+    </delete>
+</mapper>

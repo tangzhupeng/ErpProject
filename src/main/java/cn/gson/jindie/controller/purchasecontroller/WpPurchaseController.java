@@ -1,9 +1,8 @@
 package cn.gson.jindie.controller.purchasecontroller;
 
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderDetail;
 import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster;
-import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
-
 import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
@@ -44,6 +43,7 @@ public class WpPurchaseController {
     @PostMapping("/addMPurO")
     @ResponseBody
     public String addMPurO(@RequestBody ErpPOrderMaster erpPOrderMaster){
+        System.out.println(erpPOrderMaster.getPoMoney());
         try {
             System.out.println(1);
             wpPurchaseService.addMPurO(erpPOrderMaster);
@@ -53,20 +53,6 @@ public class WpPurchaseController {
         }
         return "新增成功";
     }
-//
-//    @PostMapping("/addDPurO")
-//    @ResponseBody
-//    public String addDPurO(@RequestBody ErpPOrderDetail erpPOrderDetail){
-//        System.out.println(erpPOrderDetail);
-//        try {
-//            System.out.println(1);
-//            wpPurchaseService.addDPurO(erpPOrderDetail);
-//        }catch (Exception e){
-//            System.out.println(2);
-//            System.out.println(e.getMessage());
-//        }
-//        return "新增成功";
-//    }
 
     @PostMapping("/updatepoEastate")
     @ResponseBody
@@ -81,13 +67,6 @@ public class WpPurchaseController {
         return "修改成功";
     }
 
-
-    @RequestMapping("/findprovider")
-    @ResponseBody
-    public List<ErpProvider> findProvider(){
-        return wpPurchaseService.findProvider();
-    }
-
     @RequestMapping("/find-emp")
     @ResponseBody
     public List<ErpEmp> selectAllEmp(){
@@ -100,16 +79,22 @@ public class WpPurchaseController {
         return wpPurchaseService.findStore();
     }
 
-    @RequestMapping("/find-product")
+    /*@RequestMapping("/find-product")
     @ResponseBody
     public List<ErpProduct> allProduct(){
         return wpPurchaseService.allProduct();
-    }
+    }*/
 
     @RequestMapping("/find-pdid")
     @ResponseBody
-    public List<ErpPOrderDetail> findPOderListpdi(String poNumber){
-        return wpPurchaseService.findPOderListpdi(poNumber);
+    public Map<String,Object> findPOderListpdi(Integer pageNum,Integer size,String poNumber){
+        Map<String,Object> map = new HashMap<>();
+        Page<Object> page = PageHelper.startPage(pageNum, size);
+        List<ErpPOrderDetail> list = wpPurchaseService.findPOderListpdi(poNumber);
+        PageHelper.startPage(pageNum,size);
+        map.put("rows",list);
+        map.put("total",page.getTotal());
+        return map;
     }
 
     @RequestMapping("/find-pmid")
@@ -118,7 +103,7 @@ public class WpPurchaseController {
         return wpPurchaseService.findPOderListpmi(poNumber);
     }
 
-//筛选
+    //筛选
     @RequestMapping("/filter-poderList")
     @ResponseBody
     public Map<String,Object> FilterPOderList(Integer pageNum,Integer size,String erpPOrderMaster){

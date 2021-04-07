@@ -42,4 +42,6 @@ public interface TxyCustomerMapper {
 
     //恢复客户
     public void hfCustomer(Integer customerId);
+
+    List<ErpCustomer> findAllCustomers();
 }

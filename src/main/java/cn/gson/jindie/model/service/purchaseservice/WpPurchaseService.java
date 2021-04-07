@@ -2,11 +2,9 @@ package cn.gson.jindie.model.service.purchaseservice;
 
 import cn.gson.jindie.model.mapper.purchasemapper.PurchaseMapper;
 
-
 import cn.gson.jindie.model.mapper.txymapper.TxyProductMapper;
 import cn.gson.jindie.model.mapper.txymapper.TxyProviderMapper;
 import cn.gson.jindie.model.mapper.txymapper.TxyStoreMapper;
-
 import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderDetail;
 import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster;
 import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
@@ -35,7 +33,7 @@ public class WpPurchaseService {
     TxyStoreMapper txyStoreMapper;
 
     @Autowired
-    TxyProductMapper txyProductMapper;
+    TxxProductMapper txxProductMapper;
 
     public List<Map<String,Object>> findPOderList(){
         return purchaseMapper.findPOderList();
@@ -62,7 +60,7 @@ public class WpPurchaseService {
         erpPOrderMaster.setPoNumber(ztiem);
         purchaseMapper.addMPurO(erpPOrderMaster);
 
-            erpPOrderMaster.getDetail().forEach(v->{
+        erpPOrderMaster.getDetail().forEach(v->{
             Date date1 = new Date();
             SimpleDateFormat sformat1 = new SimpleDateFormat("yyyyMMddHHmmss");//日期格式
             String tiem = sformat1.format(date1);
@@ -97,6 +95,6 @@ public class WpPurchaseService {
 
 //查询商品
     public List<ErpProduct> allProduct(){
-        return txyProductMapper.allProduct();
+        return txxProductMapper.allProduct();
     }
 }

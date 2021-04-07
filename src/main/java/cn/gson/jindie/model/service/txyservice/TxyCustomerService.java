@@ -65,4 +65,12 @@ public class TxyCustomerService {
     public void hfCustomer(Integer customerId){
         customerMapper.hfCustomer(customerId);
     }
+
+    /**
+     * 查询所有客户
+     * @return
+     */
+    public List<ErpCustomer> findAllCustomers() {
+        return customerMapper.findAllCustomers();
+    }
 }

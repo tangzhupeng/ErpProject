@@ -4,24 +4,24 @@ package cn.gson.jindie.model.pojos.salespojos;
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
-import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Timestamp;
 
 public class ErpOrder {
 
   private Integer orderId;
   private String orderNumber;
   @JsonFormat(pattern = "yyyy-MM-dd")
-  private java.sql.Timestamp documentDate;
+  private Timestamp documentDate;
   @JsonFormat(pattern = "yyyy-MM-dd")
-  private java.sql.Timestamp deliveryDate;
+  private Timestamp deliveryDate;
   private double accountReceivable;
   private double paymentReceived;
   private Integer deliveryStatus;
   private String creatorPerson;
   @JsonFormat(pattern = "yyyy-MM-dd")
-  private java.sql.Timestamp createTime;
+  private Timestamp createTime;
   private Integer approvalStatus;
   private Integer orderStatus;
   private String deliveryOrderNumber;
@@ -30,6 +30,31 @@ public class ErpOrder {
   private ErpStore erpStore;
   private String currentExaminer;
 
+  public ErpOrder(Integer orderId) {
+    this.orderId = orderId;
+  }
+
+  public ErpOrder() {
+  }
+
+  public ErpOrder(Integer orderId, String orderNumber, Timestamp documentDate, Timestamp deliveryDate, double accountReceivable, double paymentReceived, Integer deliveryStatus, String creatorPerson, Timestamp createTime, Integer approvalStatus, Integer orderStatus, String deliveryOrderNumber, ErpCustomer erpCustomer, ErpEmp erpEmp, ErpStore erpStore, String currentExaminer) {
+    this.orderId = orderId;
+    this.orderNumber = orderNumber;
+    this.documentDate = documentDate;
+    this.deliveryDate = deliveryDate;
+    this.accountReceivable = accountReceivable;
+    this.paymentReceived = paymentReceived;
+    this.deliveryStatus = deliveryStatus;
+    this.creatorPerson = creatorPerson;
+    this.createTime = createTime;
+    this.approvalStatus = approvalStatus;
+    this.orderStatus = orderStatus;
+    this.deliveryOrderNumber = deliveryOrderNumber;
+    this.erpCustomer = erpCustomer;
+    this.erpEmp = erpEmp;
+    this.erpStore = erpStore;
+    this.currentExaminer = currentExaminer;
+  }
 
   public Integer getOrderId() {
     return orderId;
@@ -49,20 +74,20 @@ public class ErpOrder {
   }
 
 
-  public java.sql.Timestamp getDocumentDate() {
+  public Timestamp getDocumentDate() {
     return documentDate;
   }
 
-  public void setDocumentDate(java.sql.Timestamp documentDate) {
+  public void setDocumentDate(Timestamp documentDate) {
     this.documentDate = documentDate;
   }
 
 
-  public java.sql.Timestamp getDeliveryDate() {
+  public Timestamp getDeliveryDate() {
     return deliveryDate;
   }
 
-  public void setDeliveryDate(java.sql.Timestamp deliveryDate) {
+  public void setDeliveryDate(Timestamp deliveryDate) {
     this.deliveryDate = deliveryDate;
   }
 
@@ -103,11 +128,11 @@ public class ErpOrder {
   }
 
 
-  public java.sql.Timestamp getCreateTime() {
+  public Timestamp getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(java.sql.Timestamp createTime) {
+  public void setCreateTime(Timestamp createTime) {
     this.createTime = createTime;
   }
 

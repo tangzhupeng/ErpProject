@@ -118,4 +118,8 @@
     <delete id="deleteCustomer">
         delete from erp_customer where customer_id=#{customerId}
     </delete>
+
+    <select id="findAllCustomers"  resultType="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
+        select * from erp_customer
+    </select>
 </mapper>

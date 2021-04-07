@@ -1,5 +1,6 @@
 package cn.gson.jindie.model.mapper.purchasemapper;
 
+import cn.gson.jindie.model.pojos.purchasepojos.ErpBuyingOrder;
 import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderDetail;
 
 import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster;
@@ -19,4 +20,5 @@ public interface PurchaseMapper {
     public void updatepoEastate(ErpPOrderMaster erpPOrderMaster);
     public List<ErpPOrderMaster> filterPOderList(ErpPOrderMaster erpPOrderMaster);
     public void addDPurO(ErpPOrderDetail erpPOrderDetail);
+    public List<ErpPOrderMaster> findPOderListispoState0();
 }

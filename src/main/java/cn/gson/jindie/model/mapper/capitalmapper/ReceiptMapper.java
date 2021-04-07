@@ -4,6 +4,8 @@ package cn.gson.jindie.model.mapper.capitalmapper;
 import cn.gson.jindie.model.pojos.capitalpojos.ErpReceipt;
 import cn.gson.jindie.model.pojos.capitalpojos.ErpReceiptRecord;
 import cn.gson.jindie.model.pojos.salespojos.ErpDeliveryOrder;
+import cn.gson.jindie.model.pojos.txypojos.ErpAccount;
+import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -25,5 +27,20 @@ public interface ReceiptMapper {
 
     //新增收款记录单
     public void InReceiptRecord(ErpReceiptRecord receiptRecord);
+
+    //新增收款单时修改客户的欠款金额
+    public void upCustomerMoney(ErpReceipt receipt);
+
+    //新增收款单时修改未销金额
+    public void upUnverifiedAmount(ErpReceipt receipt);
+
+    //新增收款单时修改账号的金额
+    public void upAccountMoney(ErpReceiptRecord receiptRecord);
+
+    //修改付款单的所有值
+    public void upReceipt(ErpReceipt erpReceipt);
+
+    //修改付款记录单的所有值
+    public void upReceiptRecord(ErpReceipt erpReceipt);
 
 }

@@ -42,4 +42,8 @@ public class EmpService {
 //        return empMapper.deleteEmp(empid);
 //    }
 
+    public List<ErpEmp> findAllEmp() {
+        return empMapper.selectAllEmp();
+    }
+
 }

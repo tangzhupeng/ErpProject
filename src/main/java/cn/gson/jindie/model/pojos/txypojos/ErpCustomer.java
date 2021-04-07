@@ -21,6 +21,13 @@ public class ErpCustomer {
 
     private ErpEmp emps;
 
+    public ErpCustomer() {
+    }
+
+    public ErpCustomer(Integer customerId) {
+        this.customerId = customerId;
+    }
+
     public ErpEmp getEmps() {
         return emps;
     }
@@ -142,4 +149,6 @@ public class ErpCustomer {
                 ", grades=" + grades +
                 '}';
     }
+
+
 }

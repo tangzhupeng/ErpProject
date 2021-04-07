@@ -1,7 +1,5 @@
 package cn.gson.jindie.model.pojos.purchasepojos;
 
-
-
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
@@ -9,11 +7,10 @@ import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 import java.sql.Date;
 import java.util.List;
 
-
 public class ErpPOrderMaster {
 
   private String poNumber;
-  private Date poDate;
+  private java.sql.Date poDate;
   private String poTos;
   private ErpProvider providerId;
   private double poMoney;
@@ -81,11 +78,11 @@ public class ErpPOrderMaster {
   }
 
 
-  public Date getPoDate() {
+  public java.sql.Date getPoDate() {
     return poDate;
   }
 
-  public void setPoDate(Date poDate) {
+  public void setPoDate(java.sql.Date poDate) {
     this.poDate = poDate;
   }
 

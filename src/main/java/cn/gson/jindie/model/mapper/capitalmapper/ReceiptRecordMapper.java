@@ -19,4 +19,7 @@ public interface ReceiptRecordMapper {
     //根据id删除对应的收款单
     public void DelReceiptId(String receiptId);
 
+    //根据id修改审批状态
+    public void upEmpState(Integer reId);
+
 }

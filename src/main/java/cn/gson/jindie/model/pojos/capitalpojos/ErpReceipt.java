@@ -22,6 +22,21 @@ public class ErpReceipt {
     private ErpCustomer customer; //客户
     private ErpReceiptRecord receiptRecords;
 
+    public ErpReceipt() {
+    }
+
+    public ErpReceipt(String receiptId, String preparedBy, Date receiptTime, Double receiptMoney, Double receiptHxMoney, String receiptDiscount, ErpEmp emp, ErpCustomer customer, ErpReceiptRecord receiptRecords) {
+        this.receiptId = receiptId;
+        this.preparedBy = preparedBy;
+        this.receiptTime = receiptTime;
+        this.receiptMoney = receiptMoney;
+        this.receiptHxMoney = receiptHxMoney;
+        this.receiptDiscount = receiptDiscount;
+        this.emp = emp;
+        this.customer = customer;
+        this.receiptRecords = receiptRecords;
+    }
+
     public ErpReceiptRecord getReceiptRecords() {
         return receiptRecords;
     }

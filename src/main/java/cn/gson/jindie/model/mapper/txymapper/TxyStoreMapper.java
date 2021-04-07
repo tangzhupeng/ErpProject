@@ -30,4 +30,6 @@ public interface TxyStoreMapper {
 
 
     public   List<ErpStore> queryStore( );
+
+    List<ErpStore> findAllStore();
 }
