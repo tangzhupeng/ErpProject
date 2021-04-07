@@ -1,6 +1,8 @@
 package cn.gson.jindie.controller.capitalcontroller;
 
+import cn.gson.jindie.model.pojos.capitalpojos.ErpPaymentRecord;
 import cn.gson.jindie.model.pojos.capitalpojos.ErpReceiptRecord;
+import cn.gson.jindie.model.service.capitalservice.PaymentRecordService;
 import cn.gson.jindie.model.service.capitalservice.ReceiptRecordService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -17,12 +19,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class ReceiptRecordController {
+public class PaymentRecordController {
 
     @Autowired
-    ReceiptRecordService receiptRecordService;
+    PaymentRecordService paymentRecordService;
 
-//    //查询所有收款记录
+//    //查询所有付款记录
 //    @RequestMapping("/SerReceiptRecord")
 //    @ResponseBody
 //    public Map<String, Object> SerReceiptRecord(Integer pageNum, Integer size, String receiptRecord) {
@@ -39,24 +41,24 @@ public class ReceiptRecordController {
 
 
     //根据id删除对应的收款单记录
-    @RequestMapping("/DelReId")
+    @RequestMapping("/DelPaymentId")
     @ResponseBody
-    public void DelReId(Integer reId,String receiptId){
-        receiptRecordService.DelReId(reId,receiptId);
+    public void DelPaymentId(Integer recordId,String paymentId){
+        paymentRecordService.DelPaymentId(recordId,paymentId);
     }
 
     //批量删除收款记录单
-    @RequestMapping("/DelReidList")
+    @RequestMapping("/DelPaymentIdList")
     @ResponseBody
-    public void DelReidList(@RequestBody List<ErpReceiptRecord> receiptRecords){
-        receiptRecordService.DelReidList(receiptRecords);
+    public void DelPaymentIdList(@RequestBody List<ErpPaymentRecord> paymentRecords){
+        paymentRecordService.DelPaymentIdList(paymentRecords);
     }
 
 
     //根据id修改对应的审批状态
-    @RequestMapping("/upEmpState")
+    @RequestMapping("/upEmpStates")
     @ResponseBody
-    public void upEmpState(@RequestBody List<ErpReceiptRecord> receiptRecords){
-       receiptRecordService.upEmpState(receiptRecords);
+    public void upEmpStates(@RequestBody List<ErpPaymentRecord> paymentRecords){
+        paymentRecordService.upEmpStates(paymentRecords);
     }
 }

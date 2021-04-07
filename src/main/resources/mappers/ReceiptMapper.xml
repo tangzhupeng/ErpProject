@@ -15,8 +15,13 @@
         <association property="customer" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
             <id column="customer_id" property="customerId"></id>
             <result column="customer_name" property="customerName"></result>
+            <result column="customer_people" property="customerPeople"></result>
+            <result column="customer_phone" property="customerPhone"></result>
+            <result column="customer_location" property="customerLocation"></result>
+            <result column="customer_dizhi" property="customerDizhi"></result>
             <result column="customer_money" property="customerMoney"></result>
-            <result column="create_time" property="createTime"></result>
+            <result column="customer_time" property="customerTime"></result>
+            <result column="customer_state" property="customerState"></result>
         </association>
     </resultMap>
 
@@ -32,7 +37,7 @@
 
     <!--查询销货单-->
     <select id="SerDeliveryOrder" resultMap="DeliveryOrder">
-        select * from erp_delivery_order where cancelledAmount!=delivery_order_number
+        select * from erp_delivery_order where cancelledAmount!=receivables
     </select>
 
     <!--根据销货id，查询对应的销货单-->
@@ -49,7 +54,43 @@
     <!--新增收款记录单-->
     <insert id="InReceiptRecord">
         insert into erp_receipt_record values (#{reId},#{receipt.receiptId},#{account.accountId},
-        #{deliveryOrder.deliveryOrderId},#{reWay},#{reMark},#{reMoney},#{reRemark},#{erpEmp.empId},#{empState})
+        #{deliveryOrder.deliveryOrderId},#{reWay},#{reMark},#{reMoney},#{reRemark},#{empName},#{empState})
     </insert>
+
+    <!--新增收款单时修改客户的欠款金额-->
+    <update id="upCustomerMoney">
+        update erp_customer set customer_money=customer_money+#{receiptMoney} where customer_id=#{customer.customerId}
+    </update>
+
+    <!--新增收款单时修改未销金额，以销金额-->
+    <update id="upUnverifiedAmount">
+        update erp_delivery_order set unverifiedAmount=receivables-#{receiptHxMoney},
+        cancelledAmount=cancelledAmount+#{receiptHxMoney}
+        where delivery_order_id=#{deliveryOrder.deliveryOrderId}
+    </update>
+
+    <!--新增收款单时修改账号的金额-->
+    <update id="upAccountMoney">
+        update erp_account set account_money=account_money+#{reMoney}
+        where account_id=#{account.accountId}
+    </update>
+
+
+<!--    &lt;!&ndash;修改付款单的所有值&ndash;&gt;-->
+<!--    <update id="upReceipt">-->
+<!--        update erp_receipt set emp_id=#{emp.empId},customer_id=#{customer.customerId},-->
+<!--        prepared_by=#{preparedBy},receipt_time=#{receiptTime},receipt_money=#{receiptMoney},-->
+<!--        receipt_hxmoney=#{receiptHxMoney},receipt_discount=#{receiptDiscount}-->
+<!--        where receipt_id=#{receiptId}-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash;修改付款记录单的所有值&ndash;&gt;-->
+<!--    <update id="upReceiptRecord">-->
+<!--        update erp_receipt_record set receipt_id=#{receipt.receiptId},-->
+<!--        account_id=#{account.accountId},delivery_order_id=#{deliveryOrder.deliveryOrderId},-->
+<!--        re_way=#{reWay},re_mark=#{reMark},re_money=#{reMoney},re_remark=#{reRemark},-->
+<!--        emp_name=#{empName},emp_state=#{empState}-->
+<!--        where re_id=#{reId}-->
+<!--    </update>-->
 
 </mapper>

@@ -49,11 +49,27 @@ public class ReceiptService {
             erpReceipt.setReceiptId(str);
             erpReceipt.setReceiptTime(new Date());
 
+            //新增收款单
             receiptMapper.InReceipt(erpReceipt);
 
+            //修改客户的欠款金额
+            receiptMapper.upCustomerMoney(erpReceipt);
+            //修改销货单的核销金额
+            receiptMapper.upUnverifiedAmount(erpReceipt);
+            //新增收款单时修改账号的金额
+            receiptMapper.upAccountMoney(erpReceipt.getReceiptRecords());
+
+            //新增收款单记录
             erpReceipt.getReceiptRecords().setReceipt(erpReceipt);
             erpReceipt.getReceiptRecords().setEmpState(1);
             receiptMapper.InReceiptRecord(erpReceipt.getReceiptRecords());
+        }else {
+//            //修改付款单
+//            receiptMapper.upReceipt(erpReceipt);
+//            //修改付款记录单
+//            erpReceipt.getReceiptRecords().setReceipt(erpReceipt);
+//            erpReceipt.getReceiptRecords().setEmpState(1);
+//            receiptMapper.upReceiptRecord(erpReceipt);
         }
 
     }

@@ -21,6 +21,9 @@ public class ErpCustomer {
 
     private ErpEmp emps;
 
+    public ErpCustomer() {
+    }
+
     public ErpCustomer(Integer customerId) {
         this.customerId = customerId;
     }
@@ -147,6 +150,5 @@ public class ErpCustomer {
                 '}';
     }
 
-    public ErpCustomer() {
-    }
+
 }

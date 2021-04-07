@@ -11,12 +11,21 @@ public class ErpReceiptRecord {
     private Double reMoney;
     private String reRemark;
     private int empState;//审核状态
+    private String empName;//审核人
 
-    private ErpEmp erpEmp;//审核人
     private ErpReceipt receipt;//收款单
     private ErpAccount account;//收款账号
     private ErpDeliveryOrder deliveryOrder; //销售订单
 
+    private ErpEmp empDao;//审批对象
+
+    public ErpEmp getEmpDao() {
+        return empDao;
+    }
+
+    public void setEmpDao(ErpEmp empDao) {
+        this.empDao = empDao;
+    }
 
     public int getEmpState() {
         return empState;
@@ -26,12 +35,13 @@ public class ErpReceiptRecord {
         this.empState = empState;
     }
 
-    public ErpEmp getErpEmp() {
-        return erpEmp;
+
+    public String getEmpName() {
+        return empName;
     }
 
-    public void setErpEmp(ErpEmp erpEmp) {
-        this.erpEmp = erpEmp;
+    public void setEmpName(String empName) {
+        this.empName = empName;
     }
 
     public int getReId() {

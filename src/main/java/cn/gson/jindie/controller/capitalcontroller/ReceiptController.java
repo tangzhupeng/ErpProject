@@ -42,8 +42,10 @@ public class ReceiptController {
     @RequestMapping("/InReceipt")
     @ResponseBody
     public void InReceipt(@RequestBody ErpReceipt erpReceipt){
-        System.out.println("收款单"+erpReceipt);
-        System.out.println("收款记录单"+erpReceipt.getReceiptRecords());
+        System.out.println("客户"+erpReceipt.getCustomer());
+        System.out.println("销货单"+erpReceipt.getReceiptRecords().getDeliveryOrder());
+        System.out.println("账号"+erpReceipt.getReceiptRecords().getAccount());
+
         receipt.InReceipt(erpReceipt);
     }
 }

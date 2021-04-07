@@ -11,6 +11,9 @@ import java.util.List;
 public interface PurchaseNoteMapper {
     public void addPurNote(ErpBuyingOrder erpBuyingOrder);
     public List<ErpBuyingOrder> findAllPurNote();
+    //根据id查询对应的采购单
     public List<ErpBuyingOrder> findAllPurNoteT(String boNumber);
     public void updateboEastate(ErpBuyingOrder erpBuyingOrder);
+    //查询所有的采购单
+    public List<ErpBuyingOrder> findAllPurNoteX();
 }

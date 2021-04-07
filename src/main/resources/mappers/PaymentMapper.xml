@@ -1,0 +1,64 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jindie.model.mapper.capitalmapper.PaymentMapper">
+
+    <resultMap id="Payment" type="cn.gson.jindie.model.pojos.capitalpojos.ErpPayment">
+        <id column="payment_id" property="paymentId"></id>
+        <result column="prepared_by" property="preparedBy"></result>
+        <result column="payment_time" property="paymentTime"></result>
+        <result column="payment_money" property="paymentMoney"></result>
+        <result column="payment_hx_money" property="paymentHxMoney"></result>
+        <result column="payment_discount" property="paymentDiscount"></result>
+        <association property="emp" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+            <id column="epm_id" property="empId"></id>
+            <result column="emp_name" property="empName"></result>
+        </association>
+        <association property="provider" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProvider">
+            <id column="provider_id" property="providerId"/>
+            <result column="provider_name" property="providerName"/>
+            <result column="provider_people" property="providerPeople"/>
+            <result column="provider_phone" property="providerPhone"/>
+            <result column="provider_location" property="providerLocation"/>
+            <result column="provider_dizhi" property="providerDizhi"></result>
+            <result column="provider_money" property="providerMoney"/>
+            <result column="provider_time" property="providerTime"/>
+            <result column="provider_state" property="providerState"/>
+        </association>
+    </resultMap>
+
+
+
+
+    <!--新增付款单-->
+    <insert id="InPayment">
+        insert into erp_receipt values (#{paymentId},#{emp.empId},#{preparedBy},
+        #{paymentTime},#{paymentMoney},#{paymentHxMoney},#{paymentDiscount},#{provider.providerId})
+    </insert>
+
+    <!--新增付款记录单-->
+    <insert id="InPaymentRecord">
+        insert into erp_receipt_record values (#{recordId},#{payment.paymentId},#{account.accountId},
+        #{boNumber.boNumber},#{recordMark},#{recordMoney},#{recordRemark},#{recordMark},#{empName},#{empState})
+    </insert>
+
+    <!--新增收款单时修改客户的欠款金额-->
+    <update id="upProviderMoney">
+        update erp_provider set provider_money=provider_money+#{paymentMoney} where provider_id=#{provider.providerId}
+    </update>
+
+    <!--新增收款单时修改未销金额，以销金额-->
+    <update id="upNotConsumed">
+        update erp_buying_order set notconsumed=#{boNumber.poNumber.poMoney}-#{paymentHxMoney},
+        consumed=notconsumed+#{paymentHxMoney}
+        where bo_number=#{boNumber.boNumber}
+    </update>
+
+    <!--新增收款单时修改账号的金额-->
+    <update id="upRecordMoney">
+        update erp_account set account_money=account_money+#{recordMoney}
+        where account_id=#{account.accountId}
+    </update>
+
+
+
+
+</mapper>

@@ -8,6 +8,7 @@
         <result column="re_money" property="reMoney"></result>
         <result column="re_remark" property="reRemark"></result>
         <result column="emp_state" property="empState"></result>
+        <result column="emp_name" property="empName"></result>
         <association property="receipt" javaType="cn.gson.jindie.model.pojos.capitalpojos.ErpReceipt">
             <id column="receipt_id" property="receiptId"></id>
             <result column="prepared_by" property="preparedBy"></result>
@@ -38,10 +39,6 @@
             <result column="unverifiedAmount" property="unverifiedAmount"></result>
             <result column="cancelledAmount" property="cancelledAmount"></result>
         </association>
-        <association property="erpEmp" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
-            <id column="epm_id" property="empId"></id>
-            <result column="emp_name" property="empName"></result>
-        </association>
     </resultMap>
 
     <!--分页模糊查询付款记录单信息-->
@@ -52,7 +49,6 @@
         left join erp_customer ec on er.customer_id = ec.customer_id
 		left join erp_account ac on re.account_id=ac.account_id
 		left join erp_delivery_order deo on deo.delivery_order_id=re.delivery_order_id
-		left join erp_emp em on re.emp_id=em.emp_id
 		<where>
             <if test="reWay !=null and reWay !='' ">
                 and  er.receipt_id  like '%${reWay}%'
@@ -60,7 +56,7 @@
                 or re.re_remark like '%${reWay}%'
             </if>
             <if test="receipt.emp.empId !=null and receipt.emp.empId !='' ">
-               and ee.emp_id=#{receipt.emp.empId}
+               and ee.emp_id like '%${receipt.emp.empId}%'
             </if>
             <if test="empState !=null and empState !='' ">
                and re.emp_state like '%${empState}%'
@@ -72,7 +68,7 @@
                 and er.prepared_by like '%${receipt.preparedBy}%'
             </if>
             <if test="account.accountId !=null and account.accountId !='' ">
-                and ac.account_id=#{account.accountId}
+                and ac.account_id like '%${account.accountId}%'
             </if>
             <if test="reRemark !=null and reRemark !=''">
                 and re_remark like '%${reRemark}%'
@@ -92,6 +88,12 @@
     <delete id="DelReceiptId">
         delete from erp_receipt where receipt_id=#{receiptId}
     </delete>
+
+    <!--根据id修改对应付款记录单的审批状态-->
+    <update id="upEmpState">
+        update erp_receipt_record set emp_state=2 where re_id=#{reId}
+    </update>
+
 
 
 </mapper>

@@ -60,11 +60,18 @@
         left join erp_emp ee1 on epom.sup_emp_id = ee1.emp_id
     </select>
 
-
+    <!--根据id查询对应的采购单-->
     <select id="findAllPurNoteT" resultMap="puNote">
         select * from erp_buying_order ebo
         left join erp_p_order_master epom on ebo.po_number = epom.po_number
         where ebo.bo_number = #{boNumber}
+    </select>
+
+    <!--查询所有的采购单-->
+    <select id="findAllPurNoteX" resultMap="puNote">
+        select * from erp_buying_order ebo
+        left join erp_p_order_master epom on ebo.po_number = epom.po_number
+        where ebo.consumed != ebo.notconsumed
     </select>
 
     <update id="updateboEastate">

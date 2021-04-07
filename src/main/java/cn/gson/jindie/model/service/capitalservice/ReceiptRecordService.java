@@ -27,4 +27,21 @@ public class ReceiptRecordService {
         receiptRecordMapper.DelReceiptId(receiptId);
 
     }
+
+    //批量删除收款记录单
+    public void DelReidList(List<ErpReceiptRecord> receiptRecords){
+        receiptRecords.forEach(v->{
+            receiptRecordMapper.DelReId(v.getReId());
+            //根据id删除对应的收款单
+            receiptRecordMapper.DelReceiptId(v.getReceipt().getReceiptId());
+        });
+
+    }
+
+    //根据id修改审批状态
+    public void upEmpState(List<ErpReceiptRecord> receiptRecords){
+        receiptRecords.forEach(v->{
+            receiptRecordMapper.upEmpState(v.getReId());
+        });
+    }
 }
