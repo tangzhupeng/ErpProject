@@ -72,4 +72,16 @@ public class ErpOrderDetails {
     this.orderDetailsRemarks = orderDetailsRemarks;
   }
 
+  @Override
+  public String toString() {
+    return "ErpOrderDetails{" +
+            "orderDetailsId=" + orderDetailsId +
+            ", erpOrder=" + erpOrder +
+            ", productName='" + productName + '\'' +
+            ", number=" + number +
+            ", productPrice=" + productPrice +
+            ", productMoney=" + productMoney +
+            ", orderDetailsRemarks='" + orderDetailsRemarks + '\'' +
+            '}';
+  }
 }

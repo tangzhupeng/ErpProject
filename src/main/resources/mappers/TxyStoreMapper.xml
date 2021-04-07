@@ -71,4 +71,8 @@
     <select id="findStore" resultMap="stores">
         select * from erp_store
     </select>
+
+    <select id="findAllStore"  resultType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+        select *  from erp_store
+    </select>
 </mapper>

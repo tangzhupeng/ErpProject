@@ -47,43 +47,47 @@ public class OrderService {
 
     public Boolean addOrder(SaleOrderVo saleOrderVo) {
         ErpOrder order=new ErpOrder();
-        order.setOrderNumber(saleOrderVo.getOrderNumber());
+        order.setOrderId(null);
+        order.setOrderNumber(saleOrderVo.getBianHao());
         order.setDocumentDate(saleOrderVo.getDocumentDate());
-        order.setAccountReceivable(saleOrderVo.getAccountReceivable());
+        order.setAccountReceivable(saleOrderVo.getZonJi());
         order.setDeliveryDate(saleOrderVo.getDeliveryDate());
         order.setErpEmp(new ErpEmp(saleOrderVo.getEmpId()));
         order.setErpStore(new ErpStore(saleOrderVo.getStoreId()));
         order.setErpCustomer(new ErpCustomer(saleOrderVo.getCustomerId()));
-        int count = orderMapper.addOrder(order);
-
+        int id = orderMapper.addOrder(order);
+        System.out.println(id);
         ErpOrderDetails orderDetails = new ErpOrderDetails();
         List<ErpOrderDetails> list= saleOrderVo.getOrderDetails();
         List<ErpOrderDetails> orderDetailsList=new ArrayList<>();
         for (ErpOrderDetails orderDetail : list) {
+
+        }
+        for (int i = 0; i < list.size(); i++) {
             ErpOrderDetails pu=new ErpOrderDetails();
-            pu.setErpOrder(new ErpOrder(order.getOrderNumber()));//采购编号
-            pu.setProductName(orderDetail.getProductName());//产品名称
-            pu.setNumber(orderDetail.getNumber());
+            pu.setErpOrder(new ErpOrder(order.getOrderId()));//采购编号
+            pu.setProductName(list.get(i).getProductName());//产品名称
+
+            pu.setNumber(list.get(i).getNumber());
             double v = 0;
-            if (orderDetail.getProductPrice() >= 0){
-                v = orderDetail.getProductPrice();
+            if (list.get(i).getProductPrice() >= 0){
+                v = list.get(i).getProductPrice();
             }
-            pu.setProductPrice(v);//单价
+            pu.setProductPrice(saleOrderVo.getSalePrice()[i]);//单价
             if (v==0){
                 pu.setProductMoney(0.00);
             }else {
-                pu.setProductMoney(orderDetail.getNumber()*v);//总价
+                pu.setProductMoney(list.get(i).getNumber()*saleOrderVo.getSalePrice()[i]);//总价
             }
-
             orderDetailsList.add(pu);
         }
+        System.out.println(orderDetailsList);
         int xqing = orderMapper.addOrderDetails(orderDetailsList);
-        if (xqing>0&&count>0){
+        if (xqing>0&&id>0){
             return true;
         }else {
             return false;
         }
-
     }
 
 }

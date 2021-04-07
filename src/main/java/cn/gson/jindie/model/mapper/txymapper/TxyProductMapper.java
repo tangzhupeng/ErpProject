@@ -5,6 +5,7 @@ import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 import cn.gson.jindie.model.pojos.txypojos.ErpProductType;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,4 +31,9 @@ public interface TxyProductMapper {
     public List<ErpProductType> goodType();
     //查看仓库名称
     public List<ErpStore> storeByName();
+
+    /*
+        查询所有产品基础信息
+    */
+    public List<ErpProduct> findAllProduct(@Param("productName") String productName, @Param("productNumber") String productNumber, @Param("protypeId") String protypeId);
 }

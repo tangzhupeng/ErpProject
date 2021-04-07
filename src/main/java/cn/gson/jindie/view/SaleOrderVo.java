@@ -5,35 +5,20 @@ import cn.gson.jindie.model.pojos.salespojos.ErpOrderDetails;
 import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 
 public class SaleOrderVo {
-    private Integer customerId;//供应商Id
+    private Integer customerId;//供应商Id 客户
     private Integer storeId;//仓库id
     private Integer empId;//员工Id
-    private String orderNumber;//采购单编号
-    private Double accountReceivable;//金额总计
+    private String bianHao;//采购单编号
+    private Double zonJi;//金额总计
+    private Double[] salePrice;
     private Timestamp documentDate;//单据日期
     private Timestamp deliveryDate;//交货日期
     private List<ErpOrderDetails> orderDetails;//采购单产品详情
 
-    public SaleOrderVo() {
-    }
-
-    public SaleOrderVo(Integer customerId) {
-        this.customerId = customerId;
-    }
-
-    public SaleOrderVo(Integer customerId, Integer storeId, Integer empId, String orderNumber, Double accountReceivable, Timestamp documentDate, Timestamp deliveryDate, List<ErpOrderDetails> orderDetails) {
-        this.customerId = customerId;
-        this.storeId = storeId;
-        this.empId = empId;
-        this.orderNumber = orderNumber;
-        this.accountReceivable = accountReceivable;
-        this.documentDate = documentDate;
-        this.deliveryDate = deliveryDate;
-        this.orderDetails = orderDetails;
-    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -45,6 +30,14 @@ public class SaleOrderVo {
 
     public Integer getStoreId() {
         return storeId;
+    }
+
+    public Double[] getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(Double[] salePrice) {
+        this.salePrice = salePrice;
     }
 
     public void setStoreId(Integer storeId) {
@@ -59,20 +52,20 @@ public class SaleOrderVo {
         this.empId = empId;
     }
 
-    public String getOrderNumber() {
-        return orderNumber;
+    public String getBianHao() {
+        return bianHao;
     }
 
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setBianHao(String bianHao) {
+        this.bianHao = bianHao;
     }
 
-    public Double getAccountReceivable() {
-        return accountReceivable;
+    public Double getZonJi() {
+        return zonJi;
     }
 
-    public void setAccountReceivable(Double accountReceivable) {
-        this.accountReceivable = accountReceivable;
+    public void setZonJi(Double zonJi) {
+        this.zonJi = zonJi;
     }
 
     public Timestamp getDocumentDate() {
@@ -97,5 +90,20 @@ public class SaleOrderVo {
 
     public void setOrderDetails(List<ErpOrderDetails> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "SaleOrderVo{" +
+                "customerId=" + customerId +
+                ", storeId=" + storeId +
+                ", empId=" + empId +
+                ", bianHao='" + bianHao + '\'' +
+                ", zonJi=" + zonJi +
+                ", salePrice=" + Arrays.asList(salePrice)  +
+                ", documentDate=" + documentDate +
+                ", deliveryDate=" + deliveryDate +
+                ", orderDetails=" + orderDetails +
+                '}';
     }
 }

@@ -4,6 +4,8 @@ import cn.gson.jindie.model.mapper.txymapper.TxyProductMapper;
 import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 import cn.gson.jindie.model.pojos.txypojos.ErpProductType;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +52,14 @@ public class TxyProductService {
     //查看仓库名称
     public List<ErpStore> storeByName(){
         return productMapper.storeByName();
+    }
+
+    /**
+     * 查询所有产品基础信息
+     * @return
+     */
+    public PageInfo<ErpProduct> findAllProduct(String productName, String productNum, String productCategories, Integer limit, Integer page) {
+        PageHelper.startPage(limit,page);
+        return new PageInfo<>(productMapper.findAllProduct(productName,productNum,productCategories));
     }
 }

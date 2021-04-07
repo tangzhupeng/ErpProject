@@ -28,4 +28,6 @@ public interface TxyStoreMapper {
     public void deleteStore(Integer storeId);
 
     public List<ErpStore> findStore();
+
+    List<ErpStore> findAllStore();
 }

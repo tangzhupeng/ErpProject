@@ -51,6 +51,6 @@
     </update>
 
     <update id="updateExecuteStatusById">
-        update erp_order  set order_status = 1  where order_id=#{id}
+        update erp_order  set order_status = 1 , approval_status = 1 where order_id=#{id}
     </update>
 </mapper>

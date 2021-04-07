@@ -13,15 +13,15 @@ public class ErpOrder {
   private Integer orderId;
   private String orderNumber;
   @JsonFormat(pattern = "yyyy-MM-dd")
-  private java.sql.Timestamp documentDate;
+  private Timestamp documentDate;
   @JsonFormat(pattern = "yyyy-MM-dd")
-  private java.sql.Timestamp deliveryDate;
+  private Timestamp deliveryDate;
   private double accountReceivable;
   private double paymentReceived;
   private Integer deliveryStatus;
   private String creatorPerson;
   @JsonFormat(pattern = "yyyy-MM-dd")
-  private java.sql.Timestamp createTime;
+  private Timestamp createTime;
   private Integer approvalStatus;
   private Integer orderStatus;
   private String deliveryOrderNumber;
@@ -30,8 +30,8 @@ public class ErpOrder {
   private ErpStore erpStore;
   private String currentExaminer;
 
-  public ErpOrder(String orderNumber) {
-    this.orderNumber = orderNumber;
+  public ErpOrder(Integer orderId) {
+    this.orderId = orderId;
   }
 
   public ErpOrder() {
@@ -74,20 +74,20 @@ public class ErpOrder {
   }
 
 
-  public java.sql.Timestamp getDocumentDate() {
+  public Timestamp getDocumentDate() {
     return documentDate;
   }
 
-  public void setDocumentDate(java.sql.Timestamp documentDate) {
+  public void setDocumentDate(Timestamp documentDate) {
     this.documentDate = documentDate;
   }
 
 
-  public java.sql.Timestamp getDeliveryDate() {
+  public Timestamp getDeliveryDate() {
     return deliveryDate;
   }
 
-  public void setDeliveryDate(java.sql.Timestamp deliveryDate) {
+  public void setDeliveryDate(Timestamp deliveryDate) {
     this.deliveryDate = deliveryDate;
   }
 
@@ -128,11 +128,11 @@ public class ErpOrder {
   }
 
 
-  public java.sql.Timestamp getCreateTime() {
+  public Timestamp getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(java.sql.Timestamp createTime) {
+  public void setCreateTime(Timestamp createTime) {
     this.createTime = createTime;
   }
 

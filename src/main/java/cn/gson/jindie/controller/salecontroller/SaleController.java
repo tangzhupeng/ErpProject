@@ -9,6 +9,9 @@ import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 import cn.gson.jindie.model.service.orderservice.*;
 import cn.gson.jindie.model.service.perservice.EmpService;
+import cn.gson.jindie.model.service.txyservice.TxyCustomerService;
+import cn.gson.jindie.model.service.txyservice.TxyProductService;
+import cn.gson.jindie.model.service.txyservice.TxyStoreService;
 import cn.gson.jindie.view.OrderDetailsVo;
 import cn.gson.jindie.view.ParameterVo;
 import cn.gson.jindie.view.SaleOrderVo;
@@ -28,16 +31,16 @@ public class SaleController {
     private ErpOrderDetailsService erpOrderDetailsService;
 
     @Autowired
-    private ProductService productService;
+    private TxyProductService productService;
 
     @Autowired
-    private StoreService storeService;
+    private TxyStoreService storeService;
 
     @Autowired
     private EmpService empService;
 
     @Autowired
-    private CustomerService customerService;
+    private TxyCustomerService customerService;
 
     @GetMapping("/findAllSaleOrder")
     public PageInfo<ErpOrder> findAllSaleOrder(ParameterVo parameterVo){
@@ -112,9 +115,6 @@ public class SaleController {
     public List<ErpCustomer> findAllCustomers() {
         try {
             List<ErpCustomer> erpCustomers = customerService.findAllCustomers();
-            for (ErpCustomer erpCustomer : erpCustomers) {
-                System.out.println("客户"+erpCustomer);
-            }
             return erpCustomers;
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,9 +127,6 @@ public class SaleController {
     public List<ErpEmp> findAllEmp() {
         try {
             List<ErpEmp> erpEmps = empService.findAllEmp();
-            for (ErpEmp erpEmp : erpEmps) {
-                System.out.println("员工"+erpEmp);
-            }
             return erpEmps;
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,9 +139,6 @@ public class SaleController {
     public List<ErpStore> findAllStore() {
         try {
             List<ErpStore> erpStores = storeService.findAllStore();
-            for (ErpStore erpStore : erpStores) {
-                System.out.println("仓库"+erpStore);
-            }
             return erpStores;
         } catch (Exception e) {
             e.printStackTrace();
@@ -155,6 +149,7 @@ public class SaleController {
     //新增采购单，采购单产品详情
     @PostMapping("/addOrder")
     public String addOrder(@RequestBody SaleOrderVo saleOrderVo) {
+        System.out.println(saleOrderVo);
         try {
             Boolean aBoolean = orderService.addOrder(saleOrderVo);
             System.out.println(saleOrderVo.toString());

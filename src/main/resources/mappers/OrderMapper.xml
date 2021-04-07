@@ -20,7 +20,6 @@
         <result property="currentExaminer" column="current_examiner" />
 
         <association property="erpCustomer" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
-            <id property="empId" column="emp_id"/>
             <result property="customerName" column="customer_name" />
             <result property="customerPeople" column="customer_people" />
             <result property="customerPhone" column="customer_phone" />
@@ -47,6 +46,7 @@
 
 
     <select id="findAllSaleOrder" resultMap="orderMap">
+
         select * from erp_order eo
             left join erp_customer ec on eo.customer_id = ec.customer_id
             left join erp_emp ee on eo.emp_id = ee.emp_id
@@ -56,11 +56,9 @@
             <if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
                 and eo.document_date >= #{startTime} and eo.document_date &lt; #{endTime}
             </if>
-
             <if test="status != null">
-                and eo.order_status = #{status}
+                and eo.approval_status = #{status}
             </if>
-
             <if test="empNameOrStoreNameOrNumber != null and empNameOrStoreNameOrNumber != ''">
                 and (es.store_name like #{empNameOrStoreNameOrNumber}
                 or ee.emp_name like #{empNameOrStoreNameOrNumber}
@@ -85,7 +83,6 @@
         <result property="currentExaminer" column="current_examiner"/>
 
         <association property="erpCustomer" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomer">
-            <id property="empId" column="emp_id"/>
             <result property="customerName" column="customer_name" />
             <result property="customerPeople" column="customer_people" />
             <result property="customerPhone" column="customer_phone" />
@@ -118,9 +115,8 @@
         left join erp_emp ee on edo.emp_id = ee.emp_id
         left join erp_store es on edo.store_id = es.store_id
         <where>
-
             <if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
-                and edo.delivery_time >= #{startTime} and edo.delivery_time &lt; #{endTime}
+                edo.delivery_time >= #{startTime} and edo.delivery_time &lt; #{endTime}
             </if>
 
             <if test="status != null">
@@ -132,29 +128,21 @@
                 or ee.emp_name like #{empNameOrStoreNameOrNumber}
                 or edo.order_number like #{empNameOrStoreNameOrNumber})
             </if>
-
         </where>
     </select>
 
 
 
 
-    <!--    <insert id="addPurchase">
-        insert into purchase_order
-        (supplier_id,warehouse_id,emp_id,p_o_purchasenumber,p_o_documentdate,
-         p_o_deliverydate,p_o_purchasingstaff,p_o_approvalstatus,p_o_finalapprovaltime,
-         p_o_executionstatus,p_o_repositorystatus,p_o_notesondocuments,p_w_warehousingnumber)
-        values(23,34,45,{},'2021-04-02 22:07:10','2021-04-02 23:08:10','刘文博',3,
-               '2021-04-03 16:07:11',1,0,null,null)
-    </insert>-->
+
     <!--新增订单-->
-    <insert id="addOrder" parameterType="cn.gson.jindie.model.pojos.salespojos.ErpOrder">
+    <insert id="addOrder" parameterType="cn.gson.jindie.model.pojos.salespojos.ErpOrder" useGeneratedKeys="true" keyProperty="orderId"  keyColumn="order_id">
         INSERT INTO erp_order
         (order_number,document_date,delivery_date,account_receivable,payment_received,
         delivery_status,creator_person,create_time,approval_status,order_status
         ,delivery_order_number,customer_id,emp_id,store_id,current_examiner)
         values (#{orderNumber},#{documentDate},#{deliveryDate},#{accountReceivable},#{paymentReceived},
-        #{deliveryStatus},#{creatorPerson},#{createTime},3,2,#{deliveryOrderNumber},#{erpCustomer.customerId},
+        #{deliveryStatus},#{creatorPerson},#{createTime},3,2,#{deliveryOrderNumber},#{erpCustomer.customerId}
         ,#{erpEmp.empId},#{erpStore.storeId},#{currentExaminer})
     </insert>
     <!--新增采购单详情表-->

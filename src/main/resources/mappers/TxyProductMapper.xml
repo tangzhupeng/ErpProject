@@ -108,4 +108,41 @@
     <select id="storeByName" resultMap="stores">
         select * from erp_store
     </select>
+
+    <resultMap id="ProductMap" type="cn.gson.jindie.model.pojos.txypojos.ErpProduct">
+        <id property="productId" column="product_id" />
+        <result property="productName" column="product_name"/>
+        <result property="productPicture" column="product_picture"/>
+        <result property="productMoney" column="product_money"/>
+        <result property="productPrice" column="product_price"/>
+        <result property="productPf" column="product_pf"/>
+        <result property="productVip" column="product_vip"/>
+        <result property="productDw" column="product_dw"/>
+        <result property="productNumber" column="product_number" />
+        <result property="productState" column="product_state"/>
+
+        <association property="protype" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProductType">
+            <id property="protypeId" column="protype_id"/>
+            <result property="protypeName" column="protype_name"/>
+        </association>
+
+    </resultMap>
+
+    <select id="findAllProduct" parameterType="cn.gson.jindie.model.pojos.txypojos.ErpProduct" resultMap="ProductMap">
+        select * from erp_product  ep
+        left join erp_product_type ept
+        on ep.protype_id = ept.protype_id
+        <where>
+            <if test="productNumber != null and productNumber !=''">
+                and ep.product_number like concat('%', #{productNumber}, '%')
+            </if>
+            <if test="productName != null and productName != ''">
+                and ep.product_name like concat('%', #{productName}, '%')
+            </if>
+            <if test="protypeId != null and protypeId != ''">
+                and ep.protype_id like concat('%', #{protypeId}, '%')
+            </if>
+        </where>
+    </select>
+
 </mapper>
