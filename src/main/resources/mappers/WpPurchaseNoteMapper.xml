@@ -46,7 +46,7 @@
 
     <insert id="addPurNote">
         insert into erp_buying_order values(
-        "${boNumber}","${boDate}","${poNumber.poNumber}",0,0
+        "${boNumber}","${boDate}","${poNumber.poNumber}","${poNumber.poMoney}",0
         )
     </insert>
 
@@ -71,7 +71,7 @@
     <select id="findAllPurNoteX" resultMap="puNote">
         select * from erp_buying_order ebo
         left join erp_p_order_master epom on ebo.po_number = epom.po_number
-        where ebo.consumed != ebo.notconsumed
+        where ebo.consumed != ebo.notconsumed and epom.provider_id=#{providerId}
     </select>
 
     <update id="updateboEastate">

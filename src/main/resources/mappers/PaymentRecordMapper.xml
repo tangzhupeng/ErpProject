@@ -76,11 +76,8 @@
             <if test="empState !=null and empState !='' ">
                and pr.emp_state like '%${empState}%'
             </if>
-            <if test="payment.provider.providerId !=null and provider.provider.providerId !=''">
-                and ec.provider_id like '%${payment.provider.providerId}%'
-            </if>
             <if test="payment.preparedBy !=null and payment.preparedBy !=''">
-                and pro.prepared_by like '%${payment.preparedBy}%'
+                and p.prepared_by like '%${payment.preparedBy}%'
             </if>
             <if test="account.accountId !=null and account.accountId !='' ">
                 and ac.account_id like '%${account.accountId}%'
@@ -88,9 +85,8 @@
             <if test="recordRemark !=null and recordRemark !=''">
                 and pr.record_remark like '%${recordRemark}%'
             </if>
-
-
         </where>
+        order by p.payment_time desc
     </select>
 
 

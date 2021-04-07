@@ -49,7 +49,7 @@
     <update id="upNotConsumed">
         update erp_buying_order set notconsumed=notconsumed-#{paymentHxMoney},
         consumed=notconsumed+#{paymentHxMoney}
-        where bo_number=#{boNumber.boNumber}
+        where bo_number=#{boNumber}
     </update>
 
     <!--新增收款单时修改账号的金额-->

@@ -45,7 +45,7 @@
     <select id="SerReceiptRecord" resultMap="ReceiptRecord">
         select * from erp_receipt_record re
         left join erp_receipt er on re.receipt_id = er.receipt_id
-        left join erp_emp ee on er.emp_id = ee.emp_id
+        left join erp_emp ee on er.emp_id=ee.emp_id
         left join erp_customer ec on er.customer_id = ec.customer_id
 		left join erp_account ac on re.account_id=ac.account_id
 		left join erp_delivery_order deo on deo.delivery_order_id=re.delivery_order_id
@@ -54,9 +54,6 @@
                 and  er.receipt_id  like '%${reWay}%'
                 or  ec.customer_name like '%${reWay}%'
                 or re.re_remark like '%${reWay}%'
-            </if>
-            <if test="receipt.emp.empId !=null and receipt.emp.empId !='' ">
-               and ee.emp_id like '%${receipt.emp.empId}%'
             </if>
             <if test="empState !=null and empState !='' ">
                and re.emp_state like '%${empState}%'
@@ -73,9 +70,8 @@
             <if test="reRemark !=null and reRemark !=''">
                 and re_remark like '%${reRemark}%'
             </if>
-
-
         </where>
+        order by  er.receipt_time desc
     </select>
 
 

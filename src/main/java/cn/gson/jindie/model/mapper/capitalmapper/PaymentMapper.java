@@ -27,7 +27,7 @@ public interface PaymentMapper {
     public void upProviderMoney(ErpPayment payment);
 
     //新增付款单时修改未销金额
-    public void upNotConsumed(ErpPayment payment);
+    public void upNotConsumed(Double paymentHxMoney,String boNumber);
 
     //新增付款单时修改账号的金额
     public void upRecordMoney(ErpPaymentRecord paymentRecord);

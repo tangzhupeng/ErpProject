@@ -30,7 +30,9 @@
         </association>
     </resultMap>
 
-
+    <select id="allProduct" resultMap="product">
+        select * from erp_product
+    </select>
 
     <!--查询下架商品-->
     <select id="selectXjGoods" resultMap="product">

@@ -122,7 +122,7 @@ public class SaleController {
     @GetMapping("/findAllEmp")
     public List<ErpEmp> findAllEmp() {
         try {
-            List<ErpEmp> erpEmps = empService.findAllEmp();
+            List<ErpEmp> erpEmps = empService.selectAllEmp();
             return erpEmps;
         } catch (Exception e) {
             e.printStackTrace();

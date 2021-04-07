@@ -79,11 +79,11 @@ public class WpPurchaseController {
         return wpPurchaseService.findStore();
     }
 
-    /*@RequestMapping("/find-product")
+    @RequestMapping("/find-product")
     @ResponseBody
     public List<ErpProduct> allProduct(){
         return wpPurchaseService.allProduct();
-    }*/
+    }
 
     @RequestMapping("/find-pdid")
     @ResponseBody

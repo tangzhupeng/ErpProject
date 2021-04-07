@@ -40,8 +40,8 @@ public class PaymentService {
     }
 
     //查询所有的采购单
-    public List<ErpBuyingOrder> findAllPurNoteX(){
-        return purchaseNoteMapper.findAllPurNoteX();
+    public List<ErpBuyingOrder> findAllPurNoteX(Integer providerId){
+        return purchaseNoteMapper.findAllPurNoteX(providerId);
     }
 
 
@@ -66,7 +66,7 @@ public class PaymentService {
             //修改客户的欠款金额
             paymentMapper.upProviderMoney(payment);
             //修改销货单的核销金额
-//            paymentMapper.upNotConsumed(payment);
+            paymentMapper.upNotConsumed(payment.getPaymentHxMoney(),payment.getPaymentRecord().getBoNumber().getBoNumber());
             //新增收款单时修改账号的金额
             paymentMapper.upRecordMoney(payment.getPaymentRecord());
 

@@ -22,20 +22,20 @@ public class ReceiptRecordController {
     @Autowired
     ReceiptRecordService receiptRecordService;
 
-//    //查询所有收款记录
-//    @RequestMapping("/SerReceiptRecord")
-//    @ResponseBody
-//    public Map<String, Object> SerReceiptRecord(Integer pageNum, Integer size, String receiptRecord) {
-//        Map<String, Object> map = new HashMap<>();
-//
-//        ErpReceiptRecord  receipt= JSONObject.toJavaObject(JSON.parseObject(receiptRecord), ErpReceiptRecord.class);
-//        Page<Object> page = PageHelper.startPage(pageNum, size);
-//        List<ErpReceiptRecord> erpReceiptRecords = receiptRecordService.SerReceiptRecord(receipt);
-//        map.put("total", page.getTotal());
-//        map.put("rows", erpReceiptRecords);
-//
-//        return map;
-//    }
+    //查询所有收款记录
+    @RequestMapping("/SerReceiptRecord")
+    @ResponseBody
+    public Map<String, Object> SerReceiptRecord(Integer pageNum, Integer size, String receiptRecord) {
+        Map<String, Object> map = new HashMap<>();
+
+        ErpReceiptRecord  receipt= JSONObject.toJavaObject(JSON.parseObject(receiptRecord), ErpReceiptRecord.class);
+        Page<Object> page = PageHelper.startPage(pageNum, size);
+        List<ErpReceiptRecord> erpReceiptRecords = receiptRecordService.SerReceiptRecord(receipt);
+        map.put("total", page.getTotal());
+        map.put("rows", erpReceiptRecords);
+
+        return map;
+    }
 
 
     //根据id删除对应的收款单记录
@@ -59,4 +59,6 @@ public class ReceiptRecordController {
     public void upEmpState(@RequestBody List<ErpReceiptRecord> receiptRecords){
        receiptRecordService.upEmpState(receiptRecords);
     }
+
+
 }

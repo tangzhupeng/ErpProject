@@ -15,5 +15,5 @@ public interface PurchaseNoteMapper {
     public List<ErpBuyingOrder> findAllPurNoteT(String boNumber);
     public void updateboEastate(ErpBuyingOrder erpBuyingOrder);
     //查询所有的采购单
-    public List<ErpBuyingOrder> findAllPurNoteX();
+    public List<ErpBuyingOrder> findAllPurNoteX(Integer providerId);
 }

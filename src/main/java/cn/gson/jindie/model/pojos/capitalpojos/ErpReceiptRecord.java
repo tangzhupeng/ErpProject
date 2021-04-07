@@ -116,9 +116,12 @@ public class ErpReceiptRecord {
                 ", reMark='" + reMark + '\'' +
                 ", reMoney=" + reMoney +
                 ", reRemark='" + reRemark + '\'' +
+                ", empState=" + empState +
+                ", empName='" + empName + '\'' +
                 ", receipt=" + receipt +
                 ", account=" + account +
                 ", deliveryOrder=" + deliveryOrder +
+                ", empDao=" + empDao +
                 '}';
     }
 }

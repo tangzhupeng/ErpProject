@@ -23,6 +23,9 @@ public class ErpEmp {
     }
     public ErpEmp(){}
 
+    public ErpEmp(Integer empId) {
+    }
+
     public List<ErpRole> getRoleList() {
         return roleList;
     }

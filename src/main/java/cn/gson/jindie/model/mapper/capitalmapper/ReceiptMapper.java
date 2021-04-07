@@ -17,7 +17,7 @@ import java.util.List;
 public interface ReceiptMapper {
 
     //查询销货单
-    public List<ErpDeliveryOrder> SerDeliveryOrder();
+    public List<ErpDeliveryOrder> SerDeliveryOrder(Integer customerId);
 
     //根据销货id，查询对应的销货单
     public List<ErpDeliveryOrder> findByDeliveryOrderId(Integer deliveryOrderId);
@@ -32,7 +32,7 @@ public interface ReceiptMapper {
     public void upCustomerMoney(ErpReceipt receipt);
 
     //新增收款单时修改未销金额
-    public void upUnverifiedAmount(ErpReceipt receipt);
+    public void upUnverifiedAmount(Double receiptHxMoney,Integer deliveryOrderId);
 
     //新增收款单时修改账号的金额
     public void upAccountMoney(ErpReceiptRecord receiptRecord);

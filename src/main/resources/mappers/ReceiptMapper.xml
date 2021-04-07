@@ -38,6 +38,7 @@
     <!--查询销货单-->
     <select id="SerDeliveryOrder" resultMap="DeliveryOrder">
         select * from erp_delivery_order where cancelledAmount!=receivables
+        and customer_id=#{customerId}
     </select>
 
     <!--根据销货id，查询对应的销货单-->
@@ -59,14 +60,15 @@
 
     <!--新增收款单时修改客户的欠款金额-->
     <update id="upCustomerMoney">
-        update erp_customer set customer_money=customer_money+#{receiptMoney} where customer_id=#{customer.customerId}
+        update erp_customer set customer_money=customer_money+#{receiptMoney}
+        where customer_id=#{customer.customerId}
     </update>
 
     <!--新增收款单时修改未销金额，以销金额-->
     <update id="upUnverifiedAmount">
         update erp_delivery_order set unverifiedAmount=receivables-#{receiptHxMoney},
         cancelledAmount=cancelledAmount+#{receiptHxMoney}
-        where delivery_order_id=#{deliveryOrder.deliveryOrderId}
+        where delivery_order_id=#{deliveryOrderId}
     </update>
 
     <!--新增收款单时修改账号的金额-->

@@ -40,8 +40,11 @@ public class ReceiptRecordService {
 
     //根据id修改审批状态
     public void upEmpState(List<ErpReceiptRecord> receiptRecords){
+
         receiptRecords.forEach(v->{
             receiptRecordMapper.upEmpState(v.getReId());
         });
     }
+
+
 }

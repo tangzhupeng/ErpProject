@@ -32,7 +32,7 @@ public interface TxyProductMapper {
     //查看仓库名称
     public List<ErpStore> storeByName();
 
-
+    public List<ErpProduct> allProduct();
     //查询所有商品
     public List<ErpProduct> allProduct2(Integer sid);
     //    按状态查询

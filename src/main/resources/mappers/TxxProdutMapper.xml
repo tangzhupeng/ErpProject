@@ -19,8 +19,5 @@
         </association>
     </resultMap>
     <!--查询所有商品-->
-    <select id="allProduct" resultMap="products">
-        select * from erp_product e
-        left join erp_store es on e.store_id = es.store_id
-    </select>
+
 </mapper>

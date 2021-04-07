@@ -33,8 +33,8 @@ public class PaymentController {
     @RequestMapping("/findAllPurNoteXX")
     @ResponseBody
     //查询所有的采购单
-    public List<ErpBuyingOrder> findAllPurNoteX(){
-        return paymentService.findAllPurNoteX();
+    public List<ErpBuyingOrder> findAllPurNoteX(Integer providerId){
+        return paymentService.findAllPurNoteX(providerId);
     }
 
 

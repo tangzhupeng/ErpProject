@@ -25,8 +25,8 @@ public class ReceiptService {
     ReceiptMapper receiptMapper;
 
     //查询所有销货单
-    public List<ErpDeliveryOrder> SerDeliveryOrder(){
-        return receiptMapper.SerDeliveryOrder();
+    public List<ErpDeliveryOrder> SerDeliveryOrder(Integer customerId){
+        return receiptMapper.SerDeliveryOrder(customerId);
     }
 
     //根据销货id，查询对应的销货单
@@ -55,7 +55,7 @@ public class ReceiptService {
             //修改客户的欠款金额
             receiptMapper.upCustomerMoney(erpReceipt);
             //修改销货单的核销金额
-            receiptMapper.upUnverifiedAmount(erpReceipt);
+            receiptMapper.upUnverifiedAmount(erpReceipt.getReceiptHxMoney(),erpReceipt.getReceiptRecords().getDeliveryOrder().getDeliveryOrderId());
             //新增收款单时修改账号的金额
             receiptMapper.upAccountMoney(erpReceipt.getReceiptRecords());
 

@@ -21,8 +21,8 @@ public class ReceiptController {
 
     @RequestMapping("/SerDeliveryOrder")
     @ResponseBody
-    public List<ErpDeliveryOrder>  SerDeliveryOrder(){
-        return receipt.SerDeliveryOrder();
+    public List<ErpDeliveryOrder>  SerDeliveryOrder(Integer customerId){
+        return receipt.SerDeliveryOrder(customerId);
     }
 
     @RequestMapping("/findByDeliveryOrderId")
@@ -42,9 +42,6 @@ public class ReceiptController {
     @RequestMapping("/InReceipt")
     @ResponseBody
     public void InReceipt(@RequestBody ErpReceipt erpReceipt){
-        System.out.println("客户"+erpReceipt.getCustomer());
-        System.out.println("销货单"+erpReceipt.getReceiptRecords().getDeliveryOrder());
-        System.out.println("账号"+erpReceipt.getReceiptRecords().getAccount());
 
         receipt.InReceipt(erpReceipt);
     }

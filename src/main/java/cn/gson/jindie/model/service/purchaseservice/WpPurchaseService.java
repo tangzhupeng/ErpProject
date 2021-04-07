@@ -73,12 +73,6 @@ public class WpPurchaseService {
         });
     }
 
-    // 新增销售订单从表
-//    public void addDPurO(ErpPOrderDetail erpPOrderDetail){
-//        System.out.println("sbhz"+ztiem);
-//
-//    }
-
     public void updatepoEastate(ErpPOrderMaster erpPOrderMaster){
         purchaseMapper.updatepoEastate(erpPOrderMaster);
     }
@@ -93,8 +87,8 @@ public class WpPurchaseService {
         return txyStoreMapper.findStore();
     }
 
-////查询商品
-//    public List<ErpProduct> allProduct(){
-//        return txxProductMapper.allProduct();
-//    }
+//查询商品
+    public List<ErpProduct> allProduct(){
+        return txxProductMapper.allProduct();
+    }
 }
