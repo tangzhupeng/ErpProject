@@ -17,4 +17,6 @@ public interface TxyAccountMapper {
     public void updateAccount(Integer accountId);
     //冻结账户
     public void deleteAccount(Integer accountId);
+    //恢复账户
+    public void hfAccount(Integer accountId);
 }

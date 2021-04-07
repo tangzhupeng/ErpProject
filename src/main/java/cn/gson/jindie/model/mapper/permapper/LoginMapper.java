@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LoginMapper {
     public ErpEmp findUserLogin(String name);
+
 }

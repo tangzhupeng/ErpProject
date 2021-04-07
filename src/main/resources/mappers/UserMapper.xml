@@ -13,9 +13,13 @@
     <select id="findUserLogin" resultMap="login">
         select * from erp_emp where emp_name = #{empName}
     </select>
-<!--    <select id="selectEmpRoleByEid" resultType="cn.gson.jindie.model.pojos.perpojos.ErpRole">-->
+
+
+
+<!--    <select id="selectRoleByEid" resultType="cn.gson.jindie.model.pojos.perpojos.ErpRole">-->
 <!--        select * from erp_role where role_id in-->
 <!--        (select role_id from erp_emp_role where emp_id={role_id})-->
 <!--    </select>-->
+
 </mapper>
 

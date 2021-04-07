@@ -6,51 +6,116 @@
         <result column="customer_people" property="customerPeople"></result>
         <result column="customer_phone" property="customerPhone"></result>
         <result column="customer_location" property="customerLocation"></result>
+        <result column="customer_dizhi" property="customerDizhi"></result>
         <result column="customer_money" property="customerMoney"></result>
         <result column="customer_time" property="customerTime"></result>
         <result column="customer_state" property="customerState"></result>
-<!--        <association property="emps" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">-->
-<!--            <id column="emp_id" property="empId"></id>-->
-<!--            <result column="emp_name" property="empName"></result>-->
-<!--        </association>-->
+        <association property="emps" javaType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+            <id column="emp_id" property="empId"></id>
+            <result column="emp_name" property="empName"></result>
+        </association>
         <association property="grades" javaType="cn.gson.jindie.model.pojos.txypojos.ErpCustomerGrade">
             <id column="grade_id" property="gradeId"></id>
             <result column="grade_name" property="gradeName"></result>
         </association>
     </resultMap>
 
-    <!--查询所有客户-->
+    <!--分页，模糊查询所有客户-->
     <select id="allCustomer" resultMap="customer">
-        select * from erp_customer c left join erp_emp e on c.emp_id=e.emp_id
+        select * from erp_customer c
+        left join erp_emp e on c.emp_id=e.emp_id
         left join erp_customer_grade g on g.grade_id=c.grade_id
+        <where>
+          and c.customer_state=1
+            <if test="customerName != null and customerName != ''">
+                and c.customer_id like '%${customerName}%'
+                or c.customer_name like '%${customerName}%'
+                or c.customer_people like '%${customerName}%'
+                or e.emp_name like '%${customerName}%'
+                or c.customer_phone like '%${customerName}%'
+                or c.customer_dizhi like '%${customerName}%'
+            </if>
+            <if test="grades != null">
+                <if test="grades.gradeName != null and grades.gradeName != ''">
+                    and grade_name like '%${grades.gradeName}%'
+                </if>
+            </if>
+            <if test="emps != null">
+                <if test="emps.empName != null and emps.empName !=''">
+                    and emp_name like '%${emps.empName}%'
+                </if>
+            </if>
+        </where>
+        order by c.customer_time desc
+    </select>
+
+    <!--查询包含销售人员的客户-->
+    <select id="haveEmp" resultMap="customer">
+        select * from erp_customer c
+        left join erp_emp e on c.emp_id=e.emp_id
+        left join erp_customer_grade g on g.grade_id=c.grade_id
+        where c.emp_id!=0
+    </select>
+
+    <!--查询禁用客户-->
+    <select id="notState" resultMap="customer">
+        select * from erp_customer c
+        left join erp_emp e on c.emp_id=e.emp_id
+        left join erp_customer_grade g on g.grade_id=c.grade_id
+        where c.customer_state=0
+    </select>
+
+    <!--查询所有客户-->
+    <select id="SerCustomer" resultMap="customer">
+        select * from erp_customer where customer_state=1
     </select>
 
     <!--新增客户-->
     <insert id="addCustomer">
-        insert into erp_customer(customer_name,customer_people,customer_phone,customer_location,emp_id,customer_time)
-        values(#{customerName},#{customerPeople},#{customerPhone},#{customerLocation},#{emps},#{customerTime})
+        insert into erp_customer(customer_name,customer_people,customer_phone,customer_location,customer_dizhi,emp_id,grade_id,customer_time)
+        values(#{customerName},#{customerPeople},#{customerPhone},#{customerLocation},#{customerDizhi},#{emps.empId},#{grades.gradeId},#{customerTime})
     </insert>
 
-<!--    &lt;!&ndash;查询职员&ndash;&gt;-->
-<!--    <select id="selectUser" resultMap="customer">-->
-<!--        select emp_name from erp_emp-->
-<!--    </select>-->
+    <!--查询职员-->
+    <resultMap id="emp" type="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+        <id column="emp_id" property="empId"></id>
+        <result column="emp_name" property="empName"></result>
+    </resultMap>
+    <select id="selectUser" resultMap="emp">
+        select * from erp_emp
+    </select>
 
-<!--    &lt;!&ndash;查询客户等级&ndash;&gt;-->
-<!--    <select id="selectGrade">-->
-<!--        select grade_name from erp_customer_grade-->
-<!--    </select>-->
+    <!--查询客户等级-->
+    <resultMap id="grade" type="cn.gson.jindie.model.pojos.txypojos.ErpCustomerGrade">
+        <id column="grade_id" property="gradeId"></id>
+        <result column="grade_name" property="gradeName"></result>
+    </resultMap>
+    <select id="selectGrade" resultMap="grade">
+        select * from erp_customer_grade
+    </select>
 
     <!--修改客户-->
     <update id="updateCustomer">
         update erp_customer set customer_name=#{customerName},customer_people=#{customerPeople},
-        customer_phone=#{customerPhone},customer_location=#{customerLocation},emp_id=#{emps}
+        customer_phone=#{customerPhone},customer_location=#{customerLocation},customer_dizhi=#{customerDizhi},
+        emp_id=#{emps.empId},grade_id=#{grades.gradeId}
         where customer_id=#{customerId}
     </update>
 
-    <!--删除客户（逻辑删除）-->
-    <update id="deleteCustomer">
+    <!--禁用客户-->
+    <update id="jyCustomer">
         update erp_customer set customer_state=0
         where customer_id=#{customerId}
     </update>
+
+    <!--恢复客户-->
+    <update id="hfCustomer">
+        update erp_customer set customer_state=1
+        where customer_id=#{customerId}
+    </update>
+
+    <!--删除客户-->
+    <delete id="deleteCustomer">
+        delete from erp_customer where customer_id=#{customerId}
+    </delete>
 </mapper>

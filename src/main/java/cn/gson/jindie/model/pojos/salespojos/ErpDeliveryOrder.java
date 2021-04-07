@@ -4,15 +4,19 @@ package cn.gson.jindie.model.pojos.salespojos;
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ErpDeliveryOrder {
 
   private Integer deliveryOrderId;
   private String deliveryOrderNumber;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private java.sql.Timestamp deliveryTime;
   private double receivables;
   private Integer deliveryStatus;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private java.sql.Timestamp createTime;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private java.sql.Timestamp updateTime;
   private Integer approvalStatus;
   private String orderNumber;
@@ -165,4 +169,25 @@ public class ErpDeliveryOrder {
     this.currentExaminer = currentExaminer;
   }
 
+  @Override
+  public String toString() {
+    return "ErpDeliveryOrder{" +
+            "deliveryOrderId=" + deliveryOrderId +
+            ", deliveryOrderNumber='" + deliveryOrderNumber + '\'' +
+            ", deliveryTime=" + deliveryTime +
+            ", receivables=" + receivables +
+            ", deliveryStatus=" + deliveryStatus +
+            ", createTime=" + createTime +
+            ", updateTime=" + updateTime +
+            ", approvalStatus=" + approvalStatus +
+            ", orderNumber='" + orderNumber + '\'' +
+            ", salesReturnsNumber='" + salesReturnsNumber + '\'' +
+            ", erpCustomer=" + erpCustomer +
+            ", erpEmp=" + erpEmp +
+            ", erpStore=" + erpStore +
+            ", unverifiedAmount=" + unverifiedAmount +
+            ", cancelledAmount=" + cancelledAmount +
+            ", currentExaminer='" + currentExaminer + '\'' +
+            '}';
+  }
 }

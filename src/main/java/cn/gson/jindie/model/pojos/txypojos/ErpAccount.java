@@ -58,5 +58,15 @@ public class ErpAccount {
         this.accountState = accountState;
     }
 
-
+    @Override
+    public String toString() {
+        return "ErpAccount{" +
+                "accountId=" + accountId +
+                ", accountName='" + accountName + '\'' +
+                ", accountBalance='" + accountBalance + '\'' +
+                ", accountMoney='" + accountMoney + '\'' +
+                ", accountTime=" + accountTime +
+                ", accountState=" + accountState +
+                '}';
+    }
 }

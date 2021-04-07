@@ -1,10 +1,14 @@
 package cn.gson.jindie.model.pojos.capitalpojos;
 
-import cn.gson.jindie.model.pojos.PerPojos.ErpEmp;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
+@Entity
+@Table(name = "erp_payment", schema = "", catalog = "erp3")
 public class ErpPayment {
     private String paymentId;
     private Timestamp paymentTime;
@@ -19,6 +23,8 @@ public class ErpPayment {
 
 
 
+    @Id
+    @Column(name = "payment_id")
     public String getPaymentId() {
         return paymentId;
     }
@@ -27,33 +33,42 @@ public class ErpPayment {
         this.paymentId = paymentId;
     }
 
+//
+//    @ManyToOne
+//    @JoinColumn(name = "emp_id")
+//    public ErpEmp getEmp() {
+//        return emp;
+//    }
+//
+//    public void setEmp(ErpEmp emp) {
+//        this.emp = emp;
+//    }
+//
+//
+//    @ManyToOne
+//    @JoinColumn(name = "emp_audit_id")
+//    public ErpEmp getEmpAudit() {
+//        return empAudit;
+//    }
+//
+//    public void setEmpAudit(ErpEmp empAudit) {
+//        this.empAudit = empAudit;
+//    }
 
-    public ErpEmp getEmp() {
-        return emp;
-    }
 
-    public void setEmp(ErpEmp emp) {
-        this.emp = emp;
-    }
-
-
-    public ErpEmp getEmpAudit() {
-        return empAudit;
-    }
-
-    public void setEmpAudit(ErpEmp empAudit) {
-        this.empAudit = empAudit;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "provider_id")
+//    public ErpProvider getProvider() {
+//        return provider;
+//    }
+//
+//    public void setProvider(ErpProvider provider) {
+//        this.provider = provider;
+//    }
 
 
-    public ErpProvider getProvider() {
-        return provider;
-    }
-
-    public void setProvider(ErpProvider provider) {
-        this.provider = provider;
-    }
-
+    @Basic
+    @Column(name = "payment_time")
     public Timestamp getPaymentTime() {
         return paymentTime;
     }
@@ -62,6 +77,8 @@ public class ErpPayment {
         this.paymentTime = paymentTime;
     }
 
+    @Basic
+    @Column(name = "payment_money")
     public Double getPaymentMoney() {
         return paymentMoney;
     }
@@ -70,6 +87,8 @@ public class ErpPayment {
         this.paymentMoney = paymentMoney;
     }
 
+    @Basic
+    @Column(name = "payment_hxmoney")
     public Double getPaymentHxmoney() {
         return paymentHxmoney;
     }
@@ -78,6 +97,8 @@ public class ErpPayment {
         this.paymentHxmoney = paymentHxmoney;
     }
 
+    @Basic
+    @Column(name = "payment_discount")
     public Double getPaymentDiscount() {
         return paymentDiscount;
     }
@@ -86,6 +107,8 @@ public class ErpPayment {
         this.paymentDiscount = paymentDiscount;
     }
 
+    @Basic
+    @Column(name = "payment_remark")
     public String getPaymentRemark() {
         return paymentRemark;
     }
@@ -94,7 +117,23 @@ public class ErpPayment {
         this.paymentRemark = paymentRemark;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ErpPayment that = (ErpPayment) o;
+        return Objects.equals(paymentId, that.paymentId) &&
+                Objects.equals(paymentTime, that.paymentTime) &&
+                Objects.equals(paymentMoney, that.paymentMoney) &&
+                Objects.equals(paymentHxmoney, that.paymentHxmoney) &&
+                Objects.equals(paymentDiscount, that.paymentDiscount) &&
+                Objects.equals(paymentRemark, that.paymentRemark);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(paymentId, paymentTime, paymentMoney, paymentHxmoney, paymentDiscount, paymentRemark);
+    }
 
     @Override
     public String toString() {
