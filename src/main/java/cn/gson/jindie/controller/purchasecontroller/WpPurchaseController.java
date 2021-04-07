@@ -67,7 +67,7 @@ public class WpPurchaseController {
     }
 
 
-    @RequestMapping("/find-provider")
+    @RequestMapping("/findprovider")
     @ResponseBody
     public List<ErpProvider> findProvider(){
         return wpPurchaseService.findProvider();
