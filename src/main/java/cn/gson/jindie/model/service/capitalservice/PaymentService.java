@@ -66,7 +66,7 @@ public class PaymentService {
             //修改客户的欠款金额
             paymentMapper.upProviderMoney(payment);
             //修改销货单的核销金额
-            paymentMapper.upNotConsumed(payment);
+//            paymentMapper.upNotConsumed(payment);
             //新增收款单时修改账号的金额
             paymentMapper.upRecordMoney(payment.getPaymentRecord());
 

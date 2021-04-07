@@ -30,13 +30,13 @@
 
     <!--新增付款单-->
     <insert id="InPayment">
-        insert into erp_receipt values (#{paymentId},#{emp.empId},#{preparedBy},
-        #{paymentTime},#{paymentMoney},#{paymentHxMoney},#{paymentDiscount},#{provider.providerId})
+        insert into erp_payment values (#{paymentId},#{emp.empId},#{provider.providerId},
+        #{paymentTime},#{paymentMoney},#{paymentHxMoney},#{paymentDiscount},#{preparedBy})
     </insert>
 
     <!--新增付款记录单-->
     <insert id="InPaymentRecord">
-        insert into erp_receipt_record values (#{recordId},#{payment.paymentId},#{account.accountId},
+        insert into erp_payment_record values (#{recordId},#{payment.paymentId},#{account.accountId},
         #{boNumber.boNumber},#{recordMark},#{recordMoney},#{recordRemark},#{recordMark},#{empName},#{empState})
     </insert>
 
@@ -47,7 +47,7 @@
 
     <!--新增收款单时修改未销金额，以销金额-->
     <update id="upNotConsumed">
-        update erp_buying_order set notconsumed=#{boNumber.poNumber.poMoney}-#{paymentHxMoney},
+        update erp_buying_order set notconsumed=notconsumed-#{paymentHxMoney},
         consumed=notconsumed+#{paymentHxMoney}
         where bo_number=#{boNumber.boNumber}
     </update>
