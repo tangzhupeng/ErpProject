@@ -42,13 +42,13 @@ public class EmpController {
         empService.updateEmp(emp);
     }
 
-
 //    //删除员工
-//    @GetMapping("/deleteEmp")
-//    @ResponseBody
-//    public void deleteEmp(Integer empid){
-//        empService.deleteEmp(empid);
-//    }
+    @PostMapping("/deleteEmp")
+    @ResponseBody
+    public Integer deleteEmp(Integer empId){
+//        System.out.print(empid);
+        return empService.deleteEmp(empId);
+    }
 
 
 }

@@ -17,8 +17,12 @@ public class EmpPerService {
     @Autowired
     private EmpPerMapper empPerMapper;
 
-    public ErpEmp findUserLogin(String name){
-        return empPerMapper.findPerLogin(name);
-    }
+        public EmpPerVo findPerLogin(String name) {
+            EmpPerVo empPerVo = new EmpPerVo();
+            empPerVo.setEmpName(empPerMapper.findPerLogin(name).getEmpName());
+            empPerVo.setPassword(empPerMapper.findPerLogin(name).getPassword());
+            empPerVo.setRoles(empPerMapper.findPerLogin(name).getPermissionList().get(0).getPerName());
 
+        return empPerVo;
+    }
 }

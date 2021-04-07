@@ -2,12 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.gson.jindie.model.mapper.permapper.EmpRoleMapper">
-    <resultMap id="emp_role" type="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
-        <id column="epm_id" property="empId"></id>
-        <result column="emp_name" property="empName"></result>
-        <result column="password" property="password"></result>
-        <result column="phone" property="phone"></result>
-        <result column="statu" property="statu"></result>
+    <resultMap id="emp_role" type="cn.gson.jindie.model.pojos.perpojos.ErpEmpRole">
+        <id column="emp_role_id" property="empRoleId"></id>
+        <result column="emp_id" property="empId"></result>
+        <result column="role_id" property="roleId"></result>
+        <collection property="empList" ofType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+            <id column="epm_id" property="empId"></id>
+            <result column="emp_name" property="empName"></result>
+            <result column="password" property="password"></result>
+            <result column="phone" property="phone"></result>
+            <result column="statu" property="statu"></result>
+        </collection>
         <collection property="roleList" ofType="cn.gson.jindie.model.pojos.perpojos.ErpRole">
             <id column="role_id" property="roleId"></id>
             <result column="role_name" property="roleName"></result>
@@ -15,13 +20,13 @@
     </resultMap>
 
     <select id="findEmpRole" resultMap="emp_role">
-            SELECT e.*,r.role_name FROM erp_emp_role er
+            SELECT er.emp_role_id,e.emp_name,r.role_name,e.statu FROM erp_emp_role er
             LEFT JOIN erp_emp e ON e.emp_id = er.emp_id
             LEFT JOIN erp_role r ON r.role_id = er.role_id
     </select>
 
-<!--    <insert id="addRoleByEmpId">-->
-<!--        insert into erp_emp_role()-->
-<!--    </insert>-->
+    <update id="updateEmpRole">
+        update erp_emp_role er set er.role_id=#{roleId} where er.emp_id=#{empId}  and er.emp_role_id=#{empRoleId}
+    </update>
 
 </mapper>

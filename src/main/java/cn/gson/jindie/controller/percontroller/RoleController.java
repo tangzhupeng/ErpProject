@@ -21,7 +21,6 @@ public class RoleController {
     @PostMapping("/addRole")
     @ResponseBody
     public void addRole(ErpRole role){
-
         roleService.addRole(role);
     }
 

@@ -20,14 +20,18 @@
     <!--修改员工信息-->
     <update id="updateEmp">
         update erp_emp e set emp_name=#{empName},e.password=#{password},e.phone=#{phone} where emp_id=#{empId}
-        update erp_emp set emp_name=#{empName},password=#{password},phone=#{phone} where emp_id=#{empId}
     </update>
-<!--        &lt;!&ndash;删除员工信息&ndash;&gt;-->
-<!--    <delete id="deleteEmp">-->
-<!--        delete from erp_emp where emp_id=#{empId}-->
-<!--    </delete>-->
+        <!--删除员工信息-->
+    <delete id="deleteEmp">
+        delete from erp_emp where emp_id=#{empId}
+    </delete>
     <!--查询所有员工信息-->
     <select id="selectAllEmp" resultMap="emp">
-        select * from erp_emp where statu=0
+        select * from erp_emp
     </select>
+    <!--根据信息查询员工信息-->
+    <select id="selectByEmpName" resultMap="emp">
+        select e.emp_id from erp_emp e where emp_name=#{empName}
+    </select>
+
 </mapper>

@@ -19,5 +19,10 @@
     <select id="selectAllRole" resultMap="role">
         select * from erp_role
     </select>
+    <!--通过角色名查询角色信息-->
+    <select id="selectRoleByName" resultMap="role">
+        select r.role_id from erp_role r where role_name = #{roleName}
+    </select>
+
 
 </mapper>
