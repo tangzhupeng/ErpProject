@@ -1,7 +1,5 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 
 public class ErpAccount {
@@ -9,7 +7,6 @@ public class ErpAccount {
     private String accountName;
     private String accountBalance;
     private String accountMoney;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date accountTime;
     private Integer accountState;
 

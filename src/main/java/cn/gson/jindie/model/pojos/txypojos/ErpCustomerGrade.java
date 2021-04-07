@@ -20,11 +20,5 @@ public class ErpCustomerGrade {
         this.gradeName = gradeName;
     }
 
-    @Override
-    public String toString() {
-        return "ErpCustomerGrade{" +
-                "gradeId=" + gradeId +
-                ", gradeName='" + gradeName + '\'' +
-                '}';
-    }
+
 }

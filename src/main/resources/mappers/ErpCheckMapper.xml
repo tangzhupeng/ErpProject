@@ -11,6 +11,7 @@
         <result property="checkName" column="check_name"></result>
         <result property="checkState" column="check_state"></result>
         <result property="checkBz" column="check_bz"></result>
+
         <collection property="erpProduct" ofType="ErpProduct">
             <id property="productId" column="product_id"/>
             <result property="productName" column="product_name"></result>
@@ -20,8 +21,8 @@
             <id property="storeId" column="store_id"/>
             <result property="storeName" column="store_name"></result>
         </collection>
-
     </resultMap>
+
 
     <select id="erpCheckList" resultMap="erpcheck">
         select *

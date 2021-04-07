@@ -3,6 +3,11 @@ package cn.gson.jindie.model.pojos.capitalpojos;
 import cn.gson.jindie.model.pojos.purchasepojos.ErpBuyingOrder;
 import cn.gson.jindie.model.pojos.txypojos.ErpAccount;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Table(name = "erp_payment_record", schema = "", catalog = "erp3")
 public class ErpPaymentRecord {
     private int recordId;
     private String recordWay;
@@ -13,6 +18,8 @@ public class ErpPaymentRecord {
     private ErpAccount account; //结算账号
     private ErpBuyingOrder boNumber; //购货单
 
+    @Id
+    @Column(name = "record_id")
     public int getRecordId() {
         return recordId;
     }
@@ -22,6 +29,8 @@ public class ErpPaymentRecord {
     }
 
 
+    @ManyToOne
+    @JoinColumn(name = "payment_id")
     public ErpPayment getPayment() {
         return payment;
     }
@@ -30,25 +39,28 @@ public class ErpPaymentRecord {
         this.payment = payment;
     }
 
-    public ErpAccount getAccount() {
-        return account;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "account_id")
+//    public ErpAccount getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(ErpAccount account) {
+//        this.account = account;
+//    }
 
-    public void setAccount(ErpAccount account) {
-        this.account = account;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "bo_number")
+//    public ErpBuyingOrder getBoNumber() {
+//        return boNumber;
+//    }
+//
+//    public void setBoNumber(ErpBuyingOrder boNumber) {
+//        this.boNumber = boNumber;
+//    }
 
-
-
-    public ErpBuyingOrder getBoNumber() {
-        return boNumber;
-    }
-
-    public void setBoNumber(ErpBuyingOrder boNumber) {
-        this.boNumber = boNumber;
-    }
-
-
+    @Basic
+    @Column(name = "record_way")
     public String getRecordWay() {
         return recordWay;
     }
@@ -57,6 +69,8 @@ public class ErpPaymentRecord {
         this.recordWay = recordWay;
     }
 
+    @Basic
+    @Column(name = "record_money")
     public Double getRecordMoney() {
         return recordMoney;
     }
@@ -65,6 +79,8 @@ public class ErpPaymentRecord {
         this.recordMoney = recordMoney;
     }
 
+    @Basic
+    @Column(name = "record_remark")
     public String getRecordRemark() {
         return recordRemark;
     }
@@ -73,6 +89,23 @@ public class ErpPaymentRecord {
         this.recordRemark = recordRemark;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ErpPaymentRecord that = (ErpPaymentRecord) o;
+        return recordId == that.recordId &&
+                Objects.equals(payment, that.payment) &&
+                Objects.equals(account, that.account) &&
+                Objects.equals(recordWay, that.recordWay) &&
+                Objects.equals(recordMoney, that.recordMoney) &&
+                Objects.equals(recordRemark, that.recordRemark);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(recordId, payment, account, recordWay, recordMoney, recordRemark);
+    }
 
     @Override
     public String toString() {

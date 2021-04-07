@@ -3,7 +3,7 @@ package cn.gson.jindie.model.pojos.salespojos;
 public class ErpOrderDetails {
 
   private Integer orderDetailsId;
-  private ErpOrder erpOrder;
+  private Integer orderId;
   private String productName;
   private Integer number;
   private double productPrice;
@@ -20,13 +20,14 @@ public class ErpOrderDetails {
   }
 
 
-  public ErpOrder getErpOrder() {
-    return erpOrder;
+  public Integer getOrderId() {
+    return orderId;
   }
 
-  public void setErpOrder(ErpOrder erpOrder) {
-    this.erpOrder = erpOrder;
+  public void setOrderId(Integer orderId) {
+    this.orderId = orderId;
   }
+
 
   public String getProductName() {
     return productName;
