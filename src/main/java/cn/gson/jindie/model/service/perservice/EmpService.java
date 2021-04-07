@@ -21,13 +21,13 @@ public class EmpService {
         empMapper.addEmp(emp);
     }
     //修改员工状态
-    public void updateStatus(ErpEmp emp){
-        empMapper.updateStatus(emp);
+    public void updateStatus(){
+        empMapper.updateStatus();
     }
 
     //修改员工信息
     public void updateEmp(ErpEmp emp){
-        empMapper.updateEmp(emp);
+        empMapper.updateEmp(emp.getEmpName(),emp.getPassword(),emp.getPhone(),emp.getEmpId());
     }
 
 
@@ -36,14 +36,13 @@ public class EmpService {
         return empMapper.selectAllEmp();
     }
 
-    //根据id删除员工信息
-//    public int deleteEmp(Integer empid){
-//
-//        return empMapper.deleteEmp(empid);
-//    }
+//    根据id删除员工信息
+    public Integer deleteEmp(Integer empId){
 
-    public List<ErpEmp> findAllEmp() {
-        return empMapper.selectAllEmp();
+        return empMapper.deleteEmp(empId);
     }
 
+    public ErpEmp selectByEmpName(String empName){
+        return empMapper.selectByEmpName(empName);
+    }
 }

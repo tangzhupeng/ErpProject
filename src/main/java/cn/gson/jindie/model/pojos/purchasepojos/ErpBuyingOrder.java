@@ -64,4 +64,14 @@ public class ErpBuyingOrder {
     this.poNumber = poNumber;
   }
 
+  @Override
+  public String toString() {
+    return "ErpBuyingOrder{" +
+            "boNumber='" + boNumber + '\'' +
+            ", boDate=" + boDate +
+            ", poNumber=" + poNumber +
+            ", consumed=" + consumed +
+            ", notconsumed=" + notconsumed +
+            '}';
+  }
 }

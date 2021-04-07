@@ -22,6 +22,9 @@ public class ErpPaymentRecord {
     private ErpBuyingOrder boNumber; //购货单
 
 
+
+
+
     @Override
     public String toString() {
         return "ErpPaymentRecord{" +

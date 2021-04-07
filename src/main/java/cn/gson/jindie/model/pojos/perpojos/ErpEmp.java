@@ -12,10 +12,6 @@ public class ErpEmp {
     private List<ErpPermission> permissionList;
     private List<ErpRole> roleList;
 
-    public ErpEmp(int empId) {
-        this.empId = empId;
-    }
-
     public ErpEmp(int empId, String empName, String password, String phone, Integer statu, List<ErpPermission> permissionList, List<ErpRole> roleList) {
         this.empId = empId;
         this.empName = empName;

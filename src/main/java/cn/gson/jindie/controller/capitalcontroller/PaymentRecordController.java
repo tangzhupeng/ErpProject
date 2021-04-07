@@ -24,20 +24,20 @@ public class PaymentRecordController {
     @Autowired
     PaymentRecordService paymentRecordService;
 
-//    //查询所有付款记录
-//    @RequestMapping("/SerReceiptRecord")
-//    @ResponseBody
-//    public Map<String, Object> SerReceiptRecord(Integer pageNum, Integer size, String receiptRecord) {
-//        Map<String, Object> map = new HashMap<>();
-//
-//        ErpReceiptRecord  receipt= JSONObject.toJavaObject(JSON.parseObject(receiptRecord), ErpReceiptRecord.class);
-//        Page<Object> page = PageHelper.startPage(pageNum, size);
-//        List<ErpReceiptRecord> erpReceiptRecords = receiptRecordService.SerReceiptRecord(receipt);
-//        map.put("total", page.getTotal());
-//        map.put("rows", erpReceiptRecords);
-//
-//        return map;
-//    }
+    //查询所有付款记录
+    @RequestMapping("/SerPaymentRecord")
+    @ResponseBody
+    public Map<String, Object> SerPaymentRecord(Integer pageNum, Integer size, String receiptRecord) {
+        Map<String, Object> map = new HashMap<>();
+
+        ErpPaymentRecord  receipt= JSONObject.toJavaObject(JSON.parseObject(receiptRecord), ErpPaymentRecord.class);
+        Page<Object> page = PageHelper.startPage(pageNum, size);
+        List<ErpPaymentRecord> erpReceiptRecords = paymentRecordService.SerPaymentRecord(receipt);
+        map.put("total", page.getTotal());
+        map.put("rows", erpReceiptRecords);
+
+        return map;
+    }
 
 
     //根据id删除对应的收款单记录

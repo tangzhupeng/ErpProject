@@ -16,9 +16,13 @@ import java.util.List;
 public class EmpPerService {
     @Autowired
     private EmpPerMapper empPerMapper;
+        //登录传用户名和密码
+        public EmpPerVo findPerLogin(String name) {
+            EmpPerVo empPerVo = new EmpPerVo();
+            empPerVo.setEmpName(empPerMapper.findPerLogin(name).getEmpName());
+            empPerVo.setPassword(empPerMapper.findPerLogin(name).getPassword());
+            empPerVo.setRoles(empPerMapper.findPerLogin(name).getPermissionList().get(0).getPerName());
 
-    public ErpEmp findUserLogin(String name){
-        return empPerMapper.findPerLogin(name);
+        return empPerVo;
     }
-
 }

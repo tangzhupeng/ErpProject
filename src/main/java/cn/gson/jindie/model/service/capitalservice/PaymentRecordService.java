@@ -17,10 +17,10 @@ public class PaymentRecordService {
     @Autowired
     PaymentRecordMapper recordMapper;
 
-//    //分页模糊查询所有付款记录单
-//    public List<ErpReceiptRecord> SerReceiptRecord(ErpReceiptRecord erpReceiptRecord){
-//        return receiptRecordMapper.SerReceiptRecord(erpReceiptRecord);
-//    }
+    //分页模糊查询所有付款记录单
+    public List<ErpPaymentRecord> SerPaymentRecord(ErpPaymentRecord paymentRecord){
+        return recordMapper.SerPaymentRecord(paymentRecord);
+    }
 
     //根据id删除对应的付款单记录
     public void DelPaymentId(Integer recordId,String paymentId){

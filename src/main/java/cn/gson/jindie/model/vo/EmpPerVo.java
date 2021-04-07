@@ -1,27 +1,16 @@
 package cn.gson.jindie.model.vo;
 
 public class EmpPerVo {
-    private Integer empId;//用户id
     private String empName;//用户名
     private String password;//密码
     private String roles;//权限名
 
-    public EmpPerVo(Integer empId, String empName, String password, String roles) {
-        this.empId = empId;
+    public EmpPerVo(String empName, String password, String roles) {
         this.empName = empName;
         this.password = password;
         this.roles = roles;
     }
-
     public EmpPerVo(){}
-
-    public Integer getEmpId() {
-        return empId;
-    }
-
-    public void setEmpId(Integer empId) {
-        this.empId = empId;
-    }
 
     public String getEmpName() {
         return empName;

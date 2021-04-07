@@ -65,28 +65,28 @@
         left join erp_p_order_master po on bu.po_number=po.po_number
         left join erp_account ac on pr.account_id=ac.account_id
 		<where>
-            <if test="reWay !=null and reWay !='' ">
-                and  er.receipt_id  like '%${reWay}%'
-                or  ec.customer_name like '%${reWay}%'
-                or re.re_remark like '%${reWay}%'
+            <if test="recordWay !=null and recordWay !='' ">
+                and  pr.record_id  like '%${recordWay}%'
+                or  pro.provider_id like '%${recordWay}%'
+                or pr.record_mark like '%${recordWay}%'
             </if>
             <if test="payment.emp.empId !=null and payment.emp.empId !='' ">
-               and ee.emp_id like '%${provider.emp.empId}%'
+               and e.emp_id like '%${provider.emp.empId}%'
             </if>
             <if test="empState !=null and empState !='' ">
-               and re.emp_state like '%${empState}%'
+               and pr.emp_state like '%${empState}%'
             </if>
             <if test="payment.provider.providerId !=null and provider.provider.providerId !=''">
-                and ec.customer_id like '%${payment.provider.providerId}%'
+                and ec.provider_id like '%${payment.provider.providerId}%'
             </if>
             <if test="payment.preparedBy !=null and payment.preparedBy !=''">
-                and er.prepared_by like '%${payment.preparedBy}%'
+                and pro.prepared_by like '%${payment.preparedBy}%'
             </if>
             <if test="account.accountId !=null and account.accountId !='' ">
                 and ac.account_id like '%${account.accountId}%'
             </if>
             <if test="recordRemark !=null and recordRemark !=''">
-                and re_remark like '%${recordRemark}%'
+                and pr.record_remark like '%${recordRemark}%'
             </if>
 
 
@@ -100,7 +100,7 @@
     </delete>
 
     <!--根据id删除对应付款单-->
-    <delete id="DelReceiptId">
+    <delete id="DelPaymentId">
         delete from erp_payment where payment_id=#{paymentId}
     </delete>
 
