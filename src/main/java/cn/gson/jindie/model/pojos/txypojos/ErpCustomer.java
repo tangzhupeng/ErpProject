@@ -146,4 +146,7 @@ public class ErpCustomer {
                 ", grades=" + grades +
                 '}';
     }
+
+    public ErpCustomer() {
+    }
 }

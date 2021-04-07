@@ -57,4 +57,7 @@ public class ErpStore {
                 ", storeTime=" + storeTime +
                 '}';
     }
+
+    public ErpStore() {
+    }
 }
