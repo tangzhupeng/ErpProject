@@ -88,10 +88,6 @@ public class SaleController {
     }
 
 
-
-
-
-
     /**
      * 查询所有产品基础信息
      *

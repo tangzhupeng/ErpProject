@@ -1,16 +1,7 @@
 package cn.gson.jindie.controller.txycontroller;
 
-import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
-<<<<<<< HEAD
-import cn.gson.jindie.model.service.txyservice.TxyProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-=======
+import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 import cn.gson.jindie.model.pojos.txypojos.ErpProductType;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 import cn.gson.jindie.model.service.txyservice.TxyProductService;
@@ -25,12 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
->>>>>>> 5c81540358b3bff4b1388ec2a8d006069d08cfec
 
 @Controller
 public class TxyProductController {
     @Autowired
-     private TxyProductService productService;
+    private TxyProductService productService;
     //查询所有商品
     @RequestMapping("/all-goods")
     @ResponseBody
@@ -89,12 +79,6 @@ public class TxyProductController {
     public List<ErpStore> storeByName(){
         return productService.storeByName();
     }
-    @RequestMapping("/all-product")
-    @ResponseBody
-    public List<ErpProduct> allAccount(){
-
-        return productService.allProduct();
-    }
 
     //查询所有商品
     @RequestMapping("/all-product2")
@@ -127,5 +111,5 @@ public class TxyProductController {
         List<ErpProduct>   e=  productService.queryProducts(sid);
         return e;
     }
-
 }
+

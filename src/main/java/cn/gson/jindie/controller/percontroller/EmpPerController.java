@@ -3,7 +3,6 @@ package cn.gson.jindie.controller.percontroller;
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.service.perservice.EmpPerService;
 import cn.gson.jindie.model.service.perservice.LoginService;
-import cn.gson.jindie.model.vo.EmpPerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,9 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class EmpPerController {
+
     @Autowired
     EmpPerService empPerService;
-
     @Autowired
     LoginService loginService;
 
@@ -32,7 +31,6 @@ public class EmpPerController {
             System.out.println("登陆成功");
             return empPerVo;
         }
-
     }
 
 }

@@ -33,7 +33,7 @@ public class WpPurchaseService {
     TxyStoreMapper txyStoreMapper;
 
     @Autowired
-    TxxProductMapper txxProductMapper;
+    TxyProductMapper txxProductMapper;
 
     public List<Map<String,Object>> findPOderList(){
         return purchaseMapper.findPOderList();
@@ -93,8 +93,8 @@ public class WpPurchaseService {
         return txyStoreMapper.findStore();
     }
 
-//查询商品
-    public List<ErpProduct> allProduct(){
-        return txxProductMapper.allProduct();
-    }
+////查询商品
+//    public List<ErpProduct> allProduct(){
+//        return txxProductMapper.allProduct();
+//    }
 }
