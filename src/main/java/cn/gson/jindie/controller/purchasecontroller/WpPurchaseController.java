@@ -52,20 +52,6 @@ public class WpPurchaseController {
         }
         return "新增成功";
     }
-//
-//    @PostMapping("/addDPurO")
-//    @ResponseBody
-//    public String addDPurO(@RequestBody ErpPOrderDetail erpPOrderDetail){
-//        System.out.println(erpPOrderDetail);
-//        try {
-//            System.out.println(1);
-//            wpPurchaseService.addDPurO(erpPOrderDetail);
-//        }catch (Exception e){
-//            System.out.println(2);
-//            System.out.println(e.getMessage());
-//        }
-//        return "新增成功";
-//    }
 
     @PostMapping("/updatepoEastate")
     @ResponseBody
@@ -117,7 +103,7 @@ public class WpPurchaseController {
         return wpPurchaseService.findPOderListpmi(poNumber);
     }
 
-//筛选
+    //筛选
     @RequestMapping("/filter-poderList")
     @ResponseBody
     public Map<String,Object> FilterPOderList(Integer pageNum,Integer size,String erpPOrderMaster){

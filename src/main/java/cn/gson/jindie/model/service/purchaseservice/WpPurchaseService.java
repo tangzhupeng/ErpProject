@@ -2,7 +2,7 @@ package cn.gson.jindie.model.service.purchaseservice;
 
 import cn.gson.jindie.model.mapper.purchasemapper.PurchaseMapper;
 
-import cn.gson.jindie.model.mapper.txymapper.TxxProductMapper;
+import cn.gson.jindie.model.mapper.txymapper.TxyProductMapper;
 import cn.gson.jindie.model.mapper.txymapper.TxyProviderMapper;
 import cn.gson.jindie.model.mapper.txymapper.TxyStoreMapper;
 import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderDetail;
@@ -33,7 +33,7 @@ public class WpPurchaseService {
     TxyStoreMapper txyStoreMapper;
 
     @Autowired
-    TxxProductMapper txxProductMapper;
+    TxyProductMapper txxProductMapper;
 
     public List<Map<String,Object>> findPOderList(){
         return purchaseMapper.findPOderList();

@@ -1,5 +1,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxxProductMapper">
+<mapper namespace="cn.gson.jindie.model.mapper.txymapper.TxyProductMapper">
     <resultMap id="products" type="cn.gson.jindie.model.pojos.txypojos.ErpProduct">
 
         <id property="productId" column="product_id"></id>

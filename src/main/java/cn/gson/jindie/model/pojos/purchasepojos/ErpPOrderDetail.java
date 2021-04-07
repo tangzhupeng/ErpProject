@@ -1,16 +1,26 @@
 package cn.gson.jindie.model.pojos.purchasepojos;
 
+import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
+
 public class ErpPOrderDetail {
 
   private String podNumber;
-  private String poNumber;
-  private long productId;
+  private ErpPOrderMaster poNumber;
+  private String zpoNumber;
+  private ErpProduct productId;
   private long podAmount;
   private String podUnit;
   private long podUnitprice;
   private double podMoney;
   private String podDescribe;
 
+  public String getZpoNumber() {
+    return zpoNumber;
+  }
+
+  public void setZpoNumber(String zpoNumber) {
+    this.zpoNumber = zpoNumber;
+  }
 
   public String getPodNumber() {
     return podNumber;
@@ -21,20 +31,20 @@ public class ErpPOrderDetail {
   }
 
 
-  public String getPoNumber() {
+  public ErpPOrderMaster getPoNumber() {
     return poNumber;
   }
 
-  public void setPoNumber(String poNumber) {
+  public void setPoNumber(ErpPOrderMaster poNumber) {
     this.poNumber = poNumber;
   }
 
 
-  public long getProductId() {
+  public ErpProduct getProductId() {
     return productId;
   }
 
-  public void setProductId(long productId) {
+  public void setProductId(ErpProduct productId) {
     this.productId = productId;
   }
 

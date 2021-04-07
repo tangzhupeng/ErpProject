@@ -46,13 +46,13 @@
         <result column="pod_unit" property="podUnit"/>
         <result column="pod_describe" property="podDescribe"/>
         <association property="poNumber" javaType="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster">
-        <id column="po_number" property="poNumber"/>
-        <result column="po_date" property="poDate"/>
-        <result column="po_tos" property="poTos"/>
-        <result column="po_money" property="poMoney"/>
-        <result column="po_state" property="poState"/>
-        <result column="po_eastate" property="poEastate"/>
-        <result column="po_ststate" property="poStstate"/>
+            <id column="po_number" property="poNumber"/>
+            <result column="po_date" property="poDate"/>
+            <result column="po_tos" property="poTos"/>
+            <result column="po_money" property="poMoney"/>
+            <result column="po_state" property="poState"/>
+            <result column="po_eastate" property="poEastate"/>
+            <result column="po_ststate" property="poStstate"/>
             <association property="providerId" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProvider">
                 <id column="provider_id" property="providerId"/>
                 <result column="provider_name" property="providerName"/>
