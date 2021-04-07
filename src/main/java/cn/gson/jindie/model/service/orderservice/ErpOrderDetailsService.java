@@ -1,7 +1,6 @@
 package cn.gson.jindie.model.service.orderservice;
 
 import cn.gson.jindie.model.mapper.salemapper.ErpOrderDetailsMapper;
-import cn.gson.jindie.model.pojos.salespojos.ErpOrder;
 import cn.gson.jindie.view.OrderDetailsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

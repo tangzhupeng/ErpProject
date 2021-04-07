@@ -20,5 +20,4 @@ public interface EmpMapper {
     public List<ErpEmp> selectAllEmp();
 //    //删除员工
 //    public int deleteEmp(Integer empid);
-
 }

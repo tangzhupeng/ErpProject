@@ -4,9 +4,9 @@ package cn.gson.jindie.model.pojos.salespojos;
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
-import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Timestamp;
 
 public class ErpOrder {
 
@@ -30,6 +30,31 @@ public class ErpOrder {
   private ErpStore erpStore;
   private String currentExaminer;
 
+  public ErpOrder(String orderNumber) {
+    this.orderNumber = orderNumber;
+  }
+
+  public ErpOrder() {
+  }
+
+  public ErpOrder(Integer orderId, String orderNumber, Timestamp documentDate, Timestamp deliveryDate, double accountReceivable, double paymentReceived, Integer deliveryStatus, String creatorPerson, Timestamp createTime, Integer approvalStatus, Integer orderStatus, String deliveryOrderNumber, ErpCustomer erpCustomer, ErpEmp erpEmp, ErpStore erpStore, String currentExaminer) {
+    this.orderId = orderId;
+    this.orderNumber = orderNumber;
+    this.documentDate = documentDate;
+    this.deliveryDate = deliveryDate;
+    this.accountReceivable = accountReceivable;
+    this.paymentReceived = paymentReceived;
+    this.deliveryStatus = deliveryStatus;
+    this.creatorPerson = creatorPerson;
+    this.createTime = createTime;
+    this.approvalStatus = approvalStatus;
+    this.orderStatus = orderStatus;
+    this.deliveryOrderNumber = deliveryOrderNumber;
+    this.erpCustomer = erpCustomer;
+    this.erpEmp = erpEmp;
+    this.erpStore = erpStore;
+    this.currentExaminer = currentExaminer;
+  }
 
   public Integer getOrderId() {
     return orderId;
