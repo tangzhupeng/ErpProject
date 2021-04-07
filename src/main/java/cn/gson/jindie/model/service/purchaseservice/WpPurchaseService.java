@@ -93,8 +93,8 @@ public class WpPurchaseService {
         return txyStoreMapper.findStore();
     }
 
-//查询商品
+/*//查询商品
     public List<ErpProduct> allProduct(){
         return txxProductMapper.allProduct();
-    }
+    }*/
 }

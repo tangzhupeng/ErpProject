@@ -1,5 +1,8 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
+import cn.gson.jindie.model.pojos.storempojos.ErpAllot;
+import cn.gson.jindie.model.pojos.storempojos.ErpCheck;
+
 public class ErpProduct {
     private Integer productId;
     private String productName;
@@ -13,6 +16,24 @@ public class ErpProduct {
     private Integer productState;
     private Double productPf;//批发价
     private Double productVip;//VIP价格
+    private ErpCheck erpCheck;
+    private ErpAllot erpAllot;
+
+    public ErpCheck getErpCheck() {
+        return erpCheck;
+    }
+
+    public void setErpCheck(ErpCheck erpCheck) {
+        this.erpCheck = erpCheck;
+    }
+
+    public ErpAllot getErpAllot() {
+        return erpAllot;
+    }
+
+    public void setErpAllot(ErpAllot erpAllot) {
+        this.erpAllot = erpAllot;
+    }
 
     private ErpStore stores;
 
