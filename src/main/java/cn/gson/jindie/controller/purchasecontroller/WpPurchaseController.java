@@ -1,8 +1,9 @@
 package cn.gson.jindie.controller.purchasecontroller;
 
-import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderDetail;
 import cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
+
 import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 import cn.gson.jindie.model.pojos.txypojos.ErpProvider;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
@@ -81,7 +82,7 @@ public class WpPurchaseController {
     }
 
 
-    @RequestMapping("/find-provider")
+    @RequestMapping("/findprovider")
     @ResponseBody
     public List<ErpProvider> findProvider(){
         return wpPurchaseService.findProvider();

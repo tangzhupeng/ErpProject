@@ -1,10 +1,13 @@
 package cn.gson.jindie.model.pojos.txypojos;
 
+import cn.gson.jindie.model.pojos.storempojos.ErpAllot;
+import cn.gson.jindie.model.pojos.storempojos.ErpCheck;
+
 public class ErpProduct {
     private Integer productId;
     private String productName;
     private String productPicture;
-    private Integer protypeId;
+    private ErpProductType protype;
     private Double productMoney;//成本价
     private Double productPrice;//零售价
     private String productDw;
@@ -13,8 +16,35 @@ public class ErpProduct {
     private Integer productState;
     private Double productPf;//批发价
     private Double productVip;//VIP价格
-
+    private ErpCheck erpCheck;
+    private ErpAllot erpAllot;
     private ErpStore stores;
+
+    public ErpProductType getProtype() {
+        return protype;
+    }
+
+    public void setProtype(ErpProductType protype) {
+        this.protype = protype;
+    }
+
+    public ErpCheck getErpCheck() {
+        return erpCheck;
+    }
+
+    public void setErpCheck(ErpCheck erpCheck) {
+        this.erpCheck = erpCheck;
+    }
+
+    public ErpAllot getErpAllot() {
+        return erpAllot;
+    }
+
+    public void setErpAllot(ErpAllot erpAllot) {
+        this.erpAllot = erpAllot;
+    }
+
+
 
     public ErpStore getStores() {
         return stores;
@@ -48,13 +78,6 @@ public class ErpProduct {
         this.productPicture = productPicture;
     }
 
-    public Integer getProtypeId() {
-        return protypeId;
-    }
-
-    public void setProtypeId(Integer protypeId) {
-        this.protypeId = protypeId;
-    }
 
     public Double getProductMoney() {
         return productMoney;

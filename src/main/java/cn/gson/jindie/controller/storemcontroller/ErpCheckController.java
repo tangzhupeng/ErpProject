@@ -15,8 +15,8 @@ public class ErpCheckController {
     private ErpCheckService erpCheckService;
     //        查询调拨表
     @RequestMapping("erp/checklist")
-    public List<ErpCheck> erpAlloList(){
-        List<ErpCheck> a= erpCheckService.checkList();
+    public List<ErpCheck> erpAlloList(Integer  sid){
+        List<ErpCheck> a= erpCheckService.checkList(sid);
         System.out.println(a);
         return  a;
     }

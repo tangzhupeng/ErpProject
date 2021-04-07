@@ -9,8 +9,20 @@
         <result property="accountState" column="account_state"/>
     </resultMap>
 
-    <!--查询所有账户-->
+    <!--分页，模糊查询所有账户-->
     <select id="allAccount" resultMap="account">
+        select * from erp_account
+        <where>
+            <if test="accountName !=null and accountName !=''">
+                and account_id like '%${accountName}%'
+                or account_name like '%${accountName}%'
+            </if>
+        </where>
+        order by account_time desc
+    </select>
+
+    <!--查询所有账户-->
+    <select id="SerAccount" resultMap="account">
         select * from erp_account
     </select>
 

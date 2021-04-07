@@ -80,4 +80,10 @@ public class TxyStoreController {
     public void deleteStore(Integer storeId){
         storeService.deleteStore(storeId);
     }
+    //查询仓库
+    @GetMapping("/queryStore")
+    @ResponseBody
+    public List<ErpStore> queryStore(){
+       return storeService.queryStore();
+    }
 }

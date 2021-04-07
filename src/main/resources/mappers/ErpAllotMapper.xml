@@ -1,5 +1,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.gson.jindie.model.mapper.storemmapper.ErpAllotMapper">
+<mapper namespace="cn.gson.jindie.model.pojos.storempojos.ErpAllot">
     <resultMap id="erpojos" type="ErpAllot">
         <id column="allot_id" property="allotId"></id>
         <result column="allot_name" property="allotName"></result>
@@ -16,16 +16,22 @@
         <collection property="erpProduct" ofType="ErpProduct">
             <id property="productId" column="product_id"/>
             <result property="productName" column="product_name"></result>
-        </collection>
-        <collection property="erpStore" ofType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
-            <id property="storeId" column="store_id"/>
-            <result property="storeName" column="store_name"></result>
+            <result property="productPicture" column="product_picture"></result>
+            <result property="productMoney" column="product_money"></result>
+            <result property="productPrice" column="product_price"></result>
+            <result property="productDw" column="product_dw"></result>
+            <result property="productNumber" column="product_number"></result>
+            <result property="productState" column="product_state"></result>
+            <result property="productPf" column="product_pf"></result>
+            <result property="productVip" column="product_vip"></result>
+            <result property="productName" column="product_name"></result>
         </collection>
     </resultMap>
-    <select id="erpAllList" resultMap="erpojos">
-        select *
-        from erp_allot a
-                 left join erp_product ea on a.product_id = ea.product_id
-                 left join erp_store e on a.store_id = e.store_id
-    </select>
+    <insert id="addAllotm"  >
+              insert  into  erp_allot  (
+                  allot_id, product_id , allot_name,  allot_money , allot_num , create_date,  allot_approve , allot_state,
+allot_apdate  ,allot_in_address  , allot_out_address  ,allot_stock,allot_bz
+              ) values (null,#{erpProduct.productId} , #{allotName}, #{allotMoney},#{allotNum},  #{createDate},
+         #{allotApprove} ,  #{allotState},   #{allotApdate}    , #{allotInAddress}    , #{allotOutAddress} ,#{allotStock} ,#{allotBz})
+    </insert>
 </mapper>

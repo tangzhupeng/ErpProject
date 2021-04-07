@@ -25,13 +25,11 @@ public class TxyCustomerController {
     @ResponseBody
     public Map<String, Object> demo(Integer pageNum, Integer size, String customer) {
         Map<String, Object> map = new HashMap<>();
-
         ErpCustomer c = JSONObject.toJavaObject(JSON.parseObject(customer), ErpCustomer.class);
         Page<Object> page = PageHelper.startPage(pageNum, size);
         List<ErpCustomer> kh = customerService.allCustomer(c);
         map.put("total", page.getTotal());
         map.put("rows", kh);
-
         return map;
     }
     //新增客户

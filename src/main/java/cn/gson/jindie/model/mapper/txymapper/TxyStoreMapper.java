@@ -26,6 +26,8 @@ public interface TxyStoreMapper {
     public void hfStore(Integer storeId);
     //删除仓库
     public void deleteStore(Integer storeId);
-
     public List<ErpStore> findStore();
+
+
+    public   List<ErpStore> queryStore( );
 }

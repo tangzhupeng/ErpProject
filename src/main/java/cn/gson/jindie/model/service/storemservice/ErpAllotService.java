@@ -14,7 +14,7 @@ public class ErpAllotService {
     @Autowired
     private  ErpAllotMapper erpAllotmapper;
 
-    public List<ErpAllot> erpAllotList(){
-        return  erpAllotmapper.erpAllList();
+    public  void erpAllots(List<ErpAllot> erpAllot){
+        erpAllotmapper.addAllotm(erpAllot);
     }
 }

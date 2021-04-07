@@ -1,0 +1,31 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="cn.gson.jindie.model.mapper.storemmapper.ErpDelistMapper">
+    <resultMap id="detailed" type="ErpDetailedlist">
+        <id column="dlist_id" property="dlistId"/>
+        <result column="dlist_etotal" property="dlistEtotal"/>
+
+        <result column="allot_name" property="dlistTotal"/>
+        <result column="allot_money" property="dlistCost"/>
+
+        <collection property="erpProduct" ofType="cn.gson.jindie.model.pojos.txypojos.ErpProduct" javaType="java.util.List">
+            <id property="productId" column="product_id"/>
+            <result property="productName" column="product_name"/>
+        </collection>
+
+        <collection property="erpStore" ofType="cn.gson.jindie.model.pojos.txypojos.ErpStore" javaType="java.util.List">
+            <id property="storeId" column="store_id"/>
+            <result property="storeName" column="store_name"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="DetList" resultMap="detailed">
+
+        select *
+        from erp_detailedlist de
+                 left join erp_product ea on de.product_id = ea.product_id
+                 left join erp_store e on de.store_id = e.store_id
+    </select>
+
+
+</mapper>

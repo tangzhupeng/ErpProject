@@ -47,4 +47,9 @@ public class TxyStoreService {
     public void deleteStore(Integer storeId){
         storeMapper.deleteStore(storeId);
     }
+
+
+    public List<ErpStore> queryStore( ){
+        return storeMapper.queryStore();
+    }
 }

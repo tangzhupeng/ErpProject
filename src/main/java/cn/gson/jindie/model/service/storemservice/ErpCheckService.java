@@ -15,9 +15,9 @@ public class ErpCheckService {
     @Autowired
     private ErpCheckMapper erpCheckMapper;
 
-    public List<ErpCheck>   checkList(){
+    public List<ErpCheck>   checkList(Integer sid){
 
-        return  erpCheckMapper.erpCheckList();
+        return  erpCheckMapper.erpCheckList(sid);
     }
 
 

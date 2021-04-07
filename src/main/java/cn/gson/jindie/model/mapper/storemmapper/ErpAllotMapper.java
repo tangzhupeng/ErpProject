@@ -6,9 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Mapper
 @Repository
 public interface ErpAllotMapper {
-    List<ErpAllot> erpAllList();
+    void addAllotm(List<ErpAllot> erpAllot);
 
 }

@@ -8,6 +8,27 @@ import java.sql.Date;
 import java.util.List;
 
 public class ErpAllot {
+
+
+    @Override
+    public String toString() {
+        return "ErpAllot{" +
+                "allotId=" + allotId +
+                ", allotName='" + allotName + '\'' +
+                ", allotMoney=" + allotMoney +
+                ", allotNum=" + allotNum +
+                ", createDate=" + createDate +
+                ", allotApprove='" + allotApprove + '\'' +
+                ", allotState='" + allotState + '\'' +
+                ", allotApdate=" + allotApdate +
+                ", allotInAddress='" + allotInAddress + '\'' +
+                ", allotOutAddress='" + allotOutAddress + '\'' +
+                ", erpProduct=" + erpProduct +
+                ", allotStock=" + allotStock +
+                ", allotBz='" + allotBz + '\'' +
+                '}';
+    }
+
     private int allotId;
     private String allotName;
     private double allotMoney;
@@ -18,14 +39,13 @@ public class ErpAllot {
     private Date allotApdate;
     private String allotInAddress;
     private String allotOutAddress;
-    private List<ErpStore> erpStore;
     private List<ErpProduct> erpProduct;
     private int allotStock;
     private String allotBz;
     public ErpAllot() {
     }
 
-    public ErpAllot(int allotId, String allotName, double allotMoney, int allotNum, Date createDate, String allotApprove, String allotState, Date allotApdate, String allotInAddress, String allotOutAddress, List<ErpStore> erpStore, List<ErpProduct> erpProduct, int allotStock, String allotBz) {
+    public ErpAllot(int allotId, String allotName, double allotMoney, int allotNum, Date createDate, String allotApprove, String allotState, Date allotApdate, String allotInAddress, String allotOutAddress, List<ErpProduct> erpProduct, int allotStock, String allotBz) {
         this.allotId = allotId;
         this.allotName = allotName;
         this.allotMoney = allotMoney;
@@ -36,7 +56,7 @@ public class ErpAllot {
         this.allotApdate = allotApdate;
         this.allotInAddress = allotInAddress;
         this.allotOutAddress = allotOutAddress;
-        this.erpStore = erpStore;
+
         this.erpProduct = erpProduct;
         this.allotStock = allotStock;
         this.allotBz = allotBz;
@@ -122,13 +142,7 @@ public class ErpAllot {
         this.allotOutAddress = allotOutAddress;
     }
 
-    public List<ErpStore> getErpStore() {
-        return erpStore;
-    }
 
-    public void setErpStore(List<ErpStore> erpStore) {
-        this.erpStore = erpStore;
-    }
 
     public List<ErpProduct> getErpProduct() {
         return erpProduct;

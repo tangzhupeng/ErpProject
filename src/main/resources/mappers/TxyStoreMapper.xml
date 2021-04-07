@@ -66,4 +66,10 @@
     <delete id="deleteStore">
         delete from erp_store where store_id=#{storeId}
     </delete>
+
+    <!--查询仓库-->
+    <select id="queryStore" resultMap="stores" >
+       select * from  erp_store
+    </select>
+
 </mapper>

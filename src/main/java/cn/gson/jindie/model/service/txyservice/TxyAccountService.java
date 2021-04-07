@@ -1,11 +1,13 @@
 package cn.gson.jindie.model.service.txyservice;
 
+
+
 import cn.gson.jindie.model.mapper.txymapper.TxyAccountMapper;
 import cn.gson.jindie.model.pojos.txypojos.ErpAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class TxyAccountService {
 
     //查询所有
     public List<ErpAccount> SerAccount(){
+
         return accountMapper.SerAccount();
     }
 

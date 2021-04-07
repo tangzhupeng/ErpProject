@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 @Repository
 public interface ErpCheckMapper {
-    List<ErpCheck> erpCheckList();
+    List<ErpCheck> erpCheckList(Integer sid);
 }

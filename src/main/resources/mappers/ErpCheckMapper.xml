@@ -11,15 +11,18 @@
         <result property="checkName" column="check_name"></result>
         <result property="checkState" column="check_state"></result>
         <result property="checkBz" column="check_bz"></result>
-
         <collection property="erpProduct" ofType="ErpProduct">
             <id property="productId" column="product_id"/>
             <result property="productName" column="product_name"></result>
+            <result property="productNumber" column="product_number"></result>
+            <result property="productState" column="product_state"></result>
         </collection>
 
         <collection property="erpStore" ofType="cn.gson.jindie.model.pojos.txypojos.ErpStore">
             <id property="storeId" column="store_id"/>
             <result property="storeName" column="store_name"></result>
+            <result column="store_state" property="storeState"></result>
+            <result column="store_time" property="storeTime"></result>
         </collection>
     </resultMap>
 
@@ -28,7 +31,7 @@
         select *
         from erp_check c
                  left join erp_product ea on c.product_id = ea.product_id
-                 left join erp_store e on c.store_id = e.store_id
+                 left join erp_store e on c.store_id = e.store_id where  e.store_id=#{storeId}
     </select>
 
 

@@ -10,7 +10,7 @@ public class ErpCheck {
 
   private int checkId;
 
-  private List<ErpStore> erpStore;
+  private ErpStore erpStore;
   private List<ErpProduct> erpProduct;
    private   int  checkStock;
   private String checkNumber;
@@ -27,15 +27,15 @@ public class ErpCheck {
     this.checkId = checkId;
   }
 
-  public List<ErpStore> getErpStore() {
+  public ErpStore getErpStore() {
     return erpStore;
   }
 
-  public void setErpStore(List<ErpStore> erpStore) {
+  public void setErpStore(ErpStore erpStore) {
     this.erpStore = erpStore;
   }
 
-  public List<ErpProduct> getErpProduct() {
+  public  List<ErpProduct> getErpProduct() {
     return erpProduct;
   }
 
@@ -132,7 +132,7 @@ public class ErpCheck {
 
   private String checkBz;
 
-  public ErpCheck(int checkId, List<ErpStore> erpStore, List<ErpProduct> erpProduct, int checkStock, String checkNumber, Date checkDate, String checkStore, String checkUnit, int checkQuantity, double checkProfitloss, String checkName, String checkState, String checkBz) {
+  public ErpCheck(int checkId, ErpStore erpStore,List<ErpProduct> erpProduct, int checkStock, String checkNumber, Date checkDate, String checkStore, String checkUnit, int checkQuantity, double checkProfitloss, String checkName, String checkState, String checkBz) {
     this.checkId = checkId;
     this.erpStore = erpStore;
     this.erpProduct = erpProduct;
