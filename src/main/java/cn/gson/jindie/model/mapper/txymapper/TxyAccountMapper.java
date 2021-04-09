@@ -11,14 +11,19 @@ import java.util.List;
 public interface TxyAccountMapper {
     //分页，模糊查询所有账户
     public List<ErpAccount> allAccount(ErpAccount account);
+
     //查询所有账户
     public List<ErpAccount> SerAccount();
+
     //新增账户
     public void addAccount(ErpAccount account);
+
     //编辑账户
     public void updateAccount(ErpAccount account);
+
     //冻结账户
     public void deleteAccount(Integer accountId);
+
     //恢复账户
     public void hfAccount(Integer accountId);
 }

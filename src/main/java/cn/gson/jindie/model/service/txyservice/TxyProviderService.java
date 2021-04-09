@@ -18,22 +18,26 @@ public class TxyProviderService {
     @Autowired
     TxyProviderMapper providerMapper;
 
-    //查询所有
-    public List<ErpProvider> findProvider(){
-        return providerMapper.findProvider();
-    }
-
-    //分页，模糊查询所有供应商
+    /**
+     * 模糊查询所有供应商
+     * @return
+     */
     public List<ErpProvider> allProvider(ErpProvider provider){
         return providerMapper.allProvider(provider);
     }
 
-    //查询供应商类别
+    /**
+     * 查询供应商类别
+     * @return
+     */
     public List<ErpProviderType> selectGys(){
         return providerMapper.selectGys();
     }
 
-    //新增供应商
+    /**
+     * 新增供应商
+     * @param provider
+     */
     public void addProvider(ErpProvider provider){
         if(provider.getProviderId()==null){
             provider.setProviderTime(new Date());
@@ -43,28 +47,43 @@ public class TxyProviderService {
         }
     }
 
-    //查看应付款金额为0的供应商
-    public List<ErpProvider> nullMoney(){
-        return providerMapper.nullMoney();
-    }
-
-    //禁用供应商
+    /**
+     * 禁用供应商
+     * @param providerId
+     */
     public void jyProvider(Integer providerId){
         providerMapper.jyProvider(providerId);
     }
 
-    //恢复供应商
+    /**
+     * 恢复供应商
+     * @param providerId
+     */
     public void hfProvider(Integer providerId){
         providerMapper.hfProvider(providerId);
     }
 
-    //查看禁用供应商
+    /**
+     * 查看禁用供应商
+     * @return
+     */
     public List<ErpProvider> findJy(){
         return providerMapper.findJy();
     }
 
-    //删除供应商
+    /**
+     * 删除供应商
+     * @param providerId
+     */
     public void deleteProvider(Integer providerId){
         providerMapper.deleteProvider(providerId);
+    }
+
+    /**
+     * 查询所有供应商
+     * @return
+     */
+    public List<ErpProvider> findProvider(){
+        return providerMapper.findProvider();
     }
 }

@@ -15,15 +15,27 @@ public class TxyProductTypeService {
     @Autowired
     TxyProductTypeMapper productTypeMapper;
 
-    //查询所有商品类别
+    /**
+     * 查询所有商品类别
+     * @return
+     */
     public List<ErpProductType> allProductType(){
         return productTypeMapper.allProductType();
     }
-    //根据商品类别id查询商品
+
+    /**
+     * 根据商品类别id查询商品
+     * @param protypeId
+     * @return
+     */
     public List<ErpProduct> productType(Integer protypeId){
         return productTypeMapper.productType(protypeId);
     }
-    //新增商品类别
+
+    /**
+     * 新增商品类别
+     * @param productType
+     */
     public void addProtype(ErpProductType productType){
         if(productType.getProtypeId()==null){
             productTypeMapper.addProtype(productType);
@@ -31,7 +43,11 @@ public class TxyProductTypeService {
             productTypeMapper.updateProtype(productType);
         }
     }
-    //删除商品类别
+
+    /**
+     * 删除商品类别
+     * @param protypeId
+     */
     public void deleteProType(Integer protypeId){
         productTypeMapper.deleteProType(protypeId);
     }

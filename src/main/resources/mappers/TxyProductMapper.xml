@@ -33,33 +33,6 @@
     <select id="allProduct" resultMap="product">
         select * from erp_product
     </select>
-
-    <!--查询下架商品-->
-    <select id="selectXjGoods" resultMap="product">
-        select * from erp_product p
-                          left join erp_product_type t on p.protype_id=t.protype_id
-                          left join erp_store s on p.store_id=s.store_id
-        where p.product_state=0
-    </select>
-
-
-    <!--修改商品-->
-    <update id="updateGoods">
-        update erp_product set product_name=#{productName},product_picture=#{productPicture},protype_id=#{protype.protypeId},product_money=#{productMoney},
-                               product_price=#{productPrice},product_pf=#{productPf},product_vip=#{productVip},product_dw=#{productDw},store_id=#{stores.storeId}
-        where product_id=#{productId}
-    </update>
-
-
-    <!--重新上架商品-->
-    <update id="sjGoods">
-        update erp_product set product_state=1 where product_id=#{productId}
-    </update>
-
-
-    <select id="storeByName" resultMap="product">
-        select * from erp_store
-    </select>
     <!--分页，模糊查询所有商品-->
     <select id="allGoods" resultMap="product">
         select * from erp_product p
@@ -85,6 +58,13 @@
         order by p.product_id desc
     </select>
 
+    <!--查询下架商品-->
+    <select id="selectXjGoods" resultMap="product">
+        select * from erp_product p
+        left join erp_product_type t on p.protype_id=t.protype_id
+        left join erp_store s on p.store_id=s.store_id
+        where p.product_state=0
+    </select>
 
     <!--新增商品-->
     <insert id="addGoods">
@@ -92,20 +72,44 @@
         values (#{productName},#{productPicture},#{protype.protypeId},#{productMoney},#{productPrice},#{productPf},#{productVip},#{productDw},#{stores.storeId})
     </insert>
 
+    <!--修改商品-->
+    <update id="updateGoods">
+        update erp_product set product_name=#{productName},product_picture=#{productPicture},protype_id=#{protype.protypeId},product_money=#{productMoney},
+        product_price=#{productPrice},product_pf=#{productPf},product_vip=#{productVip},product_dw=#{productDw},store_id=#{stores.storeId}
+        where product_id=#{productId}
+    </update>
+
     <!--下架商品-->
     <update id="xjGoods">
         update erp_product set product_state=0 where product_id=#{productId}
     </update>
 
+    <!--重新上架商品-->
+    <update id="sjGoods">
+        update erp_product set product_state=1 where product_id=#{productId}
+    </update>
 
     <!--删除商品-->
     <delete id="deleteGoods">
         delete from erp_product where product_id=#{productId}
     </delete>
 
-
-    <select id="goodType" resultMap="product">
+    <!--查看商品类别-->
+    <resultMap id="protype" type="cn.gson.jindie.model.pojos.txypojos.ErpProductType">
+        <id column="protype_id" property="protypeId"></id>
+        <result column="protype_name" property="protypeName"></result>
+    </resultMap>
+    <select id="goodType" resultMap="protype">
         select * from erp_product_type
+    </select>
+
+    <!--查看仓库名称-->
+    <resultMap id="stores" type="cn.gson.jindie.model.pojos.txypojos.ErpStore">
+        <id column="store_id" property="storeId"/>
+        <result column="store_name" property="storeName"/>
+    </resultMap>
+    <select id="storeByName" resultMap="stores">
+        select * from erp_store
     </select>
 
 
@@ -134,7 +138,26 @@ on p.protype_id = et.protype_id where s.store_id=#{storeId}
     join erp_check c on c.product_id=p.product_id where c.store_id=#{storeId}
 </select>
 
-    <select id="findAllProduct" parameterType="cn.gson.jindie.model.pojos.txypojos.ErpProduct"  resultMap="product">
+    <resultMap id="ProductMap" type="cn.gson.jindie.model.pojos.txypojos.ErpProduct">
+        <id property="productId" column="product_id" />
+        <result property="productName" column="product_name"/>
+        <result property="productPicture" column="product_picture"/>
+        <result property="productMoney" column="product_money"/>
+        <result property="productPrice" column="product_price"/>
+        <result property="productPf" column="product_pf"/>
+        <result property="productVip" column="product_vip"/>
+        <result property="productDw" column="product_dw"/>
+        <result property="productNumber" column="product_number" />
+        <result property="productState" column="product_state"/>
+
+        <association property="protype" javaType="cn.gson.jindie.model.pojos.txypojos.ErpProductType">
+            <id property="protypeId" column="protype_id"/>
+            <result property="protypeName" column="protype_name"/>
+        </association>
+
+    </resultMap>
+
+    <select id="findAllProduct" parameterType="cn.gson.jindie.model.pojos.txypojos.ErpProduct" resultMap="ProductMap">
         select * from erp_product  ep
         left join erp_product_type ept
         on ep.protype_id = ept.protype_id
@@ -149,7 +172,7 @@ on p.protype_id = et.protype_id where s.store_id=#{storeId}
                 and ep.protype_id like concat('%', #{protypeId}, '%')
             </if>
         </where>
-
     </select>
+
 
 </mapper>

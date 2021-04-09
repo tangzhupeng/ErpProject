@@ -44,12 +44,14 @@
         </association>
     </resultMap>
 
+<!--    新增采购单-->
     <insert id="addPurNote">
         insert into erp_buying_order values(
         "${boNumber}","${boDate}","${poNumber.poNumber}","${poNumber.poMoney}",0
         )
     </insert>
 
+<!--    查询所有采购单时间排序-->
     <select id="findAllPurNote" resultMap="puNote">
         select * from erp_buying_order ebo
         left join erp_p_order_master epom on ebo.po_number = epom.po_number
@@ -58,22 +60,24 @@
         left join erp_store es on epom.store_id = es.store_id
         left join erp_emp ee on epom.emp_id = ee.emp_id
         left join erp_emp ee1 on epom.sup_emp_id = ee1.emp_id
+        order by ebo.bo_date desc
     </select>
 
-    <!--根据id查询对应的采购单-->
+<!--    根据id查询对应的采购单-->
     <select id="findAllPurNoteT" resultMap="puNote">
         select * from erp_buying_order ebo
         left join erp_p_order_master epom on ebo.po_number = epom.po_number
         where ebo.bo_number = #{boNumber}
     </select>
 
-    <!--查询所有的采购单-->
+<!--    查询所有的采购单-->
     <select id="findAllPurNoteX" resultMap="puNote">
         select * from erp_buying_order ebo
         left join erp_p_order_master epom on ebo.po_number = epom.po_number
         where ebo.consumed != ebo.notconsumed and epom.provider_id=#{providerId}
     </select>
 
+<!--    修改采购订单状态-->
     <update id="updateboEastate">
         update erp_p_order_master set po_eastate = 1,po_state = 2,po_ststate = 1,bo_number = "${boNumber}"
         where po_number = "${poNumber.poNumber}"

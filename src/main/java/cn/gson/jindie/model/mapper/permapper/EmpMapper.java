@@ -22,5 +22,7 @@ public interface EmpMapper {
     public Integer deleteEmp(Integer empId);
     //根据姓名查询员工信息
     public ErpEmp selectByEmpName(String empName);
+    //根据id查询员工
+    ErpEmp findEmpById(Integer id);
 
 }

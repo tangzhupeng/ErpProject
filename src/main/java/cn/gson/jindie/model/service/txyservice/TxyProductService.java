@@ -17,15 +17,28 @@ import java.util.List;
 public class TxyProductService {
     @Autowired
     private TxyProductMapper productMapper;
-    //分页，模糊查询所有商品
+
+    /**
+     * 模糊查询所有商品
+     * @param product
+     * @return
+     */
     public List<ErpProduct> allGoods(ErpProduct product){
         return productMapper.allGoods(product);
     }
-    //查询下架商品
+
+    /**
+     * 查询所有下架商品
+     * @return
+     */
     public List<ErpProduct> selectXjGoods(){
         return productMapper.selectXjGoods();
     }
-    //新增编辑商品
+
+    /**
+     * 新增编辑商品
+     * @param product
+     */
     public void addGoods(ErpProduct product){
         if(product.getProductId()==null){
             productMapper.addGoods(product);
@@ -33,23 +46,42 @@ public class TxyProductService {
             productMapper.updateGoods(product);
         }
     }
-    //下架商品
+    /**
+     * 下架商品
+     * @param productId
+     */
     public void xjGoods(Integer productId){
         productMapper.xjGoods(productId);
     }
-    //重新上架商品
+
+    /**
+     * 重新上架商品
+     * @param productId
+     */
     public void sjGoods(Integer productId){
         productMapper.sjGoods(productId);
     }
-    //删除商品
+
+    /**
+     * 删除商品
+     * @param productId
+     */
     public void deleteGoods(Integer productId){
         productMapper.deleteGoods(productId);
     }
-    //查看商品类别
+
+    /**
+     * 查看商品类别
+     * @return
+     */
     public List<ErpProductType> goodType(){
         return productMapper.goodType();
     }
-    //查看仓库名称
+
+    /**
+     * 查看仓库名称
+     * @return
+     */
     public List<ErpStore> storeByName(){
         return productMapper.storeByName();
     }
@@ -78,6 +110,7 @@ public class TxyProductService {
 
         return productMapper.allProductState2(sid);
     }
+
     //按状态查询所有商品
     public List<ErpProduct> queryProducts(Integer  sid ){
 

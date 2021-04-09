@@ -21,6 +21,7 @@ public class EmpPerService {
     @Autowired
     LoginMapper loginMapper;
 
+    //登录
     public ErpEmp findUserLogin(String name){
         return loginMapper.findUserLogin(name);
     }

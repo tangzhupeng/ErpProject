@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface EmpPerMapper {
-    //登录
+    //根据用户名登录
     public ErpEmp findPerLogin(String name);
 }

@@ -34,6 +34,7 @@
             <result column="grade_name" property="gradeName"></result>
         </association>
     </resultMap>
+    <!--查询客户等级-->
     <select id="gradeType" resultMap="customer">
         select * from erp_customer c
         left join erp_customer_grade g

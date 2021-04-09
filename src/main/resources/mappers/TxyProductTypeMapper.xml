@@ -14,6 +14,7 @@
         <id property="productId" column="product_id"></id>
         <result property="productName" column="product_name"></result>
     </resultMap>
+    <!--查询商品类别-->
     <select id="productType" resultMap="proType">
         select * from erp_product p
         left join erp_product_type t

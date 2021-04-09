@@ -46,12 +46,12 @@ public class PaymentService {
 
 
     //查询所有供货商
-    public List<ErpProvider> SerProvider(){
+    public List<ErpProvider> serProvider(){
         return providerMapper.findProvider();
     }
 
     //新增付款单
-    public void InPayment(ErpPayment payment){
+    public void inPayment(ErpPayment payment){
 
         if(payment.getPaymentId()==null){
             Date date=new Date();
@@ -61,7 +61,7 @@ public class PaymentService {
             payment.setPaymentTime(new Date());
 
             //新增收款单
-            paymentMapper.InPayment(payment);
+            paymentMapper.inPayment(payment);
 
             //修改客户的欠款金额
             paymentMapper.upProviderMoney(payment);
@@ -73,7 +73,7 @@ public class PaymentService {
             //新增收款单记录
             payment.getPaymentRecord().setPayment(payment);
             payment.getPaymentRecord().setEmpState(1);
-            paymentMapper.InPaymentRecord(payment.getPaymentRecord());
+            paymentMapper.inPaymentRecord(payment.getPaymentRecord());
         }
 
     }

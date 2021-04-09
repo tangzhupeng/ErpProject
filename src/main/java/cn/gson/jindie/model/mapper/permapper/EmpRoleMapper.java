@@ -14,8 +14,9 @@ public interface EmpRoleMapper {
 
     //获取员工权限表
     public List<ErpEmpRole> findEmpRole();
-
     //通过员工角色表修改员工角色
     public void updateEmpRole(Integer roleId,Integer empId,Integer empRoleId);
+    //分配角色
+    public void addEmpRole(ErpEmpRole erpEmpRole);
 
 }

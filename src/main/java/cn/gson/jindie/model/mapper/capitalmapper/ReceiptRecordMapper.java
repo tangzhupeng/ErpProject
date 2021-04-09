@@ -11,13 +11,13 @@ import java.util.List;
 public interface ReceiptRecordMapper {
 
     //分页模糊查询所有付款记录单
-    public List<ErpReceiptRecord> SerReceiptRecord(ErpReceiptRecord erpReceiptRecord);
+    public List<ErpReceiptRecord> serReceiptRecord(ErpReceiptRecord erpReceiptRecord);
 
     //根据id删除对应的收款单记录
-    public void DelReId(Integer reId);
+    public void delReId(Integer reId);
 
     //根据id删除对应的收款单
-    public void DelReceiptId(String receiptId);
+    public void delReceiptId(String receiptId);
 
     //根据id修改审批状态
     public void upEmpState(Integer reId);

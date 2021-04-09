@@ -1,9 +1,7 @@
 package cn.gson.jindie.controller.storemcontroller;
 
-import cn.gson.jindie.model.mapper.storemmapper.ErpDelistMapper;
-import cn.gson.jindie.model.pojos.storempojos.ErpCheck;
 import cn.gson.jindie.model.pojos.storempojos.ErpDetailedlist;
-import cn.gson.jindie.model.service.storemservice.ErpCheckService;
+
 import cn.gson.jindie.model.service.storemservice.ErpDetailedlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * 商品的调拨详情表
+ */
 @RestController
 @RequestMapping
 public class ErpDetailedController {
@@ -19,7 +20,6 @@ public class ErpDetailedController {
     //        查询调拨表
     @RequestMapping("erp/Detailedlist")
     public List<ErpDetailedlist> Detailedlist(){
-        List<ErpDetailedlist> dellist = erpDetailedlistService.Dellist();
-        return  dellist;
+        return erpDetailedlistService.Dellist();
     }
 }

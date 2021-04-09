@@ -13,7 +13,11 @@ public class LoginService {
     @Autowired
     private LoginMapper loginMapper;
 
-    //通过用户名和密码登录
+    /**
+     * 通过用户名和密码登录
+     * @param name
+     * @return
+     */
     public ErpEmp findUserLogin(String name){
         return loginMapper.findUserLogin(name);
     }

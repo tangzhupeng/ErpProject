@@ -30,6 +30,7 @@
         <id column="provider_id" property="providerId"/>
         <result column="provider_name" property="providerName"/>
     </resultMap>
+    <!--根据供应商id查询供应商-->
     <select id="gysType" resultMap="provider">
         select * from erp_provider p
         left join erp_provider_type t

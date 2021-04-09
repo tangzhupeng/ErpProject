@@ -7,14 +7,14 @@ import cn.gson.jindie.model.pojos.salespojos.ErpOrder;
 import cn.gson.jindie.model.pojos.salespojos.ErpOrderDetails;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
-import cn.gson.jindie.view.ParameterVo;
-import cn.gson.jindie.view.SaleOrderVo;
+import cn.gson.jindie.model.service.perservice.EmpService;
+import cn.gson.jindie.model.vo.ParameterVo;
+import cn.gson.jindie.model.vo.SaleOrderVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,67 +23,63 @@ public class OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private EmpService empService;
 
     public PageInfo<ErpOrder> findAllSaleOrder(ParameterVo parameterVo){
-
         PageHelper.startPage(parameterVo.getPageNum(),parameterVo.getPageSize());
-
-        PageInfo<ErpOrder> orders = new PageInfo<>(orderMapper.findAllSaleOrder("%"+parameterVo.getEmpNameOrStoreNameOrNumber()+"%",parameterVo.getStartTime(),parameterVo.getEndTime(),parameterVo.getStatus()));
-
-        System.out.println(orders);
-        return orders;
+        return new PageInfo<>(orderMapper.findAllSaleOrder("%"+parameterVo.getEmpNameOrStoreNameOrNumber()+"%",parameterVo.getStartTime(),parameterVo.getEndTime(),parameterVo.getStatus()));
     }
 
 
     public PageInfo<ErpDeliveryOrder> findAllDeliveryOrder(ParameterVo parameterVo) {
-
         PageHelper.startPage(parameterVo.getPageNum(),parameterVo.getPageSize());
-            PageInfo<ErpDeliveryOrder> orders = new PageInfo<>(orderMapper.findAllDeliveryOrder("%"+parameterVo.getEmpNameOrStoreNameOrNumber()+"%",parameterVo.getStartTime(),parameterVo.getEndTime(),parameterVo.getStatus()));
-        System.out.println(orders);
-
-        return orders;
+        return new PageInfo<>(orderMapper.findAllDeliveryOrder("%"+parameterVo.getEmpNameOrStoreNameOrNumber()+"%",parameterVo.getStartTime(),parameterVo.getEndTime(),parameterVo.getStatus()));
 
     }
 
     public Boolean addOrder(SaleOrderVo saleOrderVo) {
+        ErpEmp emp = empService.findEmpById(saleOrderVo.getEmpId());
+
         ErpOrder order=new ErpOrder();
         order.setOrderId(null);
         order.setOrderNumber(saleOrderVo.getBianHao());
         order.setDocumentDate(saleOrderVo.getDocumentDate());
         order.setAccountReceivable(saleOrderVo.getZonJi());
         order.setDeliveryDate(saleOrderVo.getDeliveryDate());
-        order.setErpEmp(new ErpEmp(saleOrderVo.getEmpId()));
+        order.setErpEmp(emp);
         order.setErpStore(new ErpStore(saleOrderVo.getStoreId()));
         order.setErpCustomer(new ErpCustomer(saleOrderVo.getCustomerId()));
-        int id = orderMapper.addOrder(order);
-        System.out.println(id);
+
+        Integer id = orderMapper.addOrder(order);
+
         ErpOrderDetails orderDetails = new ErpOrderDetails();
         List<ErpOrderDetails> list= saleOrderVo.getOrderDetails();
         List<ErpOrderDetails> orderDetailsList=new ArrayList<>();
-        for (ErpOrderDetails orderDetail : list) {
 
-        }
+        double v = 0;
         for (int i = 0; i < list.size(); i++) {
-            ErpOrderDetails pu=new ErpOrderDetails();
-            pu.setErpOrder(new ErpOrder(order.getOrderId()));//采购编号
-            pu.setProductName(list.get(i).getProductName());//产品名称
+            ErpOrderDetails erpOrderDetails=new ErpOrderDetails();
+            erpOrderDetails.setErpOrder(new ErpOrder(order.getOrderId()));
+            erpOrderDetails.setProductName(list.get(i).getProductName());
 
-            pu.setNumber(list.get(i).getNumber());
-            double v = 0;
+            erpOrderDetails.setNumber(list.get(i).getNumber());
             if (list.get(i).getProductPrice() >= 0){
                 v = list.get(i).getProductPrice();
             }
-            pu.setProductPrice(saleOrderVo.getSalePrice()[i]);//单价
+
+            erpOrderDetails.setProductPrice(saleOrderVo.getSalePrice()[i]);
+
             if (v==0){
-                pu.setProductMoney(0.00);
+                erpOrderDetails.setProductMoney(0.00);
             }else {
-                pu.setProductMoney(list.get(i).getNumber()*saleOrderVo.getSalePrice()[i]);//总价
+                erpOrderDetails.setProductMoney(list.get(i).getNumber()*saleOrderVo.getSalePrice()[i]);
             }
-            orderDetailsList.add(pu);
+
+            orderDetailsList.add(erpOrderDetails);
         }
-        System.out.println(orderDetailsList);
-        int xqing = orderMapper.addOrderDetails(orderDetailsList);
-        if (xqing>0&&id>0){
+        int count = orderMapper.addOrderDetails(orderDetailsList);
+        if (count > 0 && id != null){
             return true;
         }else {
             return false;

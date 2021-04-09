@@ -15,13 +15,19 @@ public class RoleService {
     @Autowired
     private RoleMapper rolemapper;
 
-    /*新增角色*/
+    /**
+     * 新增角色
+     * @param role
+     */
     public void addRole(ErpRole role){
 
         rolemapper.addRole(role);
     }
 
-    //查询所有员工
+    /**
+     * 查询所有员工
+     * @return
+     */
     public List<ErpRole> selectAllRole(){
         return rolemapper.selectAllRole();
     }

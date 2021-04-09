@@ -36,7 +36,7 @@
     </resultMap>
 
     <!--查询销货单-->
-    <select id="SerDeliveryOrder" resultMap="DeliveryOrder">
+    <select id="serDeliveryOrder" resultMap="DeliveryOrder">
         select * from erp_delivery_order where cancelledAmount!=receivables
         and customer_id=#{customerId}
     </select>
@@ -47,13 +47,13 @@
     </select>
 
     <!--新增收款单-->
-    <insert id="InReceipt">
+    <insert id="inReceipt">
         insert into erp_receipt values (#{receiptId},#{emp.empId},#{customer.customerId},#{preparedBy},
         #{receiptTime},#{receiptMoney},#{receiptHxMoney},#{receiptDiscount})
     </insert>
 
     <!--新增收款记录单-->
-    <insert id="InReceiptRecord">
+    <insert id="inReceiptRecord">
         insert into erp_receipt_record values (#{reId},#{receipt.receiptId},#{account.accountId},
         #{deliveryOrder.deliveryOrderId},#{reWay},#{reMark},#{reMoney},#{reRemark},#{empName},#{empState})
     </insert>
@@ -73,26 +73,9 @@
 
     <!--新增收款单时修改账号的金额-->
     <update id="upAccountMoney">
-        update erp_account set account_money=account_money+#{reMoney}
+        update erp_account set account_balance=account_balance+#{reMoney}
         where account_id=#{account.accountId}
     </update>
 
-
-<!--    &lt;!&ndash;修改付款单的所有值&ndash;&gt;-->
-<!--    <update id="upReceipt">-->
-<!--        update erp_receipt set emp_id=#{emp.empId},customer_id=#{customer.customerId},-->
-<!--        prepared_by=#{preparedBy},receipt_time=#{receiptTime},receipt_money=#{receiptMoney},-->
-<!--        receipt_hxmoney=#{receiptHxMoney},receipt_discount=#{receiptDiscount}-->
-<!--        where receipt_id=#{receiptId}-->
-<!--    </update>-->
-
-<!--    &lt;!&ndash;修改付款记录单的所有值&ndash;&gt;-->
-<!--    <update id="upReceiptRecord">-->
-<!--        update erp_receipt_record set receipt_id=#{receipt.receiptId},-->
-<!--        account_id=#{account.accountId},delivery_order_id=#{deliveryOrder.deliveryOrderId},-->
-<!--        re_way=#{reWay},re_mark=#{reMark},re_money=#{reMoney},re_remark=#{reRemark},-->
-<!--        emp_name=#{empName},emp_state=#{empState}-->
-<!--        where re_id=#{reId}-->
-<!--    </update>-->
 
 </mapper>

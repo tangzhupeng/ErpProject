@@ -1,7 +1,7 @@
 package cn.gson.jindie.model.mapper.salemapper;
 
 import cn.gson.jindie.model.pojos.salespojos.ErpOrder;
-import cn.gson.jindie.view.OrderDetailsVo;
+import cn.gson.jindie.model.vo.OrderDetailsVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -20,7 +20,13 @@ public class TxyCustomerController {
     @Autowired
     TxyCustomerService customerService;
 
-    //查询所有客户
+    /**
+     * 分页，模糊查询所有客户
+     * @param pageNum
+     * @param size
+     * @param customer
+     * @return
+     */
     @RequestMapping("/all-customer")
     @ResponseBody
     public Map<String, Object> demo(Integer pageNum, Integer size, String customer) {
@@ -32,57 +38,81 @@ public class TxyCustomerController {
         map.put("rows", kh);
         return map;
     }
-    //新增客户
+
+    /**
+     * 新增客户
+     * @param customer
+     */
     @PostMapping("/add-customer")
     @ResponseBody
     public void addCustomer(@RequestBody ErpCustomer customer){
         customerService.addCustomer(customer);
-        System.err.println("客户"+customer);
     }
 
-    //查询职员
+    /**
+     * 查询职员
+     * @return
+     */
     @RequestMapping("/select-user")
     @ResponseBody
     public List<ErpEmp> selectUser(){
         return customerService.selectUser();
     }
 
-    //查询客户等级
+    /**
+     * 查询客户等级
+     * @return
+     */
     @RequestMapping("/select-grade")
     @ResponseBody
     public List<ErpCustomerGrade> selectGrade(){
         return customerService.selectGrade();
     }
 
-    //删除客户
+    /**
+     * 删除客户
+     * @param customerId
+     */
     @GetMapping("/delete-customer")
     @ResponseBody
     public void deleteCustomer(Integer customerId){
         customerService.deleteCustomer(customerId);
     }
 
-    //查询包含销售人员客户
+    /**
+     * 查询包含销售人员客户
+     * @return
+     */
     @RequestMapping("/have-emp")
     @ResponseBody
     public List<ErpCustomer> haveEmp(){
         return customerService.haveEmp();
     }
 
-    //查询禁用客户
+    /**
+     * 查询禁用客户
+     * @return
+     */
     @RequestMapping("/not-state")
     @ResponseBody
     public List<ErpCustomer> notState(){
         return customerService.notState();
     }
 
-    //禁用客户
+    /**
+     * 禁用客户
+     * @param customerId
+     */
     @GetMapping("/jy-customer")
     @ResponseBody
     public void jyCustomer(Integer customerId){
         customerService.jyCustomer(customerId);
     }
 
-    //恢复客户
+    /**
+     * 恢复客户
+     * @param customerId
+     */
     @GetMapping("/hf-customer")
     @ResponseBody
     public void hfCustomer(Integer customerId){

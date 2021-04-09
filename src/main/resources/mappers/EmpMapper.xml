@@ -34,4 +34,8 @@
         select e.emp_id from erp_emp e where emp_name=#{empName}
     </select>
 
+    <select id="findEmpById" resultType="cn.gson.jindie.model.pojos.perpojos.ErpEmp">
+    select * from erp_emp where emp_id = #{id}
+    </select>
+
 </mapper>

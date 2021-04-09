@@ -1,6 +1,7 @@
 package cn.gson.jindie.controller.percontroller;
 
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
+import cn.gson.jindie.model.pojos.perpojos.ErpEmpRole;
 import cn.gson.jindie.model.service.perservice.EmpRoleService;
 import cn.gson.jindie.model.service.perservice.EmpService;
 import cn.gson.jindie.model.vo.EmpRoleVo;
@@ -23,16 +24,14 @@ public class EmpRoleController {
     @Autowired
     private EmpService empService;
 
+    /**
+     *查询员工角色
+     * @return
+     */
     @GetMapping("/selectEmpRole")
     @Transactional
     public List<EmpRoleVo> findEmpRole(){
-//        System.out.print(empRoleService.findEmpRole());
-//        return empRoleService.findEmpRole();
-//        System.out.println(empRoleVos);
-//        System.out.print(empRoleService.findEmpRole());
-
         List<EmpRoleVo> empRoleVoList = new ArrayList<EmpRoleVo>();
-
         int i = 0;
         for(;i<empRoleService.findEmpRole().size();i++){
             EmpRoleVo empRoleVo = new EmpRoleVo();
@@ -41,16 +40,18 @@ public class EmpRoleController {
             String roleName = empRoleService.findEmpRole().get(i).getRoleList().get(0).getRoleName();
             int statu = empRoleService.findEmpRole().get(i).getEmpList().get(0).getStatu();
             empRoleVo.setEmpRoleId(empRoleId);
-//            empRoleVo.setEmpId(empId);
             empRoleVo.setEmpName(empName);
             empRoleVo.setRoleName(roleName);
             empRoleVo.setStatu(statu);
             empRoleVoList.add(i,empRoleVo);
         }
-//        System.out.print(empRoleVoList);
-            return empRoleVoList;
+        return empRoleVoList;
     }
 
+    /**
+     *修改角色
+     * @param empRoleVos
+     */
     @PostMapping("/updateEmpRole")
     @Transactional
     public void updateEmpRole(EmpRoleVos empRoleVos){
@@ -58,10 +59,18 @@ public class EmpRoleController {
         Integer roleId = empRoleVos.getRoleId();
         Integer empId = empService.selectByEmpName(empRoleVos.getEmpName()).getEmpId();
         Integer empRoleId = empRoleVos.getEmpRoleId();
-        System.out.print("empid:"+ empId);
-        System.out.print("roleId:"+ empId);
-        System.out.print("empRoleId:"+ empId);
         empRoleService.updateEmpRole(roleId,empId,empRoleId);
     }
+
+    /**
+     * 赋予角色
+     * @param erpEmpRole
+     */
+    @PostMapping("/getEmpRole")
+    @Transactional
+    public void addEmpRole(ErpEmpRole erpEmpRole){
+        empRoleService.addEmpRole(erpEmpRole);
+    }
+
 
 }

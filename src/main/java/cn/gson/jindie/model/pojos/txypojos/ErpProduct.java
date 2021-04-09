@@ -51,8 +51,6 @@ public class ErpProduct {
         this.erpAllot = erpAllot;
     }
 
-
-
     public ErpStore getStores() {
         return stores;
     }
@@ -84,9 +82,6 @@ public class ErpProduct {
     public void setProductPicture(String productPicture) {
         this.productPicture = productPicture;
     }
-
-
-
 
     public Double getProductMoney() {
         return productMoney;
@@ -127,8 +122,6 @@ public class ErpProduct {
     public void setProductState(Integer productState) {
         this.productState = productState;
     }
-
-
 
     public Double getProductVip() {
         return productVip;

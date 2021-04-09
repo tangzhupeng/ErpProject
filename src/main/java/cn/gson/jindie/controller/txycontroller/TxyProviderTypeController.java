@@ -14,25 +14,41 @@ public class TxyProviderTypeController {
     @Autowired
     TxyProviderTypeService providerTypeService;
 
-    //查询所有供应商类别
+    /**
+     * 查询所有供应商类别
+     * @return
+     */
     @RequestMapping("/all-ProviderType")
     @ResponseBody
     public List<ErpProviderType> allProviderType(){
         return providerTypeService.allProviderType();
     }
-    //新增供应商类别
+
+    /**
+     * 新增供应商类别
+     * @param providerType
+     */
     @PostMapping("/add-gys")
     @ResponseBody
     public void addGys(@RequestBody ErpProviderType providerType){
         providerTypeService.addGys(providerType);
     }
-    //删除供应商类别
+
+    /**
+     * 删除供应商类别
+     * @param gysId
+     */
     @GetMapping("/delete-gys")
     @ResponseBody
     public void deleteProviderType(Integer gysId){
         providerTypeService.deleteProviderType(gysId);
     }
-    //根据供应商类别id查询供应商
+
+    /**
+     * 根据供应商类别id查询供应商
+     * @param gysId
+     * @return
+     */
     @RequestMapping("/gys-type")
     @ResponseBody
     public List<ErpProvider> gysType(Integer gysId){

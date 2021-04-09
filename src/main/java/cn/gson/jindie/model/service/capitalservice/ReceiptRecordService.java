@@ -16,24 +16,24 @@ public class ReceiptRecordService {
     ReceiptRecordMapper receiptRecordMapper;
 
     //分页模糊查询所有付款记录单
-    public List<ErpReceiptRecord> SerReceiptRecord(ErpReceiptRecord erpReceiptRecord){
-        return receiptRecordMapper.SerReceiptRecord(erpReceiptRecord);
+    public List<ErpReceiptRecord> serReceiptRecord(ErpReceiptRecord erpReceiptRecord){
+        return receiptRecordMapper.serReceiptRecord(erpReceiptRecord);
     }
 
     //根据id删除对应的收款单记录
-    public void DelReId(Integer reId,String receiptId){
-        receiptRecordMapper.DelReId(reId);
+    public void delReId(Integer reId,String receiptId){
+        receiptRecordMapper.delReId(reId);
         //根据id删除对应的收款单
-        receiptRecordMapper.DelReceiptId(receiptId);
+        receiptRecordMapper.delReceiptId(receiptId);
 
     }
 
     //批量删除收款记录单
-    public void DelReidList(List<ErpReceiptRecord> receiptRecords){
+    public void delReidList(List<ErpReceiptRecord> receiptRecords){
         receiptRecords.forEach(v->{
-            receiptRecordMapper.DelReId(v.getReId());
+            receiptRecordMapper.delReId(v.getReId());
             //根据id删除对应的收款单
-            receiptRecordMapper.DelReceiptId(v.getReceipt().getReceiptId());
+            receiptRecordMapper.delReceiptId(v.getReceipt().getReceiptId());
         });
 
     }

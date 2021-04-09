@@ -16,12 +16,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 采购单控制（Controller）层
+ * @author wp
+ * @Time 2021-4-6
+ *
+ */
 @Controller
 public class WpPurchaseNoteController {
+
+    // 采购单服务层
     @Autowired
     WpPurchaseNoteServe wpPurchaseNoteServe;
 
+    /*
+        查询状态为执行中的采购订单
+     */
     @RequestMapping("/find-zpoderlist")
     @ResponseBody
     public List<ErpPOrderMaster> findPOderListispoState0(){
@@ -32,21 +42,25 @@ public class WpPurchaseNoteController {
     @ResponseBody
     public String addPurNote(@RequestBody ErpBuyingOrder erpBuyingOrder){
         try {
-            System.out.println(1);
             wpPurchaseNoteServe.addPurNote(erpBuyingOrder);
         }catch (Exception e){
-            System.out.println(2);
             System.out.println(e.getMessage());
         }
         return "新增成功";
     }
 
+    /*
+        根据采购单号查询
+     */
     @RequestMapping("/findAllPurNoteT")
     @ResponseBody
     public List<ErpBuyingOrder> findAllPurNoteT(String boNumber){
         return wpPurchaseNoteServe.findAllPurNoteT(boNumber);
     }
 
+    /*
+        查询所有采购订单
+     */
     @RequestMapping("/findAllPurNote")
     @ResponseBody
     public Map<String,Object> findAllPurNote(Integer pageNum, Integer size){

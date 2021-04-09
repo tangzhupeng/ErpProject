@@ -7,6 +7,7 @@ import cn.gson.jindie.model.pojos.txypojos.ErpStore;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class ErpOrder {
 
@@ -29,6 +30,7 @@ public class ErpOrder {
   private ErpEmp erpEmp;
   private ErpStore erpStore;
   private String currentExaminer;
+  private List<ErpOrderDetails> erpOrderDetailsList;
 
   public ErpOrder(Integer orderId) {
     this.orderId = orderId;
@@ -195,6 +197,14 @@ public class ErpOrder {
     this.currentExaminer = currentExaminer;
   }
 
+  public List<ErpOrderDetails> getErpOrderDetailsList() {
+    return erpOrderDetailsList;
+  }
+
+  public void setErpOrderDetailsList(List<ErpOrderDetails> erpOrderDetailsList) {
+    this.erpOrderDetailsList = erpOrderDetailsList;
+  }
+
   @Override
   public String toString() {
     return "ErpOrder{" +
@@ -214,6 +224,7 @@ public class ErpOrder {
             ", erpEmp=" + erpEmp +
             ", erpStore=" + erpStore +
             ", currentExaminer='" + currentExaminer + '\'' +
+            ", erpOrderDetailsList=" + erpOrderDetailsList +
             '}';
   }
 }

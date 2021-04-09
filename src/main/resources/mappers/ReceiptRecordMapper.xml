@@ -42,7 +42,7 @@
     </resultMap>
 
     <!--分页模糊查询付款记录单信息-->
-    <select id="SerReceiptRecord" resultMap="ReceiptRecord">
+    <select id="serReceiptRecord" resultMap="ReceiptRecord">
         select * from erp_receipt_record re
         left join erp_receipt er on re.receipt_id = er.receipt_id
         left join erp_emp ee on er.emp_id=ee.emp_id
@@ -76,12 +76,12 @@
 
 
     <!--根据id删除对应的收款单记录-->
-    <delete id="DelReId">
+    <delete id="delReId">
         delete from erp_receipt_record where re_id=#{reId}
     </delete>
 
     <!--根据id删除对应收款单-->
-    <delete id="DelReceiptId">
+    <delete id="delReceiptId">
         delete from erp_receipt where receipt_id=#{receiptId}
     </delete>
 

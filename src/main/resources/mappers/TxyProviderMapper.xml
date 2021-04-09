@@ -68,12 +68,6 @@
         where provider_id=#{providerId}
     </update>
 
-    <!--查看应付款金额为0的供应商-->
-    <select id="nullMoney" resultMap="providerList">
-        select * from erp_provider p
-        left join erp_provider_type t on p.gys_id = t.gys_id
-        where p.provider_money=0
-    </select>
     <!--禁用供应商-->
     <update id="jyProvider">
         update erp_provider set provider_state=0
@@ -86,6 +80,7 @@
         left join erp_provider_type t on p.gys_id = t.gys_id
         where p.provider_state=0
     </select>
+
     <!--恢复供应商-->
     <update id="hfProvider">
         update erp_provider set provider_state=1

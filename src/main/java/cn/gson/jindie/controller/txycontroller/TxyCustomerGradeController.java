@@ -14,25 +14,41 @@ public class TxyCustomerGradeController {
     @Autowired
     TxyCustomerGradeService customerGradeService;
 
-    //查询所有客户等级
+    /**
+     * 查询所有客户等级
+     * @return
+     */
     @RequestMapping("/all-grade")
     @ResponseBody
     public List<ErpCustomerGrade> allCustomerGrade(){
         return customerGradeService.allCustomerGrade();
     }
-    //新增客户等级
+
+    /**
+     * 新增客户等级
+     * @param customerGrade
+     */
     @PostMapping("/add-grade")
     @ResponseBody
     public void addCustomerGrade(@RequestBody ErpCustomerGrade customerGrade){
         customerGradeService.addCustomerGrade(customerGrade);
     }
-    //删除客户等级
+
+    /**
+     * 删除客户等级
+     * @param gradeId
+     */
     @GetMapping("/delete-grade")
     @ResponseBody
     public void deleteCustomerGrade(Integer gradeId){
         customerGradeService.deleteCustomerGrade(gradeId);
     }
-    //根据等级id查询客户
+
+    /**
+     * 根据等级id查询客户
+     * @param gradeId
+     * @return
+     */
     @RequestMapping("/grade-type")
     @ResponseBody
     public List<ErpCustomer> gradeType(Integer gradeId){

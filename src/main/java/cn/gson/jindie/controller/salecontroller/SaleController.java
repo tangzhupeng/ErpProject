@@ -3,7 +3,6 @@ package cn.gson.jindie.controller.salecontroller;
 import cn.gson.jindie.model.pojos.perpojos.ErpEmp;
 import cn.gson.jindie.model.pojos.salespojos.ErpDeliveryOrder;
 import cn.gson.jindie.model.pojos.salespojos.ErpOrder;
-import cn.gson.jindie.model.pojos.salespojos.ErpOrderDetails;
 import cn.gson.jindie.model.pojos.txypojos.ErpCustomer;
 import cn.gson.jindie.model.pojos.txypojos.ErpProduct;
 import cn.gson.jindie.model.pojos.txypojos.ErpStore;
@@ -12,9 +11,9 @@ import cn.gson.jindie.model.service.perservice.EmpService;
 import cn.gson.jindie.model.service.txyservice.TxyCustomerService;
 import cn.gson.jindie.model.service.txyservice.TxyProductService;
 import cn.gson.jindie.model.service.txyservice.TxyStoreService;
-import cn.gson.jindie.view.OrderDetailsVo;
-import cn.gson.jindie.view.ParameterVo;
-import cn.gson.jindie.view.SaleOrderVo;
+import cn.gson.jindie.model.vo.OrderDetailsVo;
+import cn.gson.jindie.model.vo.ParameterVo;
+import cn.gson.jindie.model.vo.SaleOrderVo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,32 +43,18 @@ public class SaleController {
 
     @GetMapping("/findAllSaleOrder")
     public PageInfo<ErpOrder> findAllSaleOrder(ParameterVo parameterVo){
-        System.out.println(parameterVo);
-        PageInfo<ErpOrder> orders = orderService.findAllSaleOrder(parameterVo);
-        for (ErpOrder erpOrder : orders.getList()) {
-            System.out.println(erpOrder);
-        }
-        return orders;
+        return orderService.findAllSaleOrder(parameterVo);
     }
 
     @GetMapping("/findAllDeliveryOrder")
     public PageInfo<ErpDeliveryOrder> findAllDeliveryOrder(ParameterVo parameterVo){
-        System.out.println(parameterVo);
-        PageInfo<ErpDeliveryOrder> orders = orderService.findAllDeliveryOrder(parameterVo);
-        for (ErpDeliveryOrder erpDeliveryOrder : orders.getList()) {
-            System.out.println(erpDeliveryOrder);
-        }
-        return orders;
+        return orderService.findAllDeliveryOrder(parameterVo);
     }
 
 
     @GetMapping("/orderDetailsVoList/{id}")
     public List<OrderDetailsVo>  orderDetailsVoList(@PathVariable("id") Integer  id) {
-        List<OrderDetailsVo> erpOrderDetails = erpOrderDetailsService.orderDetailsVoList(id);
-        for (OrderDetailsVo orderDetailsVo : erpOrderDetails) {
-            System.out.println(orderDetailsVo);
-        }
-            return erpOrderDetails;
+            return erpOrderDetailsService.orderDetailsVoList(id);
     }
 
     @GetMapping("/updateOrderStatusById/{id}")
@@ -88,75 +73,42 @@ public class SaleController {
     }
 
 
-    /**
-     * 查询所有产品基础信息
-     *
-     * @param productName       产品名称
-     * @param productNum        产品编号
-     * @param productCategories 产品类别
-     * @param limit             条数
-     * @param page              页码
-     * @return
-     */
     @GetMapping("/findAllProduct")
     public PageInfo<ErpProduct> findAllProduct(String productName, String productNum, String productCategories, Integer limit, Integer page) {
-
-        PageInfo<ErpProduct> list = productService.findAllProduct(productName, productNum, productCategories, limit, page);
-        return list;
+        return productService.findAllProduct(productName, productNum, productCategories, limit, page);
 
     }
 
     //查询所有客户信息
     @GetMapping("/findAllCustomers")
     public List<ErpCustomer> findAllCustomers() {
-        try {
-            List<ErpCustomer> erpCustomers = customerService.findAllCustomers();
-            return erpCustomers;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return customerService.findAllCustomers();
     }
 
     //查询所有员工信息
     @GetMapping("/findAllEmp")
     public List<ErpEmp> findAllEmp() {
-        try {
-            List<ErpEmp> erpEmps = empService.selectAllEmp();
-            return erpEmps;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return empService.selectAllEmp();
     }
 
     //查询所有仓库信息
     @GetMapping("/findAllStore")
     public List<ErpStore> findAllStore() {
-        try {
-            List<ErpStore> erpStores = storeService.findAllStore();
-            return erpStores;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return storeService.findAllStore();
     }
 
-    //新增采购单，采购单产品详情
+    //新增销售订单，订单产品详情
     @PostMapping("/addOrder")
     public String addOrder(@RequestBody SaleOrderVo saleOrderVo) {
-        System.out.println(saleOrderVo);
         try {
-            Boolean aBoolean = orderService.addOrder(saleOrderVo);
-            System.out.println(saleOrderVo.toString());
-            if (aBoolean){
+            if (orderService.addOrder(saleOrderVo)){
                 return "新增成功";
             }else {
                 return "新增失败";
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return "新增失败";
         }
-        return "新增失败";
     }
 }

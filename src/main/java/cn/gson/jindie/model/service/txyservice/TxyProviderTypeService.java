@@ -15,11 +15,18 @@ public class TxyProviderTypeService {
     @Autowired
     TxyProviderTypeMapper providerTypeMapper;
 
-    //查询所有供应商类别
+    /**
+     * 查询所有供应商类别
+     * @return
+     */
     public List<ErpProviderType> allProviderType(){
         return providerTypeMapper.allProviderType();
     }
-    //新增供应商类别
+
+    /**
+     * 新增供应商类别
+     * @param providerType
+     */
     public void addGys(ErpProviderType providerType){
         if (providerType.getGysId()==null){
             providerTypeMapper.addGys(providerType);
@@ -27,11 +34,20 @@ public class TxyProviderTypeService {
             providerTypeMapper.updateGys(providerType);
         }
     }
-    //删除供应商类别
+
+    /**
+     * 删除供应商类别
+     * @param gysId
+     */
     public void deleteProviderType(Integer gysId){
         providerTypeMapper.deleteProviderType(gysId);
     }
-    //根据供应商类别id查询供应商
+
+    /**
+     * 根据供应商类别id查询供应商
+     * @param gysId
+     * @return
+     */
     public List<ErpProvider> gysType(Integer gysId){
         return providerTypeMapper.gysType(gysId);
     }

@@ -14,28 +14,45 @@ public class TxyProductTypeController {
     @Autowired
     TxyProductTypeService productTypeService;
 
-    //查询所有商品类别
+    /**
+     * 查询所有商品类别
+     * @return
+     */
     @RequestMapping("/all-ProductType")
     @ResponseBody
     public List<ErpProductType> allProductType(){
         return productTypeService.allProductType();
     }
-    //根据商品类别id查询商品
+
+    /**
+     * 根据商品类别id查询商品
+     * @param protypeId
+     * @return
+     */
     @RequestMapping("/product-type")
     @ResponseBody
     public List<ErpProduct> productType(Integer protypeId){
         return productTypeService.productType(protypeId);
     }
-    //新增商品类别
+
+    /**
+     * 新增商品类别
+     * @param productType
+     */
     @PostMapping("/add-protype")
     @ResponseBody
     public void addProtype(@RequestBody ErpProductType productType){
         productTypeService.addProtype(productType);
     }
-    //删除商品类别
+
+    /**
+     * 删除商品类别
+     * @param protypeId
+     */
     @GetMapping("/delete-proType")
     @ResponseBody
     public void deleteProType(Integer protypeId){
         productTypeService.deleteProType(protypeId);
     }
+
 }

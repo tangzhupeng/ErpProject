@@ -18,6 +18,11 @@ public class EmpPerController {
 //    @Autowired
 //    LoginService loginService;
 
+    /**
+     * 登录
+     * @param erpEmp
+     * @return
+     */
     @RequestMapping("/login")
     @ResponseBody
     public Object findPerLogin(@RequestBody ErpEmp erpEmp){

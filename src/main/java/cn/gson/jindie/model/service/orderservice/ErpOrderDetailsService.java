@@ -1,7 +1,7 @@
 package cn.gson.jindie.model.service.orderservice;
 
 import cn.gson.jindie.model.mapper.salemapper.ErpOrderDetailsMapper;
-import cn.gson.jindie.view.OrderDetailsVo;
+import cn.gson.jindie.model.vo.OrderDetailsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,6 @@ public class ErpOrderDetailsService {
     private ErpOrderDetailsMapper erpOrderDetailsMapper;
 
     public List<OrderDetailsVo> orderDetailsVoList(Integer Id) {
-
         return erpOrderDetailsMapper.orderDetailsVoList(Id);
     }
 

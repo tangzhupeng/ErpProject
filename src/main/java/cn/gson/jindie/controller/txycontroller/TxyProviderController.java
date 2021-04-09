@@ -22,14 +22,13 @@ public class TxyProviderController {
     @Autowired
     TxyProviderService providerService;
 
-    //查询所有
-    @RequestMapping("/find-provider")
-    @ResponseBody
-    public List<ErpProvider> findProvider(){
-        return providerService.findProvider();
-    }
-
-    //分页，模糊查询所有供应商
+    /**
+     * 分页，模糊查询所有供应商
+     * @param pageNum
+     * @param size
+     * @param provider
+     * @return
+     */
     @RequestMapping("/all-provider")
     @ResponseBody
     public Map<String, Object> demo(Integer pageNum, Integer size, String provider) {
@@ -44,49 +43,70 @@ public class TxyProviderController {
         return map;
     }
 
-    //查询供应商类别
+    /**
+     * 查询所有
+     * @return
+     */
+    @RequestMapping("/find-provider")
+    @ResponseBody
+    public List<ErpProvider> findProvider(){
+        return providerService.findProvider();
+    }
+
+    /**
+     * 查询供应商类别
+     * @return
+     */
     @GetMapping("/select-gys")
     @ResponseBody
     public List<ErpProviderType> selectGys(){
         return providerService.selectGys();
     }
 
-    //新增供应商
+    /**
+     * 新增供应商
+     * @param provider
+     */
     @PostMapping("/add-provider")
     @ResponseBody
     public void addProvider(@RequestBody ErpProvider provider){
         providerService.addProvider(provider);
     }
 
-    //查看应付款金额为0的供应商
-    @RequestMapping("/null-money")
-    @ResponseBody
-    public List<ErpProvider> nullMoney(){
-        return providerService.nullMoney();
-    }
-
-    //禁用供应商
+    /**
+     * 禁用供应商
+     * @param providerId
+     */
     @GetMapping("/jy-provider")
     @ResponseBody
     public void jyProvider(Integer providerId){
         providerService.jyProvider(providerId);
     }
 
-    //查看禁用供应商
+    /**
+     * 查看禁用供应商
+     * @return
+     */
     @RequestMapping("/find-jy")
     @ResponseBody
     public List<ErpProvider> findJy(){
         return providerService.findJy();
     }
 
-    //恢复供应商
+    /**
+     * 恢复供应商
+     * @param providerId
+     */
     @GetMapping("/hf-provider")
     @ResponseBody
     public void hfProvider(Integer providerId){
         providerService.hfProvider(providerId);
     }
 
-    //删除供应商
+    /**
+     * 删除供应商
+     * @param providerId
+     */
     @GetMapping("/delete-provider")
     @ResponseBody
     public void deleteProvider(Integer providerId){

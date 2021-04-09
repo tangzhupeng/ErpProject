@@ -17,16 +17,16 @@ import java.util.List;
 public interface ReceiptMapper {
 
     //查询销货单
-    public List<ErpDeliveryOrder> SerDeliveryOrder(Integer customerId);
+    public List<ErpDeliveryOrder> serDeliveryOrder(Integer customerId);
 
     //根据销货id，查询对应的销货单
     public List<ErpDeliveryOrder> findByDeliveryOrderId(Integer deliveryOrderId);
 
     //新增收款单
-    public void InReceipt(ErpReceipt erpReceipt);
+    public void inReceipt(ErpReceipt erpReceipt);
 
     //新增收款记录单
-    public void InReceiptRecord(ErpReceiptRecord receiptRecord);
+    public void inReceiptRecord(ErpReceiptRecord receiptRecord);
 
     //新增收款单时修改客户的欠款金额
     public void upCustomerMoney(ErpReceipt receipt);
@@ -37,10 +37,5 @@ public interface ReceiptMapper {
     //新增收款单时修改账号的金额
     public void upAccountMoney(ErpReceiptRecord receiptRecord);
 
-    //修改付款单的所有值
-    public void upReceipt(ErpReceipt erpReceipt);
-
-    //修改付款记录单的所有值
-    public void upReceiptRecord(ErpReceipt erpReceipt);
 
 }

@@ -18,24 +18,24 @@ public class PaymentRecordService {
     PaymentRecordMapper recordMapper;
 
     //分页模糊查询所有付款记录单
-    public List<ErpPaymentRecord> SerPaymentRecord(ErpPaymentRecord paymentRecord){
-        return recordMapper.SerPaymentRecord(paymentRecord);
+    public List<ErpPaymentRecord> serPaymentRecord(ErpPaymentRecord paymentRecord){
+        return recordMapper.serPaymentRecord(paymentRecord);
     }
 
     //根据id删除对应的付款单记录
-    public void DelPaymentId(Integer recordId,String paymentId){
-        recordMapper.DelRecordId(recordId);
+    public void delPaymentId(Integer recordId,String paymentId){
+        recordMapper.delRecordId(recordId);
         //根据id删除对应的收款单
-        recordMapper.DelPaymentId(paymentId);
+        recordMapper.delPaymentId(paymentId);
 
     }
 
     //批量删除付款记录单
-    public void DelPaymentIdList(List<ErpPaymentRecord> paymentRecords){
+    public void delPaymentIdList(List<ErpPaymentRecord> paymentRecords){
         paymentRecords.forEach(v->{
-            recordMapper.DelRecordId(v.getRecordId());
+            recordMapper.delRecordId(v.getRecordId());
             //根据id删除对应的收款单
-            recordMapper.DelPaymentId(v.getPayment().getPaymentId());
+            recordMapper.delPaymentId(v.getPayment().getPaymentId());
         });
 
     }

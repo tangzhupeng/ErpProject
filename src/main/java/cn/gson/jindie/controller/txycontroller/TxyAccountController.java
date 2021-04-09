@@ -19,7 +19,13 @@ public class TxyAccountController {
     @Autowired
     TxyAccountService accountService;
 
-    //分页，模糊查询所有账户
+    /**
+     * 分页，模糊查询所有账户
+     * @param pageNum
+     * @param size
+     * @param acc
+     * @return
+     */
     @RequestMapping("/all-account")
     @ResponseBody
     public Map<String, Object> demo(Integer pageNum, Integer size, String acc) {
@@ -34,28 +40,40 @@ public class TxyAccountController {
         return map;
     }
 
-    //查询所有
+    /**
+     * 查询所有账户
+     * @return
+     */
     @RequestMapping("/Ser-account")
     @ResponseBody
     public List<ErpAccount> SerAccount(){
         return accountService.SerAccount();
     }
 
-    //新增账户
+    /**
+     * 新增账户
+     * @param account
+     */
     @PostMapping("/add-account")
     @ResponseBody
     public void addAccount(@RequestBody ErpAccount account){
         accountService.addAccount(account);
     }
 
-    //冻结账户
+    /**
+     * 冻结账户
+     * @param accountId
+     */
     @GetMapping("/delete-account")
     @ResponseBody
     public void deleteAccount(Integer accountId){
         accountService.deleteAccount(accountId);
     }
 
-    //恢复账户
+    /**
+     * 恢复账户
+     * @param accountId
+     */
     @GetMapping("/hf-account")
     @ResponseBody
     public void hfAccount(Integer accountId){

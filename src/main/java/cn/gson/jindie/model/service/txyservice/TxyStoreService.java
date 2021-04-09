@@ -15,11 +15,19 @@ public class TxyStoreService {
     @Autowired
     TxyStoreMapper storeMapper;
 
-    //查询所有仓库
+    /**
+     * 模糊查询所有仓库
+     * @param store
+     * @return
+     */
     public List<ErpStore> allStore(ErpStore store){
         return storeMapper.allStore(store);
     }
-    //新增仓库
+
+    /**
+     * 新增仓库
+     * @param store
+     */
     public void addStore(ErpStore store){
         if(store.getStoreId()==null){
             storeMapper.addStore(store);
@@ -27,27 +35,47 @@ public class TxyStoreService {
             storeMapper.updateStore(store);
         }
     }
-    //查看禁用仓库
+
+    /**
+     * 查看禁用仓库
+     * @return
+     */
     public List<ErpStore> byStore(){
         return storeMapper.byStore();
     }
-    //根据仓库id查询商品
+
+    /**
+     * 根据仓库id查询商品
+     * @param storeId
+     * @return
+     */
     public List<ErpProduct> storeGood(Integer storeId){
         return storeMapper.storeGood(storeId);
     }
-    //禁用仓库
+
+    /**
+     * 禁用仓库
+     * @param storeId
+     */
     public void jyStore(Integer storeId){
         storeMapper.jyStore(storeId);
     }
-    //恢复仓库
+
+    /**
+     * 恢复仓库
+     * @param storeId
+     */
     public void hfStore(Integer storeId){
         storeMapper.hfStore(storeId);
     }
-    //删除仓库
+
+    /**
+     * 删除仓库
+     * @param storeId
+     */
     public void deleteStore(Integer storeId){
         storeMapper.deleteStore(storeId);
     }
-
 
     public List<ErpStore> queryStore( ){
         return storeMapper.queryStore();

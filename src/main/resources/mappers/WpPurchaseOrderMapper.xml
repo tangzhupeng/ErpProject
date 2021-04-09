@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.gson.jindie.model.mapper.purchasemapper.PurchaseMapper">
+<!--    -->
     <resultMap id="mpurchaseorder" type="cn.gson.jindie.model.pojos.purchasepojos.ErpPOrderMaster">
         <id column="po_number" property="poNumber"/>
         <result column="po_date" property="poDate"/>
@@ -94,6 +95,7 @@
         </association>
     </resultMap>
 
+<!--    查找采购订单时间排序-->
     <select id="findPOderList" resultMap="mpurchaseorder">
         select * from erp_p_order_master m
         left join erp_provider p on m.provider_id = p.provider_id
@@ -103,6 +105,7 @@
         left join erp_emp em1 on m.sup_emp_id = em1.emp_id order by m.po_date desc
     </select>
 
+<!--    查找状态为执行中的采购单-->
     <select id="findPOderListispoState0" resultMap="mpurchaseorder">
         select * from erp_p_order_master m
         left join erp_provider p on m.provider_id = p.provider_id
@@ -114,12 +117,14 @@
         order by m.po_date desc
     </select>
 
+<!--    新增采购订单(主表)-->
     <insert id="addMPurO">
         insert into erp_p_order_master values(
         "${poNumber}","${poDate}","采购","${providerId.providerId}","${poMoney}","${empId.empId}","${storeId.storeId}","${poState}","${boNumber.boNumber}","${poEastate}","${supEmpId.empId}","${poStstate}"
         )
     </insert>
 
+<!--    根据单据编号查询(从表)-->
     <select id="findPOderListpdi" resultMap="dpurchaseorder">
         select * from erp_p_order_detail d
         left join erp_product s on d.product_id = s.product_id
@@ -131,6 +136,7 @@
         where d.po_number = #{poNumber}
     </select>
 
+<!--    根据编号查询(主表)-->
     <select id="findPOderListpmi" resultMap="mpurchaseorder">
         select * from erp_p_order_master m
         left join erp_provider p on m.provider_id = p.provider_id
@@ -141,6 +147,7 @@
         where m.po_number = #{poNumber}
     </select>
 
+<!--    筛选查询-->
     <select id="filterPOderList" resultMap="mpurchaseorder">
         select * from erp_p_order_master m
         left join erp_provider p on m.provider_id = p.provider_id
@@ -164,6 +171,7 @@
         </where>
     </select>
 
+<!--    新增采购订单(从表)-->
     <insert id="addDPurO">
         insert into erp_p_order_detail values(
         "${podNumber}","${zpoNumber}"
@@ -173,6 +181,7 @@
         )
     </insert>
 
+<!--    修改采购订单执行、审核状态-->
     <update id="updatepoEastate">
         update erp_p_order_master set po_eastate = 1,po_state = 1,sup_emp_id = "${supEmpId.empId}"
         where po_number = "${poNumber}"

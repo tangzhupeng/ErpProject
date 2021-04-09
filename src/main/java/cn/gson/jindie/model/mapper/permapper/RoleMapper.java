@@ -14,7 +14,6 @@ public interface RoleMapper {
     public void addRole(ErpRole role);
     //修改角色信息
     public ErpRole updateRole(ErpRole role);
-
     //查询所有员工
     public List<ErpRole> selectAllRole();
     //通过角色名查询角色信息

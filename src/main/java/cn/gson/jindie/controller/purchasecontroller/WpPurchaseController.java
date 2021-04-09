@@ -19,72 +19,96 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 采购订单控制（Controller）层
+ * @author wp
+ * @Time 2021-4-5
+ *
+ */
 @Controller
 public class WpPurchaseController {
+
+    // 采购订单service层
     @Autowired
     WpPurchaseService wpPurchaseService;
 
+    // 员工service层
     @Autowired
     EmpService empService;
 
+     /*
+        查询所有采购订单
+     */
     @RequestMapping("/purchase-list")
     @ResponseBody
     public Map<String,Object> findPOderList(Integer pageNum,Integer size){
         Map<String,Object> map = new HashMap<>();
         Page<Object> page = PageHelper.startPage(pageNum, size);
-        List<Map<String,Object>> list = wpPurchaseService.findPOderList();
+        List<ErpPOrderMaster> list = wpPurchaseService.findPOderList();
         PageHelper.startPage(pageNum,size);
         map.put("rows",list);
         map.put("total",page.getTotal());
         return map;
     }
 
+    /*
+        新增采购订单（主）
+     */
     @PostMapping("/addMPurO")
     @ResponseBody
     public String addMPurO(@RequestBody ErpPOrderMaster erpPOrderMaster){
-        System.out.println(erpPOrderMaster.getPoMoney());
         try {
-            System.out.println(1);
             wpPurchaseService.addMPurO(erpPOrderMaster);
         }catch (Exception e){
-            System.out.println(2);
             System.out.println(e.getMessage());
         }
         return "新增成功";
     }
 
+    /*
+        修改采购订单执行、审核状态
+     */
     @PostMapping("/updatepoEastate")
     @ResponseBody
     public String updatepoEastate(@RequestBody ErpPOrderMaster erpPOrderMaster){
         try {
-            System.out.println(1);
             wpPurchaseService.updatepoEastate(erpPOrderMaster);
         }catch (Exception e){
-            System.out.println(2);
             System.out.println(e.getMessage());
         }
         return "修改成功";
     }
 
+    /*
+        查询员工
+     */
     @RequestMapping("/find-emp")
     @ResponseBody
     public List<ErpEmp> selectAllEmp(){
         return empService.selectAllEmp();
     }
 
+    /*
+        查询仓库
+     */
     @RequestMapping("/find-store")
     @ResponseBody
     public List<ErpStore> findStore(){
         return wpPurchaseService.findStore();
     }
 
+    /*
+        查询商品
+     */
     @RequestMapping("/find-product")
     @ResponseBody
     public List<ErpProduct> allProduct(){
         return wpPurchaseService.allProduct();
     }
 
+    /*
+        根据采购订单标号查询对应订单从表
+     */
     @RequestMapping("/find-pdid")
     @ResponseBody
     public Map<String,Object> findPOderListpdi(Integer pageNum,Integer size,String poNumber){
@@ -97,23 +121,26 @@ public class WpPurchaseController {
         return map;
     }
 
+    /*
+        根据采购订单标号查询对应订单主表
+     */
     @RequestMapping("/find-pmid")
     @ResponseBody
     public List<ErpPOrderDetail> findPOderListpmi(String poNumber){
         return wpPurchaseService.findPOderListpmi(poNumber);
     }
 
-    //筛选
+    /*
+        筛选查询
+     */
     @RequestMapping("/filter-poderList")
     @ResponseBody
     public Map<String,Object> FilterPOderList(Integer pageNum,Integer size,String erpPOrderMaster){
         ErpPOrderMaster e = JSONObject.toJavaObject(JSON.parseObject(erpPOrderMaster),ErpPOrderMaster.class);
-        System.out.println(e);
         Map<String,Object> map = new HashMap<>();
         Page<Object> page = PageHelper.startPage(pageNum, size);
         List<ErpPOrderMaster> e1 = wpPurchaseService.filterPOderList(e);
         PageHelper.startPage(pageNum,size);
-        System.out.println(e1);
         map.put("rows",e1);
         map.put("total",page.getTotal());
         return map;

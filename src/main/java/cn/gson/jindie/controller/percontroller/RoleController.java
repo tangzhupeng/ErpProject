@@ -17,14 +17,20 @@ public class RoleController {
     @Autowired
     RoleService roleService;
 
-    //新增角色
+    /**
+     * 新增角色
+     * @param role
+     */
     @PostMapping("/addRole")
     @ResponseBody
     public void addRole(ErpRole role){
         roleService.addRole(role);
     }
 
-    //查询所有角色
+    /**
+     * 查询所有角色
+     * @return
+     */
     @GetMapping("/selectAllRole")
     @ResponseBody
     public List<ErpRole> selectAllRole(){

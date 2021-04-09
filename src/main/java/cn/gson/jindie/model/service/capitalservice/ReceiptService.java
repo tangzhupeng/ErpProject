@@ -25,8 +25,8 @@ public class ReceiptService {
     ReceiptMapper receiptMapper;
 
     //查询所有销货单
-    public List<ErpDeliveryOrder> SerDeliveryOrder(Integer customerId){
-        return receiptMapper.SerDeliveryOrder(customerId);
+    public List<ErpDeliveryOrder> serDeliveryOrder(Integer customerId){
+        return receiptMapper.serDeliveryOrder(customerId);
     }
 
     //根据销货id，查询对应的销货单
@@ -35,12 +35,12 @@ public class ReceiptService {
     }
 
     //查询所有客户
-    public List<ErpCustomer> SerCustomer(){
+    public List<ErpCustomer> serCustomer(){
         return customerMapper.SerCustomer();
     }
 
     //新增收款单
-    public void InReceipt(ErpReceipt erpReceipt){
+    public void inReceipt(ErpReceipt erpReceipt){
 
         if(erpReceipt.getReceiptId()==null){
             Date date=new Date();
@@ -50,7 +50,7 @@ public class ReceiptService {
             erpReceipt.setReceiptTime(new Date());
 
             //新增收款单
-            receiptMapper.InReceipt(erpReceipt);
+            receiptMapper.inReceipt(erpReceipt);
 
             //修改客户的欠款金额
             receiptMapper.upCustomerMoney(erpReceipt);
@@ -62,14 +62,7 @@ public class ReceiptService {
             //新增收款单记录
             erpReceipt.getReceiptRecords().setReceipt(erpReceipt);
             erpReceipt.getReceiptRecords().setEmpState(1);
-            receiptMapper.InReceiptRecord(erpReceipt.getReceiptRecords());
-        }else {
-//            //修改付款单
-//            receiptMapper.upReceipt(erpReceipt);
-//            //修改付款记录单
-//            erpReceipt.getReceiptRecords().setReceipt(erpReceipt);
-//            erpReceipt.getReceiptRecords().setEmpState(1);
-//            receiptMapper.upReceiptRecord(erpReceipt);
+            receiptMapper.inReceiptRecord(erpReceipt.getReceiptRecords());
         }
 
     }

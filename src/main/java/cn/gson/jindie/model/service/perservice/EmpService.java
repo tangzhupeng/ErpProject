@@ -14,12 +14,11 @@ public class EmpService {
     @Autowired
     private EmpMapper empMapper;
 
-    /*新增员工*/
+    //新增员工
     public void addEmp(ErpEmp emp){
-//        int empid = empMapper.getClass().get
-
         empMapper.addEmp(emp);
     }
+
     //修改员工状态
     public void updateStatus(){
         empMapper.updateStatus();
@@ -30,19 +29,23 @@ public class EmpService {
         empMapper.updateEmp(emp.getEmpName(),emp.getPassword(),emp.getPhone(),emp.getEmpId());
     }
 
-
     //查询所有员工
     public List<ErpEmp> selectAllEmp(){
         return empMapper.selectAllEmp();
     }
 
-//    根据id删除员工信息
+    //根据id删除员工信息
     public Integer deleteEmp(Integer empId){
-
         return empMapper.deleteEmp(empId);
     }
-
+    //通过姓名查询
     public ErpEmp selectByEmpName(String empName){
         return empMapper.selectByEmpName(empName);
     }
+
+    //通过id查询
+    public ErpEmp findEmpById(Integer id){
+        return empMapper.findEmpById(id);
+    }
+
 }

@@ -29,13 +29,13 @@
 
 
     <!--新增付款单-->
-    <insert id="InPayment">
+    <insert id="inPayment">
         insert into erp_payment values (#{paymentId},#{emp.empId},#{provider.providerId},
         #{paymentTime},#{paymentMoney},#{paymentHxMoney},#{paymentDiscount},#{preparedBy})
     </insert>
 
     <!--新增付款记录单-->
-    <insert id="InPaymentRecord">
+    <insert id="inPaymentRecord">
         insert into erp_payment_record values (#{recordId},#{payment.paymentId},#{account.accountId},
         #{boNumber.boNumber},#{recordMark},#{recordMoney},#{recordRemark},#{recordMark},#{empName},#{empState})
     </insert>
@@ -54,7 +54,7 @@
 
     <!--新增收款单时修改账号的金额-->
     <update id="upRecordMoney">
-        update erp_account set account_money=account_money+#{recordMoney}
+        update erp_account set account_balance=account_balance+#{recordMoney}
         where account_id=#{account.accountId}
     </update>
 

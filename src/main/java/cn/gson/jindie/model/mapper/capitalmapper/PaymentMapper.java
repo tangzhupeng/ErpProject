@@ -18,10 +18,10 @@ public interface PaymentMapper {
 
 
     //新增付款单
-    public void InPayment(ErpPayment payment);
+    public void inPayment(ErpPayment payment);
 
     //新增付款记录单
-    public void InPaymentRecord(ErpPaymentRecord paymentRecord);
+    public void inPaymentRecord(ErpPaymentRecord paymentRecord);
 
     //新增付款单时修改客户的欠款金额
     public void upProviderMoney(ErpPayment payment);

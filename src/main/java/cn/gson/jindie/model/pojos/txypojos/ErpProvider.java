@@ -74,7 +74,6 @@ public class ErpProvider {
         this.providerMoney = providerMoney;
     }
 
-
     public Date getProviderTime() {
         return providerTime;
     }

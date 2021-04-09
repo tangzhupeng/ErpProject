@@ -12,13 +12,13 @@ import java.util.List;
 public interface PaymentRecordMapper {
 
     //分页模糊查询所有付款记录单
-    public List<ErpPaymentRecord> SerPaymentRecord(ErpPaymentRecord paymentRecord);
+    public List<ErpPaymentRecord> serPaymentRecord(ErpPaymentRecord paymentRecord);
 
     //根据id删除对应的付款单记录
-    public void DelRecordId(Integer recordId);
+    public void delRecordId(Integer recordId);
 
     //根据id删除对应的付款单
-    public void DelPaymentId(String paymentId);
+    public void delPaymentId(String paymentId);
 
     //根据id修改审批状态
     public void upEmpStates(Integer recordId);

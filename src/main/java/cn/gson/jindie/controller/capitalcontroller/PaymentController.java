@@ -41,14 +41,14 @@ public class PaymentController {
     @RequestMapping("/SerProvider")
     @ResponseBody
     //查询所有供货商
-    public List<ErpProvider> SerProvider(){
-        return paymentService.SerProvider();
+    public List<ErpProvider> serProvider(){
+        return paymentService.serProvider();
     }
 
     @RequestMapping("/InPayment")
     @ResponseBody
-    public void InPayment(@RequestBody ErpPayment payment){
+    public void inPayment(@RequestBody ErpPayment payment){
         System.out.println("付款单"+payment);
-        paymentService.InPayment(payment);
+        paymentService.inPayment(payment);
     }
 }

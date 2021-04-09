@@ -15,11 +15,18 @@ public class TxyCustomerGradeService {
     @Autowired
     TxyCustomerGradeMapper customerGradeMapper;
 
-    //查询所有客户等级
+    /**
+     * 查询所有客户等级
+     * @return
+     */
     public List<ErpCustomerGrade> allCustomerGrade(){
         return customerGradeMapper.allCustomerGrade();
     }
-    //新增客户等级
+
+    /**
+     * 新增客户等级
+     * @param customerGrade
+     */
     public void addCustomerGrade(ErpCustomerGrade customerGrade){
         if(customerGrade.getGradeId()==null){
             customerGradeMapper.addCustomerGrade(customerGrade);
@@ -27,11 +34,20 @@ public class TxyCustomerGradeService {
             customerGradeMapper.updateGrade(customerGrade);
         }
     }
-    //删除客户等级
+
+    /**
+     * 删除客户等级
+     * @param gradeId
+     */
     public void deleteCustomerGrade(Integer gradeId){
         customerGradeMapper.deleteCustomerGrade(gradeId);
     }
-    //根据等级id查询客户
+
+    /**
+     * 根据等级id查询客户
+     * @param gradeId
+     * @return
+     */
     public List<ErpCustomer> gradeType(Integer gradeId){
         return customerGradeMapper.gradeType(gradeId);
     }

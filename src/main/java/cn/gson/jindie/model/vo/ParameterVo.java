@@ -1,4 +1,4 @@
-package cn.gson.jindie.view;
+package cn.gson.jindie.model.vo;
 
 public class ParameterVo {
     private Integer id;

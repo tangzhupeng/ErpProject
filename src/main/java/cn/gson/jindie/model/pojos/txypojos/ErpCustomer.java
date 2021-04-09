@@ -11,8 +11,6 @@ public class ErpCustomer {
     private String customerPeople;
     private String customerPhone;
     private String customerLocation;
-    /*private Integer empId;
-    private Integer gradeId;*/
     private Double customerMoney;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date customerTime;
@@ -85,22 +83,6 @@ public class ErpCustomer {
     public void setCustomerLocation(String customerLocation) {
         this.customerLocation = customerLocation;
     }
-
-    /*public Integer getEmpId() {
-        return empId;
-    }
-
-    public void setEmpId(Integer empId) {
-        this.empId = empId;
-    }
-
-    public Integer getGradeId() {
-        return gradeId;
-    }
-
-    public void setGradeId(Integer gradeId) {
-        this.gradeId = gradeId;
-    }*/
 
     public Double getCustomerMoney() {
         return customerMoney;

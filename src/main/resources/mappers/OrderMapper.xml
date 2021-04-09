@@ -48,9 +48,9 @@
     <select id="findAllSaleOrder" resultMap="orderMap">
 
         select * from erp_order eo
-            left join erp_customer ec on eo.customer_id = ec.customer_id
-            left join erp_emp ee on eo.emp_id = ee.emp_id
-            left join erp_store es on eo.store_id = es.store_id
+        left join erp_customer ec on eo.customer_id = ec.customer_id
+        left join erp_emp ee on eo.emp_id = ee.emp_id
+        left join erp_store es on eo.store_id = es.store_id
         <where>
 
             <if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
@@ -66,6 +66,7 @@
             </if>
         </where>
     </select>
+
 
     <resultMap id="deliverOrderMap" type="cn.gson.jindie.model.pojos.salespojos.ErpDeliveryOrder">
         <id property="deliveryOrderId" column="delivery_order_id" />
@@ -145,7 +146,6 @@
         #{deliveryStatus},#{creatorPerson},#{createTime},3,2,#{deliveryOrderNumber},#{erpCustomer.customerId}
         ,#{erpEmp.empId},#{erpStore.storeId},#{currentExaminer})
     </insert>
-    <!--新增采购单详情表-->
     <insert id="addOrderDetails" parameterType="java.util.List">
         INSERT INTO erp_order_details(order_id,product_name,number,product_price,product_money,order_details_remarks)
         values
@@ -155,4 +155,5 @@
             #{item.orderDetailsRemarks,jdbcType=VARCHAR})
         </foreach>
     </insert>
+
 </mapper>

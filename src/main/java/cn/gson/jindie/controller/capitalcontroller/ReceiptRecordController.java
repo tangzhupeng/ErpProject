@@ -25,12 +25,12 @@ public class ReceiptRecordController {
     //查询所有收款记录
     @RequestMapping("/SerReceiptRecord")
     @ResponseBody
-    public Map<String, Object> SerReceiptRecord(Integer pageNum, Integer size, String receiptRecord) {
+    public Map<String, Object> serReceiptRecord(Integer pageNum, Integer size, String receiptRecord) {
         Map<String, Object> map = new HashMap<>();
 
         ErpReceiptRecord  receipt= JSONObject.toJavaObject(JSON.parseObject(receiptRecord), ErpReceiptRecord.class);
         Page<Object> page = PageHelper.startPage(pageNum, size);
-        List<ErpReceiptRecord> erpReceiptRecords = receiptRecordService.SerReceiptRecord(receipt);
+        List<ErpReceiptRecord> erpReceiptRecords = receiptRecordService.serReceiptRecord(receipt);
         map.put("total", page.getTotal());
         map.put("rows", erpReceiptRecords);
 
@@ -41,15 +41,15 @@ public class ReceiptRecordController {
     //根据id删除对应的收款单记录
     @RequestMapping("/DelReId")
     @ResponseBody
-    public void DelReId(Integer reId,String receiptId){
-        receiptRecordService.DelReId(reId,receiptId);
+    public void delReId(Integer reId,String receiptId){
+        receiptRecordService.delReId(reId,receiptId);
     }
 
     //批量删除收款记录单
     @RequestMapping("/DelReidList")
     @ResponseBody
-    public void DelReidList(@RequestBody List<ErpReceiptRecord> receiptRecords){
-        receiptRecordService.DelReidList(receiptRecords);
+    public void delReidList(@RequestBody List<ErpReceiptRecord> receiptRecords){
+        receiptRecordService.delReidList(receiptRecords);
     }
 
 

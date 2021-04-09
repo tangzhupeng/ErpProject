@@ -56,7 +56,7 @@
     </resultMap>
 
     <!--分页模糊查询付款记录单信息-->
-    <select id="SerPaymentRecord" resultMap="PaymentRecord">
+    <select id="serPaymentRecord" resultMap="PaymentRecord">
         select * from erp_payment_record pr
         left join  erp_payment p on pr.payment_id=p.payment_id
         left join erp_emp e on p.emp_id=e.emp_id
@@ -91,12 +91,12 @@
 
 
     <!--根据id删除对应的付款单记录-->
-    <delete id="DelRecordId">
+    <delete id="delRecordId">
         delete from erp_payment_record where record_id=#{recordId}
     </delete>
 
     <!--根据id删除对应付款单-->
-    <delete id="DelPaymentId">
+    <delete id="delPaymentId">
         delete from erp_payment where payment_id=#{paymentId}
     </delete>
 

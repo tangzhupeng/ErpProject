@@ -1,4 +1,4 @@
-package cn.gson.jindie.view;
+package cn.gson.jindie.model.vo;
 
 import cn.gson.jindie.model.pojos.salespojos.ErpOrderDetails;
 import com.fasterxml.jackson.annotation.JsonFormat;
